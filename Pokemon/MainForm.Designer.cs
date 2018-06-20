@@ -33,17 +33,19 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabControl = new System.Windows.Forms.TabControl();
+			this.tabPageEnvironment = new System.Windows.Forms.TabPage();
 			this.tabPageAttack = new System.Windows.Forms.TabPage();
-			this.tabPageDefence = new System.Windows.Forms.TabPage();
 			this.button2 = new System.Windows.Forms.Button();
+			this.tabPageDefence = new System.Windows.Forms.TabPage();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.tabPageEnvironment = new System.Windows.Forms.TabPage();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.tabControl.SuspendLayout();
+			this.tabPageEnvironment.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.SuspendLayout();
@@ -93,6 +95,16 @@
 			this.tabControl.Size = new System.Drawing.Size(350, 217);
 			this.tabControl.TabIndex = 4;
 			// 
+			// tabPageEnvironment
+			// 
+			this.tabPageEnvironment.Controls.Add(this.comboBox1);
+			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
+			this.tabPageEnvironment.Name = "tabPageEnvironment";
+			this.tabPageEnvironment.Size = new System.Drawing.Size(342, 191);
+			this.tabPageEnvironment.TabIndex = 2;
+			this.tabPageEnvironment.Text = "環境";
+			this.tabPageEnvironment.UseVisualStyleBackColor = true;
+			// 
 			// tabPageAttack
 			// 
 			this.tabPageAttack.Controls.Add(this.button2);
@@ -104,6 +116,15 @@
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(250, 158);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 0;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
 			// tabPageDefence
 			// 
 			this.tabPageDefence.Location = new System.Drawing.Point(4, 22);
@@ -113,15 +134,6 @@
 			this.tabPageDefence.TabIndex = 1;
 			this.tabPageDefence.Text = "防御側";
 			this.tabPageDefence.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(250, 158);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 0;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
 			// 
 			// listBox1
 			// 
@@ -172,14 +184,14 @@
 			this.label1.TabIndex = 8;
 			this.label1.Text = "結果/考察";
 			// 
-			// tabPageEnvironment
+			// comboBox1
 			// 
-			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
-			this.tabPageEnvironment.Name = "tabPageEnvironment";
-			this.tabPageEnvironment.Size = new System.Drawing.Size(342, 191);
-			this.tabPageEnvironment.TabIndex = 2;
-			this.tabPageEnvironment.Text = "環境";
-			this.tabPageEnvironment.UseVisualStyleBackColor = true;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(48, 66);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 20);
+			this.comboBox1.TabIndex = 0;
+			this.comboBox1.Text = "わざを選択";
 			// 
 			// MainForm
 			// 
@@ -198,9 +210,11 @@
 			this.Name = "MainForm";
 			this.ShowIcon = false;
 			this.Text = "ポケモン対戦ツールbyびいの";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.tabControl.ResumeLayout(false);
+			this.tabPageEnvironment.ResumeLayout(false);
 			this.tabPageAttack.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.ResumeLayout(false);
@@ -223,6 +237,7 @@
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TabPage tabPageEnvironment;
+		private System.Windows.Forms.ComboBox comboBox1;
 	}
 }
 
