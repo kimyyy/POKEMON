@@ -48,6 +48,7 @@ namespace Pokemon
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+			// わざのデータを取得。
 			cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
 
 			using (var cn = new SQLiteConnection(cBuilder.ToString()))
@@ -69,7 +70,7 @@ namespace Pokemon
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
 		/// <returns></returns>
-		private int CalculateDamage(Pokemon attackPoke,Pokemon defensePoke, Waza skill)
+		private int[] CalculateDamage(Pokemon attackPoke,Pokemon defensePoke, Waza skill)
 		{
 			int temp = attackPoke.level * 2 / 5 + 2;
 			if(skill.category == "物理")
@@ -83,22 +84,48 @@ namespace Pokemon
 			
 			temp = temp / 50 + 2;
 			var r = new Random();
-			temp = (int)(temp * (100 - r.Next(16)) / 100.0);
-			temp = (int) (temp * CalculateTypeMatching(defensePoke, skill));
-			return temp;
+			int templow = (int)(temp * 0.85);
+			int temphigh = temp;
+			templow = (int) (templow * CalculateTypeMatching(attackPoke,defensePoke, skill));
+			temphigh = (int)(temphigh * CalculateTypeMatching(attackPoke,defensePoke, skill));
+			var ret = new int[] { templow, temphigh };
+			return ret;
 		}
 
-		private double CalculateTypeMatching(Pokemon defensePokemon, Waza skill)
+		/// <summary>
+		/// タイプ相性を計算します。
+		/// </summary>
+		/// <param name="defensePokemon"></param>
+		/// <param name="skill"></param>
+		/// <returns></returns>
+		private double CalculateTypeMatching(Pokemon attackPokemon,Pokemon defensePokemon, Waza skill)
 		{
-			int type1 = Array.IndexOf(arrayType, defensePokemon.type1);
-			int type2 = Array.IndexOf(arrayType, defensePokemon.type2);
 			int skilltype = Array.IndexOf(arrayType, skill.type);
-			return arrayTypeMatch[skilltype, type1] * arrayTypeMatch[skilltype, type2];
+			int type1 = Array.IndexOf(arrayType, defensePokemon.type1);
+			double sametype = 1;
+			if (attackPokemon.type1 == skill.type || attackPokemon.type2 == skill.type) sametype = 1.5;
+			if (defensePokemon.type2 == string.Empty)
+			{
+				return arrayTypeMatch[skilltype, type1] * sametype;
+			}
+			int type2 = Array.IndexOf(arrayType, defensePokemon.type2);
+			return arrayTypeMatch[skilltype, type1] * arrayTypeMatch[skilltype, type2] * sametype;
 		}
 
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
-
+			var attackPoke = new Pokemon(textBoxAttackPoke.Text)
+			{
+				level = int.Parse(BoxLevel.Text)
+			};
+			var defencePoke = new Pokemon(textBoxDefencePoke.Text)
+			{
+				level = int.Parse(BoxLevel.Text)
+			};
+			var skill = new Waza(comboBoxSkill.Text);
+			int[] damage = CalculateDamage(attackPoke, defencePoke, skill);
+			textBoxResult.AppendText(string.Format("ダメージは最大で{0},最小で{1}です\n",damage[0], damage[1]));
+			textBoxResult.Refresh();
 		}
 	}
 }

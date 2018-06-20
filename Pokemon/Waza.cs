@@ -29,7 +29,7 @@ namespace Pokemon
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 					type = reader["type"].ToString();
-					category = reader["type"].ToString();
+					category = reader["category"].ToString();
 					damage = int.Parse(reader["damage"].ToString());
 				}
 			}
