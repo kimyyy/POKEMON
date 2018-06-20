@@ -34,18 +34,17 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageEnvironment = new System.Windows.Forms.TabPage();
+			this.comboBoxSkill = new System.Windows.Forms.ComboBox();
 			this.tabPageAttack = new System.Windows.Forms.TabPage();
-			this.button2 = new System.Windows.Forms.Button();
+			this.buttonAttack = new System.Windows.Forms.Button();
 			this.tabPageDefence = new System.Windows.Forms.TabPage();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.tabControl.SuspendLayout();
-			this.tabPageEnvironment.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.SuspendLayout();
@@ -97,7 +96,6 @@
 			// 
 			// tabPageEnvironment
 			// 
-			this.tabPageEnvironment.Controls.Add(this.comboBox1);
 			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
 			this.tabPageEnvironment.Name = "tabPageEnvironment";
 			this.tabPageEnvironment.Size = new System.Drawing.Size(342, 191);
@@ -105,9 +103,19 @@
 			this.tabPageEnvironment.Text = "環境";
 			this.tabPageEnvironment.UseVisualStyleBackColor = true;
 			// 
+			// comboBoxSkill
+			// 
+			this.comboBoxSkill.FormattingEnabled = true;
+			this.comboBoxSkill.Location = new System.Drawing.Point(96, 119);
+			this.comboBoxSkill.Name = "comboBoxSkill";
+			this.comboBoxSkill.Size = new System.Drawing.Size(121, 20);
+			this.comboBoxSkill.TabIndex = 0;
+			this.comboBoxSkill.Text = "わざを選択";
+			// 
 			// tabPageAttack
 			// 
-			this.tabPageAttack.Controls.Add(this.button2);
+			this.tabPageAttack.Controls.Add(this.comboBoxSkill);
+			this.tabPageAttack.Controls.Add(this.buttonAttack);
 			this.tabPageAttack.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAttack.Name = "tabPageAttack";
 			this.tabPageAttack.Padding = new System.Windows.Forms.Padding(3);
@@ -116,14 +124,15 @@
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// buttonAttack
 			// 
-			this.button2.Location = new System.Drawing.Point(250, 158);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 0;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
+			this.buttonAttack.Location = new System.Drawing.Point(250, 158);
+			this.buttonAttack.Name = "buttonAttack";
+			this.buttonAttack.Size = new System.Drawing.Size(75, 23);
+			this.buttonAttack.TabIndex = 0;
+			this.buttonAttack.Text = "攻撃！";
+			this.buttonAttack.UseVisualStyleBackColor = true;
+			this.buttonAttack.Click += new System.EventHandler(this.buttonAttack_Click);
 			// 
 			// tabPageDefence
 			// 
@@ -184,15 +193,6 @@
 			this.label1.TabIndex = 8;
 			this.label1.Text = "結果/考察";
 			// 
-			// comboBox1
-			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(48, 66);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(121, 20);
-			this.comboBox1.TabIndex = 0;
-			this.comboBox1.Text = "わざを選択";
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -214,7 +214,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.tabControl.ResumeLayout(false);
-			this.tabPageEnvironment.ResumeLayout(false);
 			this.tabPageAttack.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.ResumeLayout(false);
@@ -230,14 +229,14 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPageAttack;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button buttonAttack;
 		private System.Windows.Forms.TabPage tabPageDefence;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.ListBox listBox2;
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TabPage tabPageEnvironment;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox comboBoxSkill;
 	}
 }
 

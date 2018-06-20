@@ -15,11 +15,11 @@ namespace Pokemon
 	{
 		private SQLiteConnectionStringBuilder cBuilder;
 
-		private string[] typeArray = new string[]
+		private string[] arrayType = new string[]
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
 			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
 
-		private double[,] typeMatch = new double[18,18]
+		private double[,] arrayTypeMatch = new double[18,18]
 		{
 			{1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1 },//ノーマル
 			{1,0.5,0.5,1,2,2,1,1,1,1,1,2,0.5,1,0.5,1,2,1 },//ほのお
@@ -59,7 +59,7 @@ namespace Pokemon
 					var reader = cmd.ExecuteReader();
 					while (reader.Read())
 					{
-						comboBox1.Items.Add(reader["name"].ToString());
+						comboBoxSkill.Items.Add(reader["name"].ToString());
 					}
 				}
 			}
@@ -69,25 +69,34 @@ namespace Pokemon
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
 		/// <returns></returns>
-		private int CalculateDamage()
+		private int CalculateDamage(Pokemon attackPoke,Pokemon defensePoke, Waza skill)
 		{
-			int temp = level * 2 / 5 + 2;
-			temp = temp * skillDamage * A / B;
+			int temp = attackPoke.level * 2 / 5 + 2;
+			if(skill.category == "物理")
+			{
+				temp = temp * skill.damage * attackPoke.a / defensePoke.b;
+			}
+			else
+			{
+				temp = temp * skill.damage * attackPoke.c / defensePoke.c;
+			}
+			
 			temp = temp / 50 + 2;
 			var r = new Random();
 			temp = (int)(temp * (100 - r.Next(16)) / 100.0);
+			temp = (int) (temp * CalculateTypeMatching(defensePoke, skill));
+			return temp;
 		}
 
-		/// <summary>
-		/// 外的要因によるダメージの変化を計算します。
-		/// </summary>
-		/// <returns></returns>
-		private int AffectSettings()
+		private double CalculateTypeMatching(Pokemon defensePokemon, Waza skill)
 		{
-
+			int type1 = Array.IndexOf(arrayType, defensePokemon.type1);
+			int type2 = Array.IndexOf(arrayType, defensePokemon.type2);
+			int skilltype = Array.IndexOf(arrayType, skill.type);
+			return arrayTypeMatch[skilltype, type1] * arrayTypeMatch[skilltype, type2];
 		}
 
-		private double CalculateTypeMatching()
+		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 
 		}
