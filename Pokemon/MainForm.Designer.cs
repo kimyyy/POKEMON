@@ -75,7 +75,6 @@
 			this.textBoxResult.Name = "textBoxResult";
 			this.textBoxResult.Size = new System.Drawing.Size(346, 167);
 			this.textBoxResult.TabIndex = 3;
-			this.textBoxResult.Text = "攻撃側のダメージは56で、\r\n確2(80%)です。\r\n";
 			// 
 			// tabControl
 			// 

@@ -124,7 +124,10 @@ namespace Pokemon
 			};
 			var skill = new Waza(comboBoxSkill.Text);
 			int[] damage = CalculateDamage(attackPoke, defencePoke, skill);
-			textBoxResult.AppendText(string.Format("ダメージは最大で{0},最小で{1}です\n",damage[0], damage[1]));
+			textBoxResult.AppendText("======================\n");
+			textBoxResult.AppendText("攻撃を開始します。\n");
+			textBoxResult.AppendText(string.Format("ダメージは{0}～{1}です\n",damage[0], damage[1]));
+			textBoxResult.AppendText("攻撃をおわります\r\n======================\n");
 			textBoxResult.Refresh();
 		}
 	}
