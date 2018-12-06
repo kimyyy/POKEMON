@@ -11,14 +11,17 @@ namespace Pokemon
 	{
 		public string Name;
 
-		public string type;
+		public string Type;
 
-		public string category;
+		private string category;
 
-		public int damage;
+		public bool IsPhysical;
+
+		public int Damage;
 
 		public Waza(string name)
 		{
+			Name = name;
 			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
 			using(var cn = new SQLiteConnection(cBuilder.ToString()))
 			{
@@ -28,10 +31,24 @@ namespace Pokemon
 					cmd.CommandText = string.Format("select * from waza where name = '{0}'", name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
-					type = reader["type"].ToString();
+					Type = reader["type"].ToString();
 					category = reader["category"].ToString();
-					damage = int.Parse(reader["damage"].ToString());
+					Damage = int.Parse(reader["damage"].ToString());
 				}
+			}
+
+			// 物理か特殊か判定
+			if(category == "物理")
+			{
+				IsPhysical = true;
+			}
+			else if (category == "特殊")
+			{
+				IsPhysical = false;
+			}
+			else
+			{
+				throw new Exception("存在しない技カテゴリです。");
 			}
 		}
 	}

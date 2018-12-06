@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.button1 = new System.Windows.Forms.Button();
 			this.textBoxResult = new System.Windows.Forms.TextBox();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageAttack = new System.Windows.Forms.TabPage();
@@ -69,32 +68,40 @@
 			this.textBoxEffortC = new System.Windows.Forms.TextBox();
 			this.textBoxEffortB = new System.Windows.Forms.TextBox();
 			this.textBoxEffortA = new System.Windows.Forms.TextBox();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.comboBoxPersonality = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.NumLevel = new System.Windows.Forms.NumericUpDown();
+			this.textBoxStatusH = new System.Windows.Forms.TextBox();
+			this.textBoxStatusA = new System.Windows.Forms.TextBox();
+			this.textBoxStatusB = new System.Windows.Forms.TextBox();
+			this.textBoxStatusC = new System.Windows.Forms.TextBox();
+			this.textBoxStatusD = new System.Windows.Forms.TextBox();
+			this.textBoxStatusS = new System.Windows.Forms.TextBox();
+			this.buttonUpdateStatus = new System.Windows.Forms.Button();
+			this.panelStatus = new System.Windows.Forms.Panel();
+			this.panelEffort = new System.Windows.Forms.Panel();
+			this.panelIndi = new System.Windows.Forms.Panel();
+			this.panelResult = new System.Windows.Forms.Panel();
+			this.panelBattle = new System.Windows.Forms.Panel();
+			this.label18 = new System.Windows.Forms.Label();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
 			this.groupBoxAttackPoke.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).BeginInit();
+			this.panelStatus.SuspendLayout();
+			this.panelEffort.SuspendLayout();
+			this.panelIndi.SuspendLayout();
+			this.panelResult.SuspendLayout();
+			this.panelBattle.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(151, 590);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(108, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "個体情報の入力";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// textBoxResult
 			// 
-			this.textBoxResult.Location = new System.Drawing.Point(475, 285);
+			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
 			this.textBoxResult.Size = new System.Drawing.Size(346, 167);
@@ -105,7 +112,7 @@
 			this.tabControl.Controls.Add(this.tabPageAttack);
 			this.tabControl.Controls.Add(this.tabPageDefence);
 			this.tabControl.Controls.Add(this.tabPageEnvironment);
-			this.tabControl.Location = new System.Drawing.Point(475, 26);
+			this.tabControl.Location = new System.Drawing.Point(646, 12);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(350, 217);
@@ -253,7 +260,7 @@
             "ミミロップ",
             "ムウマ",
             "ピカチュウ"});
-			this.listBoxMyParty.Location = new System.Drawing.Point(12, 89);
+			this.listBoxMyParty.Location = new System.Drawing.Point(18, 86);
 			this.listBoxMyParty.Name = "listBoxMyParty";
 			this.listBoxMyParty.Size = new System.Drawing.Size(89, 88);
 			this.listBoxMyParty.TabIndex = 5;
@@ -279,7 +286,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(469, 260);
+			this.label1.Location = new System.Drawing.Point(5, 11);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 12);
 			this.label1.TabIndex = 8;
@@ -288,7 +295,7 @@
 			// textBoxAttackPoke
 			// 
 			this.textBoxAttackPoke.AllowDrop = true;
-			this.textBoxAttackPoke.Location = new System.Drawing.Point(151, 73);
+			this.textBoxAttackPoke.Location = new System.Drawing.Point(7, 35);
 			this.textBoxAttackPoke.Name = "textBoxAttackPoke";
 			this.textBoxAttackPoke.ReadOnly = true;
 			this.textBoxAttackPoke.Size = new System.Drawing.Size(100, 19);
@@ -299,7 +306,7 @@
 			// textBoxDefencePoke
 			// 
 			this.textBoxDefencePoke.AllowDrop = true;
-			this.textBoxDefencePoke.Location = new System.Drawing.Point(330, 73);
+			this.textBoxDefencePoke.Location = new System.Drawing.Point(172, 36);
 			this.textBoxDefencePoke.Name = "textBoxDefencePoke";
 			this.textBoxDefencePoke.ReadOnly = true;
 			this.textBoxDefencePoke.Size = new System.Drawing.Size(100, 19);
@@ -309,54 +316,46 @@
 			// 
 			// groupBoxAttackPoke
 			// 
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiHP);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortHP);
+			this.groupBoxAttackPoke.Controls.Add(this.panelIndi);
+			this.groupBoxAttackPoke.Controls.Add(this.panelStatus);
+			this.groupBoxAttackPoke.Controls.Add(this.panelEffort);
+			this.groupBoxAttackPoke.Controls.Add(this.buttonUpdateStatus);
 			this.groupBoxAttackPoke.Controls.Add(this.label17);
-			this.groupBoxAttackPoke.Controls.Add(this.label16);
-			this.groupBoxAttackPoke.Controls.Add(this.label15);
 			this.groupBoxAttackPoke.Controls.Add(this.label14);
 			this.groupBoxAttackPoke.Controls.Add(this.label13);
 			this.groupBoxAttackPoke.Controls.Add(this.label12);
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiS);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiD);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiC);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiB);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxIndiA);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortS);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortD);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortC);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortB);
-			this.groupBoxAttackPoke.Controls.Add(this.textBoxEffortA);
-			this.groupBoxAttackPoke.Controls.Add(this.comboBox4);
+			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
 			this.groupBoxAttackPoke.Location = new System.Drawing.Point(151, 195);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
-			this.groupBoxAttackPoke.Size = new System.Drawing.Size(291, 348);
+			this.groupBoxAttackPoke.Size = new System.Drawing.Size(489, 348);
 			this.groupBoxAttackPoke.TabIndex = 11;
 			this.groupBoxAttackPoke.TabStop = false;
 			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
 			// 
 			// textBoxIndiHP
 			// 
-			this.textBoxIndiHP.Location = new System.Drawing.Point(170, 69);
+			this.textBoxIndiHP.Location = new System.Drawing.Point(18, 39);
 			this.textBoxIndiHP.Name = "textBoxIndiHP";
 			this.textBoxIndiHP.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiHP.TabIndex = 20;
+			this.textBoxIndiHP.Tag = "H";
 			this.textBoxIndiHP.Text = "0";
 			// 
 			// textBoxEffortHP
 			// 
-			this.textBoxEffortHP.Location = new System.Drawing.Point(51, 69);
+			this.textBoxEffortHP.Location = new System.Drawing.Point(20, 39);
 			this.textBoxEffortHP.Name = "textBoxEffortHP";
 			this.textBoxEffortHP.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortHP.TabIndex = 19;
+			this.textBoxEffortHP.Tag = "H";
 			this.textBoxEffortHP.Text = "0";
 			// 
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(3, 76);
+			this.label17.Location = new System.Drawing.Point(6, 65);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(20, 12);
 			this.label17.TabIndex = 18;
@@ -365,7 +364,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(191, 29);
+			this.label16.Location = new System.Drawing.Point(16, 20);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(41, 12);
 			this.label16.TabIndex = 17;
@@ -374,7 +373,7 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(81, 30);
+			this.label15.Location = new System.Drawing.Point(36, 9);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(41, 12);
 			this.label15.TabIndex = 16;
@@ -383,7 +382,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(3, 268);
+			this.label14.Location = new System.Drawing.Point(3, 263);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(43, 12);
 			this.label14.TabIndex = 15;
@@ -392,7 +391,7 @@
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(7, 229);
+			this.label13.Location = new System.Drawing.Point(7, 224);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(36, 12);
 			this.label13.TabIndex = 14;
@@ -401,7 +400,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(3, 188);
+			this.label12.Location = new System.Drawing.Point(6, 184);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(34, 12);
 			this.label12.TabIndex = 13;
@@ -410,7 +409,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(6, 149);
+			this.label11.Location = new System.Drawing.Point(7, 142);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(39, 12);
 			this.label11.TabIndex = 12;
@@ -419,7 +418,7 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 106);
+			this.label10.Location = new System.Drawing.Point(6, 97);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(39, 12);
 			this.label10.TabIndex = 11;
@@ -427,96 +426,106 @@
 			// 
 			// textBoxIndiS
 			// 
-			this.textBoxIndiS.Location = new System.Drawing.Point(170, 268);
+			this.textBoxIndiS.Location = new System.Drawing.Point(18, 236);
 			this.textBoxIndiS.Name = "textBoxIndiS";
 			this.textBoxIndiS.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiS.TabIndex = 10;
+			this.textBoxIndiS.Tag = "S";
 			this.textBoxIndiS.Text = "0";
 			// 
 			// textBoxIndiD
 			// 
-			this.textBoxIndiD.Location = new System.Drawing.Point(170, 226);
+			this.textBoxIndiD.Location = new System.Drawing.Point(18, 197);
 			this.textBoxIndiD.Name = "textBoxIndiD";
 			this.textBoxIndiD.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiD.TabIndex = 9;
+			this.textBoxIndiD.Tag = "D";
 			this.textBoxIndiD.Text = "0";
 			// 
 			// textBoxIndiC
 			// 
-			this.textBoxIndiC.Location = new System.Drawing.Point(170, 188);
+			this.textBoxIndiC.Location = new System.Drawing.Point(18, 150);
 			this.textBoxIndiC.Name = "textBoxIndiC";
 			this.textBoxIndiC.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiC.TabIndex = 8;
+			this.textBoxIndiC.Tag = "C";
 			this.textBoxIndiC.Text = "0";
 			// 
 			// textBoxIndiB
 			// 
-			this.textBoxIndiB.Location = new System.Drawing.Point(170, 146);
+			this.textBoxIndiB.Location = new System.Drawing.Point(18, 116);
 			this.textBoxIndiB.Name = "textBoxIndiB";
 			this.textBoxIndiB.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiB.TabIndex = 7;
+			this.textBoxIndiB.Tag = "B";
 			this.textBoxIndiB.Text = "0";
 			// 
 			// textBoxIndiA
 			// 
-			this.textBoxIndiA.Location = new System.Drawing.Point(170, 103);
+			this.textBoxIndiA.Location = new System.Drawing.Point(18, 79);
 			this.textBoxIndiA.Name = "textBoxIndiA";
 			this.textBoxIndiA.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiA.TabIndex = 6;
+			this.textBoxIndiA.Tag = "A";
 			this.textBoxIndiA.Text = "0";
 			// 
 			// textBoxEffortS
 			// 
-			this.textBoxEffortS.Location = new System.Drawing.Point(51, 268);
+			this.textBoxEffortS.Location = new System.Drawing.Point(20, 236);
 			this.textBoxEffortS.Name = "textBoxEffortS";
 			this.textBoxEffortS.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortS.TabIndex = 5;
+			this.textBoxEffortS.Tag = "S";
 			this.textBoxEffortS.Text = "0";
 			// 
 			// textBoxEffortD
 			// 
-			this.textBoxEffortD.Location = new System.Drawing.Point(51, 226);
+			this.textBoxEffortD.Location = new System.Drawing.Point(20, 197);
 			this.textBoxEffortD.Name = "textBoxEffortD";
 			this.textBoxEffortD.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortD.TabIndex = 4;
+			this.textBoxEffortD.Tag = "D";
 			this.textBoxEffortD.Text = "0";
 			// 
 			// textBoxEffortC
 			// 
-			this.textBoxEffortC.Location = new System.Drawing.Point(51, 188);
+			this.textBoxEffortC.Location = new System.Drawing.Point(20, 155);
 			this.textBoxEffortC.Name = "textBoxEffortC";
 			this.textBoxEffortC.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortC.TabIndex = 3;
+			this.textBoxEffortC.Tag = "C";
 			this.textBoxEffortC.Text = "0";
 			// 
 			// textBoxEffortB
 			// 
-			this.textBoxEffortB.Location = new System.Drawing.Point(51, 146);
+			this.textBoxEffortB.Location = new System.Drawing.Point(20, 113);
 			this.textBoxEffortB.Name = "textBoxEffortB";
 			this.textBoxEffortB.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortB.TabIndex = 2;
+			this.textBoxEffortB.Tag = "B";
 			this.textBoxEffortB.Text = "0";
 			// 
 			// textBoxEffortA
 			// 
-			this.textBoxEffortA.Location = new System.Drawing.Point(51, 103);
+			this.textBoxEffortA.Location = new System.Drawing.Point(20, 74);
 			this.textBoxEffortA.Name = "textBoxEffortA";
 			this.textBoxEffortA.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortA.TabIndex = 1;
+			this.textBoxEffortA.Tag = "A";
 			this.textBoxEffortA.Text = "0";
 			// 
-			// comboBox4
+			// comboBoxPersonality
 			// 
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Location = new System.Drawing.Point(149, 312);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(121, 20);
-			this.comboBox4.TabIndex = 0;
+			this.comboBoxPersonality.FormattingEnabled = true;
+			this.comboBoxPersonality.Location = new System.Drawing.Point(9, 308);
+			this.comboBoxPersonality.Name = "comboBoxPersonality";
+			this.comboBoxPersonality.Size = new System.Drawing.Size(121, 20);
+			this.comboBoxPersonality.TabIndex = 0;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(282, 76);
+			this.label6.Location = new System.Drawing.Point(126, 39);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(20, 12);
 			this.label6.TabIndex = 12;
@@ -567,25 +576,149 @@
             0,
             0});
 			// 
+			// textBoxStatusH
+			// 
+			this.textBoxStatusH.Location = new System.Drawing.Point(19, 39);
+			this.textBoxStatusH.Name = "textBoxStatusH";
+			this.textBoxStatusH.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusH.TabIndex = 22;
+			this.textBoxStatusH.Tag = "H";
+			// 
+			// textBoxStatusA
+			// 
+			this.textBoxStatusA.Location = new System.Drawing.Point(19, 77);
+			this.textBoxStatusA.Name = "textBoxStatusA";
+			this.textBoxStatusA.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusA.TabIndex = 23;
+			this.textBoxStatusA.Tag = "A";
+			// 
+			// textBoxStatusB
+			// 
+			this.textBoxStatusB.Location = new System.Drawing.Point(19, 115);
+			this.textBoxStatusB.Name = "textBoxStatusB";
+			this.textBoxStatusB.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusB.TabIndex = 24;
+			this.textBoxStatusB.Tag = "B";
+			// 
+			// textBoxStatusC
+			// 
+			this.textBoxStatusC.Location = new System.Drawing.Point(19, 154);
+			this.textBoxStatusC.Name = "textBoxStatusC";
+			this.textBoxStatusC.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusC.TabIndex = 25;
+			this.textBoxStatusC.Tag = "C";
+			// 
+			// textBoxStatusD
+			// 
+			this.textBoxStatusD.Location = new System.Drawing.Point(19, 198);
+			this.textBoxStatusD.Name = "textBoxStatusD";
+			this.textBoxStatusD.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusD.TabIndex = 26;
+			this.textBoxStatusD.Tag = "D";
+			// 
+			// textBoxStatusS
+			// 
+			this.textBoxStatusS.Location = new System.Drawing.Point(19, 237);
+			this.textBoxStatusS.Name = "textBoxStatusS";
+			this.textBoxStatusS.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusS.TabIndex = 27;
+			this.textBoxStatusS.Tag = "S";
+			// 
+			// buttonUpdateStatus
+			// 
+			this.buttonUpdateStatus.Location = new System.Drawing.Point(142, 308);
+			this.buttonUpdateStatus.Name = "buttonUpdateStatus";
+			this.buttonUpdateStatus.Size = new System.Drawing.Size(137, 23);
+			this.buttonUpdateStatus.TabIndex = 28;
+			this.buttonUpdateStatus.Text = "ステータスを更新";
+			this.buttonUpdateStatus.UseVisualStyleBackColor = true;
+			this.buttonUpdateStatus.Click += new System.EventHandler(this.buttonUpdateStatus_Click);
+			// 
+			// panelStatus
+			// 
+			this.panelStatus.Controls.Add(this.label18);
+			this.panelStatus.Controls.Add(this.textBoxStatusS);
+			this.panelStatus.Controls.Add(this.textBoxStatusH);
+			this.panelStatus.Controls.Add(this.textBoxStatusD);
+			this.panelStatus.Controls.Add(this.textBoxStatusA);
+			this.panelStatus.Controls.Add(this.textBoxStatusC);
+			this.panelStatus.Controls.Add(this.textBoxStatusB);
+			this.panelStatus.Location = new System.Drawing.Point(328, 23);
+			this.panelStatus.Name = "panelStatus";
+			this.panelStatus.Size = new System.Drawing.Size(142, 273);
+			this.panelStatus.TabIndex = 30;
+			// 
+			// panelEffort
+			// 
+			this.panelEffort.Controls.Add(this.textBoxEffortHP);
+			this.panelEffort.Controls.Add(this.textBoxEffortA);
+			this.panelEffort.Controls.Add(this.textBoxEffortB);
+			this.panelEffort.Controls.Add(this.textBoxEffortC);
+			this.panelEffort.Controls.Add(this.textBoxEffortD);
+			this.panelEffort.Controls.Add(this.textBoxEffortS);
+			this.panelEffort.Controls.Add(this.label15);
+			this.panelEffort.Location = new System.Drawing.Point(48, 23);
+			this.panelEffort.Name = "panelEffort";
+			this.panelEffort.Size = new System.Drawing.Size(133, 273);
+			this.panelEffort.TabIndex = 18;
+			// 
+			// panelIndi
+			// 
+			this.panelIndi.Controls.Add(this.label16);
+			this.panelIndi.Controls.Add(this.textBoxIndiHP);
+			this.panelIndi.Controls.Add(this.textBoxIndiA);
+			this.panelIndi.Controls.Add(this.textBoxIndiB);
+			this.panelIndi.Controls.Add(this.textBoxIndiC);
+			this.panelIndi.Controls.Add(this.textBoxIndiD);
+			this.panelIndi.Controls.Add(this.textBoxIndiS);
+			this.panelIndi.Location = new System.Drawing.Point(179, 23);
+			this.panelIndi.Name = "panelIndi";
+			this.panelIndi.Size = new System.Drawing.Size(143, 273);
+			this.panelIndi.TabIndex = 19;
+			// 
+			// panelResult
+			// 
+			this.panelResult.Controls.Add(this.label1);
+			this.panelResult.Controls.Add(this.textBoxResult);
+			this.panelResult.Location = new System.Drawing.Point(670, 275);
+			this.panelResult.Name = "panelResult";
+			this.panelResult.Size = new System.Drawing.Size(369, 221);
+			this.panelResult.TabIndex = 18;
+			// 
+			// panelBattle
+			// 
+			this.panelBattle.Controls.Add(this.textBoxAttackPoke);
+			this.panelBattle.Controls.Add(this.textBoxDefencePoke);
+			this.panelBattle.Controls.Add(this.label6);
+			this.panelBattle.Location = new System.Drawing.Point(156, 26);
+			this.panelBattle.Name = "panelBattle";
+			this.panelBattle.Size = new System.Drawing.Size(286, 131);
+			this.panelBattle.TabIndex = 19;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(38, 21);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(50, 12);
+			this.label18.TabIndex = 28;
+			this.label18.Text = "ステータス";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1008, 726);
+			this.ClientSize = new System.Drawing.Size(1054, 726);
+			this.Controls.Add(this.panelBattle);
+			this.Controls.Add(this.panelResult);
 			this.Controls.Add(this.NumLevel);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
-			this.Controls.Add(this.label6);
 			this.Controls.Add(this.groupBoxAttackPoke);
-			this.Controls.Add(this.textBoxDefencePoke);
-			this.Controls.Add(this.textBoxAttackPoke);
-			this.Controls.Add(this.label1);
 			this.Controls.Add(this.listBoxEnemyParty);
 			this.Controls.Add(this.listBoxMyParty);
 			this.Controls.Add(this.tabControl);
-			this.Controls.Add(this.textBoxResult);
-			this.Controls.Add(this.button1);
 			this.Name = "MainForm";
 			this.ShowIcon = false;
 			this.Text = "ポケモン対戦ツールbyびいの";
@@ -598,13 +731,22 @@
 			this.groupBoxAttackPoke.ResumeLayout(false);
 			this.groupBoxAttackPoke.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).EndInit();
+			this.panelStatus.ResumeLayout(false);
+			this.panelStatus.PerformLayout();
+			this.panelEffort.ResumeLayout(false);
+			this.panelEffort.PerformLayout();
+			this.panelIndi.ResumeLayout(false);
+			this.panelIndi.PerformLayout();
+			this.panelResult.ResumeLayout(false);
+			this.panelResult.PerformLayout();
+			this.panelBattle.ResumeLayout(false);
+			this.panelBattle.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox textBoxResult;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPageAttack;
@@ -649,8 +791,21 @@
 		private System.Windows.Forms.TextBox textBoxEffortC;
 		private System.Windows.Forms.TextBox textBoxEffortB;
 		private System.Windows.Forms.TextBox textBoxEffortA;
-		private System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.ComboBox comboBoxPersonality;
 		private System.Windows.Forms.NumericUpDown NumLevel;
+		private System.Windows.Forms.Button buttonUpdateStatus;
+		private System.Windows.Forms.TextBox textBoxStatusS;
+		private System.Windows.Forms.TextBox textBoxStatusD;
+		private System.Windows.Forms.TextBox textBoxStatusC;
+		private System.Windows.Forms.TextBox textBoxStatusB;
+		private System.Windows.Forms.TextBox textBoxStatusA;
+		private System.Windows.Forms.TextBox textBoxStatusH;
+		private System.Windows.Forms.Panel panelStatus;
+		private System.Windows.Forms.Panel panelEffort;
+		private System.Windows.Forms.Panel panelIndi;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.Panel panelResult;
+		private System.Windows.Forms.Panel panelBattle;
 	}
 }
 

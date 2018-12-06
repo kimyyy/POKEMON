@@ -15,6 +15,12 @@ namespace Pokemon
 	{
 		private SQLiteConnectionStringBuilder cBuilder;
 
+		private int Level;
+
+		private Poke AttackPoke;
+
+		private Poke DefencePoke;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -41,7 +47,7 @@ namespace Pokemon
 				}
 			}
 
-			ClearTextBox(groupBoxAttackPoke);
+			Level = (int)NumLevel.Value;
 		}
 
 		#endregion
@@ -56,20 +62,20 @@ namespace Pokemon
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 			if (!CanParse()) return;
-			var attackPoke = new Poke(textBoxAttackPoke.Text)
-			{
-				Level = (int)NumLevel.Value
-			};
-			var defencePoke = new Poke(textBoxDefencePoke.Text)
-			{
-				Level = (int)NumLevel.Value
-			};
-			var skill = new Waza(comboBoxSkill.Text);
-			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, skill);
+
+			// ポケモン、わざの準備
+			var attackPoke = new Poke(textBoxAttackPoke.Text);
+
+			var defencePoke = new Poke(textBoxDefencePoke.Text);
+			
+			var Skill = new Waza(comboBoxSkill.Text);
+
+			// ダメージ計算
+			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, Skill, Level);
+
 			WriteResult("======================\r\n攻撃を開始します\r\n" +
 				"ダメージは{0}～{1}です\r\n" +
 				"攻撃をおわります\r\n======================\n", damage[0], damage[1]);
-			textBoxResult.Refresh();
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -117,6 +123,35 @@ namespace Pokemon
 			}
 		}
 
+		private void buttonUpdateStatus_Click(object sender, EventArgs e)
+		{
+			AttackPoke = new Poke(textBoxAttackPoke.Text);
+			double personality = 1.0;
+			int[] arrayEffort = new int[6];
+			int[] arrayIndi = new int[6];
+			int[] arrayStatus = new int[6];
+			ParseTextBox(panelEffort, arrayEffort);
+			ParseTextBox(panelIndi, arrayIndi);
+			for(int i = 0;i < 6; i++)
+			{
+				double status = AttackPoke.Status[i] * 2.0 + arrayIndi[i] + arrayEffort[i] / 4.0 * Level / 100.0;
+				if(i == 0)
+				{
+					arrayStatus[i] = (int)status + Level + 10;
+				}
+				else
+				{
+					arrayStatus[i] = (int)((status + 5) * personality);
+				}
+			}
+			textBoxStatusH.Text = arrayStatus[0].ToString();
+			textBoxStatusA.Text = arrayStatus[1].ToString();
+			textBoxStatusB.Text = arrayStatus[2].ToString();
+			textBoxStatusC.Text = arrayStatus[3].ToString();
+			textBoxStatusD.Text = arrayStatus[4].ToString();
+			textBoxStatusS.Text = arrayStatus[5].ToString();
+		}
+
 		#endregion
 
 		#region フォーム用メソッド
@@ -127,7 +162,7 @@ namespace Pokemon
 		/// <param name="hParent">
 		///     検索対象となる親コントロール。</param>
 		/// --------------------------------------------------------------------------------
-		private bool ClearTextBox(Control hParent)
+		private bool ParseTextBox(Control hParent, int[] array)
 		{
 			// hParent 内のすべてのコントロールを列挙する
 			foreach (Control cControl in hParent.Controls)
@@ -135,20 +170,57 @@ namespace Pokemon
 				// 列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
 				if (cControl.HasChildren == true)
 				{
-					ClearTextBox(cControl);
+					ParseTextBox(cControl, array);
 				}
 
 				// コントロールの型が TextBoxBase からの派生型の場合は Text をクリアする
 				if (cControl is TextBoxBase)
 				{
-					int ret;
-					if (!(int.TryParse(cControl.Text, out ret)))
+					if (!(int.TryParse(cControl.Text, out int num)))
 					{
 						return false;
+					}
+					switch (cControl.Tag.ToString())
+					{
+						case "H":
+							array[0] = num;
+							break;
+						case "A":
+							array[1] = num;
+							break;
+						case "B":
+							array[2] = num;
+							break;
+						case "C":
+							array[3] = num;
+							break;
+						case "D":
+							array[4] = num;
+							break;
+						case "S":
+							array[5] = num;
+							break;
+						
 					}
 				}
 			}
 			return true;
+		}
+
+		private void ParseTextBox(Control hParent)
+		{
+			foreach(Control cControl in hParent.Controls)
+			{
+				if (cControl.HasChildren)
+				{
+					ParseTextBox(cControl);
+				}
+
+				if(cControl is TextBoxBase)
+				{
+					WriteResult(cControl.Tag.ToString());
+				}
+			}
 		}
 
 		private bool CanParse()
@@ -159,6 +231,7 @@ namespace Pokemon
 		private void WriteResult(string format, params Object[] args)
 		{
 			textBoxResult.AppendText(String.Format(format, args));
+			textBoxResult.Refresh();
 		}
 
 		#endregion

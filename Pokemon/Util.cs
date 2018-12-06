@@ -15,6 +15,28 @@ namespace Pokemon
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
 			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
 
+		private static Dictionary<string, int> DictType = new Dictionary<string, int>()
+		{
+			{"ノーマル", 0 },
+			{"ほのお",   1 },
+			{ "みず",    2 },
+			{"でんき",   3 },
+			{"くさ",     4 },
+			{"こおり",   5 },
+			{"かくとう", 6 },
+			{"どく",     7 },
+			{"じめん",   8 },
+			{"ひこう",   9 },
+			{"エスパー", 10 },
+			{"むし",     11 },
+			{"いわ",     12 },
+			{"ゴースト", 13 },
+			{"ドラゴン", 14 },
+			{"あく",     15 },
+			{"はがね",   16 },
+			{"フェアリー",17 }
+		};
+
 		private static double[,] tableTypeMatch = new double[18, 18]
 		{
 			{1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1 },//ノーマル
@@ -41,25 +63,25 @@ namespace Pokemon
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
 		/// <returns></returns>
-		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Waza Skill)
+		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Waza Skill, int Level)
 		{
-			int temp = AttackPoke.Level * 2 / 5 + 2;
-			if (Skill.category == "物理")
+			int Damage = Level * 2 / 5 + 2;
+			if (Skill.IsPhysical)
 			{
-				temp = temp * Skill.damage * AttackPoke.a / DefencePoke.b;
+				Damage = Damage * Skill.Damage * AttackPoke.A / DefencePoke.B;
 			}
 			else
 			{
-				temp = temp * Skill.damage * AttackPoke.c / DefencePoke.c;
+				Damage = Damage * Skill.Damage * AttackPoke.C / DefencePoke.C;
 			}
 
-			temp = temp / 50 + 2;
-			int templow = (int)(temp * 0.85);
-			int temphigh = temp;
-			templow = (int)(templow * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
-			temphigh = (int)(temphigh * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
-			var ret = new int[] { templow, temphigh };
-			return ret;
+			Damage = Damage / 50 + 2;
+			int DamegeLower = (int)(Damage * 0.85);
+			int DamageUpper = Damage;
+			DamegeLower = (int)(DamegeLower * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
+			DamageUpper = (int)(DamageUpper * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
+			var DamageRange = new int[] { DamegeLower, DamageUpper };
+			return DamageRange;
 		}
 
 		/// <summary>
@@ -70,15 +92,15 @@ namespace Pokemon
 		/// <returns></returns>
 		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Waza skill)
 		{
-			int skilltype = Array.IndexOf(arrayType, skill.type);
-			int type1 = Array.IndexOf(arrayType, defensePokemon.Type1);
+			int skilltype = DictType[skill.Type];
+			int type1 = DictType[defensePokemon.Type1];
 			double sametype = 1;
-			if (attackPokemon.Type1 == skill.type || attackPokemon.Type2 == skill.type) sametype = 1.5;
+			if (attackPokemon.Type1 == skill.Type || attackPokemon.Type2 == skill.Type) sametype = 1.5;
 			if (defensePokemon.Type2 == string.Empty)
 			{
 				return tableTypeMatch[skilltype, type1] * sametype;
 			}
-			int type2 = Array.IndexOf(arrayType, defensePokemon.Type2);
+			int type2 = DictType[defensePokemon.Type2];
 			return tableTypeMatch[skilltype, type1] * tableTypeMatch[skilltype, type2] * sametype;
 		}
 	}

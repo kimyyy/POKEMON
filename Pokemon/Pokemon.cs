@@ -43,22 +43,15 @@ namespace Pokemon
 		/// </summary>
 		public string DChara;
 
-		/// <summary>
-		/// 体力です。
-		/// </summary>
-		public int HP;
-
-		public int a;
-		public int b;
-		public int c;
-		public int d;
-		public int s;
+		public int H { get { return Status[0]; } set { Status[0] = value; } }
+		public int A { get { return Status[1]; } set { Status[1] = value; } }
+		public int B { get { return Status[2]; } set { Status[2] = value; } }
+		public int C { get { return Status[3]; } set { Status[3] = value; } }
+		public int D { get { return Status[4]; } set { Status[4] = value; } }
+		public int S { get { return Status[5]; } set { Status[5] = value; } }
 		public int sum;
 
-		/// <summary>
-		/// レベルです。
-		/// </summary>
-		public int Level;
+		public int[] Status = new int[6];
 
 		#endregion
 
@@ -85,12 +78,12 @@ namespace Pokemon
 					Chara1 = reader["chara1"].ToString();
 					Chara2 = reader["chara2"].ToString();
 					DChara = reader["dchara"].ToString();
-					HP = int.Parse(reader["hp"].ToString());
-					a = int.Parse(reader["a"].ToString());
-					b = int.Parse(reader["b"].ToString());
-					c = int.Parse(reader["c"].ToString());
-					d = int.Parse(reader["d"].ToString());
-					s = int.Parse(reader["s"].ToString());
+					H = int.Parse(reader["hp"].ToString());
+					A = int.Parse(reader["a"].ToString());
+					B = int.Parse(reader["b"].ToString());
+					C = int.Parse(reader["c"].ToString());
+					D = int.Parse(reader["d"].ToString());
+					S = int.Parse(reader["s"].ToString());
 					sum = int.Parse(reader["sum"].ToString());
 				}
 			}
