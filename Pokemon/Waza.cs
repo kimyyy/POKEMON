@@ -9,7 +9,7 @@ namespace Pokemon
 {
 	class Waza
 	{
-		public string name;
+		public string Name;
 
 		public string type;
 

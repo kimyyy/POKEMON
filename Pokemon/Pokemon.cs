@@ -7,24 +7,66 @@ using System.Threading.Tasks;
 
 namespace Pokemon
 {
-	class Pokemon
+	class Poke
 	{
-		public string name;
-		public string type1;
-		public string type2;
-		public string chara1;
-		public string chara2;
-		public string dchara;
-		public int hp;
+		#region フィールド
+
+		#region 各ステータス
+
+		/// <summary>
+		/// 名前です。
+		/// </summary>
+		public string Name;
+
+		/// <summary>
+		/// タイプ(1つ目)です。
+		/// </summary>
+		public string Type1;
+
+		/// <summary>
+		/// タイプ(2つ目)です。
+		/// </summary>
+		public string Type2;
+
+		/// <summary>
+		/// 特性(1つ目)です。
+		/// </summary>
+		public string Chara1;
+
+		/// <summary>
+		/// 特性(2つ目)です。
+		/// </summary>
+		public string Chara2;
+
+		/// <summary>
+		/// 夢特性です。
+		/// </summary>
+		public string DChara;
+
+		/// <summary>
+		/// 体力です。
+		/// </summary>
+		public int HP;
+
 		public int a;
 		public int b;
 		public int c;
 		public int d;
 		public int s;
 		public int sum;
-		public int level;
 
-		public Pokemon(string name)
+		/// <summary>
+		/// レベルです。
+		/// </summary>
+		public int Level;
+
+		#endregion
+
+		#endregion
+
+		#region コンストラクター
+
+		public Poke(string name)
 		{
 			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
 
@@ -37,13 +79,13 @@ namespace Pokemon
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 
-					name = reader["name"].ToString();
-					type1 = reader["type1"].ToString();
-					type2 = reader["type2"].ToString();
-					chara1 = reader["chara1"].ToString();
-					chara2 = reader["chara2"].ToString();
-					dchara = reader["dchara"].ToString();
-					hp = int.Parse(reader["hp"].ToString());
+					Name = reader["name"].ToString();
+					Type1 = reader["type1"].ToString();
+					Type2 = reader["type2"].ToString();
+					Chara1 = reader["chara1"].ToString();
+					Chara2 = reader["chara2"].ToString();
+					DChara = reader["dchara"].ToString();
+					HP = int.Parse(reader["hp"].ToString());
 					a = int.Parse(reader["a"].ToString());
 					b = int.Parse(reader["b"].ToString());
 					c = int.Parse(reader["c"].ToString());
@@ -53,5 +95,7 @@ namespace Pokemon
 				}
 			}
 		}
+
+		#endregion
 	}
 }

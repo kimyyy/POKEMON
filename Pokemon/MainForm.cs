@@ -15,36 +15,12 @@ namespace Pokemon
 	{
 		private SQLiteConnectionStringBuilder cBuilder;
 
-		private string[] arrayType = new string[]
-		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
-			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
-
-		private double[,] arrayTypeMatch = new double[18,18]
-		{
-			{1,1,1,1,1,1,1,1,1,1,1,1,0.5,0,1,1,0.5,1 },//ノーマル
-			{1,0.5,0.5,1,2,2,1,1,1,1,1,2,0.5,1,0.5,1,2,1 },//ほのお
-			{1,2,0.5,1,0.5,1,1,1,2,1,1,1,2,1,0.5,1,1,1 },//みず
-			{1,1,2,0.5,0.5,1,1,1,0,2,1,1,1,1,0.5,1,1,1 },//でんき
-			{ 1,0.5,2,1,0.5,1,1,0.5,2,0.5,1,0.5,2,1,0.5,1,0.5,1 },//くさ
-			{1,0.5,0.5,1,2,0.5,1,1,2,2,1,1,1,1,2,1,0.5,1 },//こおり
-			{2,1,1,1,1,2,1,0.5,1,0.5,0.5,0.5,2,0,1,2,2,0.5 },//かくとう
-			{1,1,1,1,2,1,1,0.5,0.5,1,1,1,0.5,0.5,1,1,0,2 },//どく
-			{1,2,1,2,0.5,1,1,2,1,0,1,0.5,2,1,1,1,2,1 },//じめん
-			{1,1,1,0.5,2,1,2,1,1,1,1,2,0.5,1,1,1,0.5,1 },//ひこう
-			{1,1,1,1,1,1,2,2,1,1,0.5,1,1,1,1,0,0.5,1 },//エスパー
-			{1,0.5,1,1,2,1,0.5,0.5,1,0.5,2,1,1,0.5,1,2,0.5,0.5 },//むし
-			{1,2,1,1,1,2,0.5,1,0.5,2,1,2,1,1,1,1,0.5,1 },//いわ
-			{0,1,1,1,1,1,1,1,1,1,2,1,1,2,1,0.5,1,1 },//ゴースト
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,0.5,0 },//ドラゴン
-			{1,1,1,1,1,1,0.5,1,1,1,2,1,1,2,1,0.5,1,0.5 },//あく
-			{1,0.5,0.5,0.5,1,2,1,1,1,1,1,1,2,1,1,1,0.5,2 },//はがね
-			{1,0.5,1,1,1,1,2,0.5,1,1,1,1,1,1,2,2,0.5,1 }//フェアリー
-		};
-
 		public MainForm()
 		{
 			InitializeComponent();
 		}
+
+		#region Load時
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
@@ -64,71 +40,127 @@ namespace Pokemon
 					}
 				}
 			}
+
+			ClearTextBox(groupBoxAttackPoke);
 		}
 
+		#endregion
+
+		#region イベントハンドラー
+
 		/// <summary>
-		/// 純粋ダメージ量を計算します。
+		/// 攻撃ボタンを押したとき
 		/// </summary>
-		/// <returns></returns>
-		private int[] CalculateDamage(Pokemon attackPoke,Pokemon defensePoke, Waza skill)
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void buttonAttack_Click(object sender, EventArgs e)
 		{
-			int temp = attackPoke.level * 2 / 5 + 2;
-			if(skill.category == "物理")
+			if (!CanParse()) return;
+			var attackPoke = new Poke(textBoxAttackPoke.Text)
 			{
-				temp = temp * skill.damage * attackPoke.a / defensePoke.b;
+				Level = (int)NumLevel.Value
+			};
+			var defencePoke = new Poke(textBoxDefencePoke.Text)
+			{
+				Level = (int)NumLevel.Value
+			};
+			var skill = new Waza(comboBoxSkill.Text);
+			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, skill);
+			WriteResult("======================\r\n攻撃を開始します\r\n" +
+				"ダメージは{0}～{1}です\r\n" +
+				"攻撃をおわります\r\n======================\n", damage[0], damage[1]);
+			textBoxResult.Refresh();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxPoke_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(typeof(string)))
+			{
+				e.Effect = DragDropEffects.Copy;
 			}
 			else
 			{
-				temp = temp * skill.damage * attackPoke.c / defensePoke.c;
+				e.Effect = DragDropEffects.None;
 			}
-			
-			temp = temp / 50 + 2;
-			var r = new Random();
-			int templow = (int)(temp * 0.85);
-			int temphigh = temp;
-			templow = (int) (templow * CalculateTypeMatching(attackPoke,defensePoke, skill));
-			temphigh = (int)(temphigh * CalculateTypeMatching(attackPoke,defensePoke, skill));
-			var ret = new int[] { templow, temphigh };
-			return ret;
 		}
 
+		private void textBoxPoke_DragDrop(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(typeof(string)))
+			{
+				TextBox target = (TextBox)sender;
+				string itemText = (string)e.Data.GetData(typeof(string));
+
+				target.Text = itemText;
+			}
+		}
+
+		private void ListboxParty_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				// ドラッグの準備
+				ListBox lb = (ListBox)sender;
+				int itemIndex = lb.IndexFromPoint(e.X, e.Y);
+				if (itemIndex < 0) return;
+
+				// アイテムの内容を取得
+				string itemText = (string)lb.Items[itemIndex];
+
+				// start drag and drop
+				DragDropEffects dde = lb.DoDragDrop(itemText, DragDropEffects.Copy);
+			}
+		}
+
+		#endregion
+
+		#region フォーム用メソッド
+
+		/// --------------------------------------------------------------------------------
 		/// <summary>
-		/// タイプ相性を計算します。
-		/// </summary>
-		/// <param name="defensePokemon"></param>
-		/// <param name="skill"></param>
-		/// <returns></returns>
-		private double CalculateTypeMatching(Pokemon attackPokemon,Pokemon defensePokemon, Waza skill)
+		///     指定したコントロール内に含まれる TextBox の Text をクリアします。</summary>
+		/// <param name="hParent">
+		///     検索対象となる親コントロール。</param>
+		/// --------------------------------------------------------------------------------
+		private bool ClearTextBox(Control hParent)
 		{
-			int skilltype = Array.IndexOf(arrayType, skill.type);
-			int type1 = Array.IndexOf(arrayType, defensePokemon.type1);
-			double sametype = 1;
-			if (attackPokemon.type1 == skill.type || attackPokemon.type2 == skill.type) sametype = 1.5;
-			if (defensePokemon.type2 == string.Empty)
+			// hParent 内のすべてのコントロールを列挙する
+			foreach (Control cControl in hParent.Controls)
 			{
-				return arrayTypeMatch[skilltype, type1] * sametype;
+				// 列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
+				if (cControl.HasChildren == true)
+				{
+					ClearTextBox(cControl);
+				}
+
+				// コントロールの型が TextBoxBase からの派生型の場合は Text をクリアする
+				if (cControl is TextBoxBase)
+				{
+					int ret;
+					if (!(int.TryParse(cControl.Text, out ret)))
+					{
+						return false;
+					}
+				}
 			}
-			int type2 = Array.IndexOf(arrayType, defensePokemon.type2);
-			return arrayTypeMatch[skilltype, type1] * arrayTypeMatch[skilltype, type2] * sametype;
+			return true;
 		}
 
-		private void buttonAttack_Click(object sender, EventArgs e)
+		private bool CanParse()
 		{
-			var attackPoke = new Pokemon(textBoxAttackPoke.Text)
-			{
-				level = int.Parse(BoxLevel.Text)
-			};
-			var defencePoke = new Pokemon(textBoxDefencePoke.Text)
-			{
-				level = int.Parse(BoxLevel.Text)
-			};
-			var skill = new Waza(comboBoxSkill.Text);
-			int[] damage = CalculateDamage(attackPoke, defencePoke, skill);
-			textBoxResult.AppendText("======================\n");
-			textBoxResult.AppendText("攻撃を開始します。\n");
-			textBoxResult.AppendText(string.Format("ダメージは{0}～{1}です\n",damage[0], damage[1]));
-			textBoxResult.AppendText("攻撃をおわります\r\n======================\n");
-			textBoxResult.Refresh();
+			return true;
 		}
+
+		private void WriteResult(string format, params Object[] args)
+		{
+			textBoxResult.AppendText(String.Format(format, args));
+		}
+
+		#endregion
 	}
 }
