@@ -43,15 +43,15 @@ namespace Pokemon
 		/// </summary>
 		public string DChara;
 
-		public int H { get { return Status[0]; } set { Status[0] = value; } }
-		public int A { get { return Status[1]; } set { Status[1] = value; } }
-		public int B { get { return Status[2]; } set { Status[2] = value; } }
-		public int C { get { return Status[3]; } set { Status[3] = value; } }
-		public int D { get { return Status[4]; } set { Status[4] = value; } }
-		public int S { get { return Status[5]; } set { Status[5] = value; } }
+		public int SyuzokuH { get { return Syuzoku[0]; } set { Syuzoku[0] = value; } }
+		public int SyuzokuA { get { return Syuzoku[1]; } set { Syuzoku[1] = value; } }
+		public int SyuzokuB { get { return Syuzoku[2]; } set { Syuzoku[2] = value; } }
+		public int SyuzokuC { get { return Syuzoku[3]; } set { Syuzoku[3] = value; } }
+		public int SyuzokuD { get { return Syuzoku[4]; } set { Syuzoku[4] = value; } }
+		public int SyuzokuS { get { return Syuzoku[5]; } set { Syuzoku[5] = value; } }
 		public int sum;
 
-		public int[] Status = new int[6];
+		public int[] Syuzoku = new int[6];
 
 		#endregion
 
@@ -78,12 +78,12 @@ namespace Pokemon
 					Chara1 = reader["chara1"].ToString();
 					Chara2 = reader["chara2"].ToString();
 					DChara = reader["dchara"].ToString();
-					H = int.Parse(reader["hp"].ToString());
-					A = int.Parse(reader["a"].ToString());
-					B = int.Parse(reader["b"].ToString());
-					C = int.Parse(reader["c"].ToString());
-					D = int.Parse(reader["d"].ToString());
-					S = int.Parse(reader["s"].ToString());
+					SyuzokuH = int.Parse(reader["hp"].ToString());
+					SyuzokuA = int.Parse(reader["a"].ToString());
+					SyuzokuB = int.Parse(reader["b"].ToString());
+					SyuzokuC = int.Parse(reader["c"].ToString());
+					SyuzokuD = int.Parse(reader["d"].ToString());
+					SyuzokuS = int.Parse(reader["s"].ToString());
 					sum = int.Parse(reader["sum"].ToString());
 				}
 			}

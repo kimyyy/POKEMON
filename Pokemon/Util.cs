@@ -59,6 +59,95 @@ namespace Pokemon
 			{1,0.5,1,1,1,1,2,0.5,1,1,1,1,1,1,2,2,0.5,1 }//フェアリー
 		};
 
+		public static double[] DecidePersonality(string personality)
+		{
+			var arrayPerson = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
+			switch (personality)
+			{
+				case "さみしがり":
+					arrayPerson[1] = 1.1;
+					arrayPerson[2] = 0.9;
+					break;
+				case "いじっぱり":
+					arrayPerson[1] = 1.1;
+					arrayPerson[3] = 0.9;
+					break;
+				case "やんちゃ":
+					arrayPerson[1] = 1.1;
+					arrayPerson[4] = 0.9;
+					break;
+				case "ゆうかん":
+					arrayPerson[1] = 1.1;
+					arrayPerson[5] = 0.9;
+					break;
+				case "ずぶとい":
+					arrayPerson[1] = 0.9;
+					arrayPerson[2] = 1.1;
+					break;
+				case "わんぱく":
+					arrayPerson[2] = 1.1;
+					arrayPerson[3] = 0.9;
+					break;
+				case "のうてんき":
+					arrayPerson[2] = 1.1;
+					arrayPerson[4] = 0.9;
+					break;
+				case "のんき":
+					arrayPerson[2] = 1.1;
+					arrayPerson[5] = 0.9;
+					break;
+				case "ひかえめ":
+					arrayPerson[1] = 0.9;
+					arrayPerson[3] = 1.1;
+					break;
+				case "おっとり":
+					arrayPerson[2] = 0.9;
+					arrayPerson[3] = 1.1;
+					break;
+				case "うっかりや":
+					arrayPerson[3] = 1.1;
+					arrayPerson[4] = 0.9;
+					break;
+				case "れいせい":
+					arrayPerson[3] = 1.1;
+					arrayPerson[5] = 0.9;
+					break;
+				case "おだやか":
+					arrayPerson[1] = 0.9;
+					arrayPerson[4] = 1.1;
+					break;
+				case "おとなしい":
+					arrayPerson[2] = 0.9;
+					arrayPerson[4] = 1.1;
+					break;
+				case "しんちょう":
+					arrayPerson[3] = 0.9;
+					arrayPerson[4] = 1.1;
+					break;
+				case "なまいき":
+					arrayPerson[4] = 1.1;
+					arrayPerson[5] = 0.9;
+					break;
+				case "おくびょう":
+					arrayPerson[1] = 0.9;
+					arrayPerson[5] = 1.1;
+					break;
+				case "せっかち":
+					arrayPerson[2] = 0.9;
+					arrayPerson[5] = 1.1;
+					break;
+				case "ようき":
+					arrayPerson[3] = 0.9;
+					arrayPerson[5] = 1.1;
+					break;
+				case "むじゃき":
+					arrayPerson[4] = 0.9;
+					arrayPerson[5] = 1.1;
+					break;
+			}
+			return arrayPerson;
+		}
+
 		/// <summary>
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
@@ -68,11 +157,11 @@ namespace Pokemon
 			int Damage = Level * 2 / 5 + 2;
 			if (Skill.IsPhysical)
 			{
-				Damage = Damage * Skill.Damage * AttackPoke.A / DefencePoke.B;
+				Damage = Damage * Skill.Damage * AttackPoke.SyuzokuA / DefencePoke.SyuzokuB;
 			}
 			else
 			{
-				Damage = Damage * Skill.Damage * AttackPoke.C / DefencePoke.C;
+				Damage = Damage * Skill.Damage * AttackPoke.SyuzokuC / DefencePoke.SyuzokuC;
 			}
 
 			Damage = Damage / 50 + 2;

@@ -48,53 +48,53 @@
 			this.textBoxAttackPoke = new System.Windows.Forms.TextBox();
 			this.textBoxDefencePoke = new System.Windows.Forms.TextBox();
 			this.groupBoxAttackPoke = new System.Windows.Forms.GroupBox();
-			this.textBoxIndiHP = new System.Windows.Forms.TextBox();
-			this.textBoxEffortHP = new System.Windows.Forms.TextBox();
-			this.label17 = new System.Windows.Forms.Label();
+			this.panelIndi = new System.Windows.Forms.Panel();
 			this.label16 = new System.Windows.Forms.Label();
+			this.textBoxIndiHP = new System.Windows.Forms.TextBox();
+			this.textBoxIndiA = new System.Windows.Forms.TextBox();
+			this.textBoxIndiB = new System.Windows.Forms.TextBox();
+			this.textBoxIndiC = new System.Windows.Forms.TextBox();
+			this.textBoxIndiD = new System.Windows.Forms.TextBox();
+			this.textBoxIndiS = new System.Windows.Forms.TextBox();
+			this.panelStatus = new System.Windows.Forms.Panel();
+			this.label18 = new System.Windows.Forms.Label();
+			this.textBoxStatusS = new System.Windows.Forms.TextBox();
+			this.textBoxStatusH = new System.Windows.Forms.TextBox();
+			this.textBoxStatusD = new System.Windows.Forms.TextBox();
+			this.textBoxStatusA = new System.Windows.Forms.TextBox();
+			this.textBoxStatusC = new System.Windows.Forms.TextBox();
+			this.textBoxStatusB = new System.Windows.Forms.TextBox();
+			this.panelEffort = new System.Windows.Forms.Panel();
+			this.textBoxEffortHP = new System.Windows.Forms.TextBox();
+			this.textBoxEffortA = new System.Windows.Forms.TextBox();
+			this.textBoxEffortB = new System.Windows.Forms.TextBox();
+			this.textBoxEffortC = new System.Windows.Forms.TextBox();
+			this.textBoxEffortD = new System.Windows.Forms.TextBox();
+			this.textBoxEffortS = new System.Windows.Forms.TextBox();
 			this.label15 = new System.Windows.Forms.Label();
+			this.buttonUpdateStatus = new System.Windows.Forms.Button();
+			this.label17 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.textBoxIndiS = new System.Windows.Forms.TextBox();
-			this.textBoxIndiD = new System.Windows.Forms.TextBox();
-			this.textBoxIndiC = new System.Windows.Forms.TextBox();
-			this.textBoxIndiB = new System.Windows.Forms.TextBox();
-			this.textBoxIndiA = new System.Windows.Forms.TextBox();
-			this.textBoxEffortS = new System.Windows.Forms.TextBox();
-			this.textBoxEffortD = new System.Windows.Forms.TextBox();
-			this.textBoxEffortC = new System.Windows.Forms.TextBox();
-			this.textBoxEffortB = new System.Windows.Forms.TextBox();
-			this.textBoxEffortA = new System.Windows.Forms.TextBox();
 			this.comboBoxPersonality = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.NumLevel = new System.Windows.Forms.NumericUpDown();
-			this.textBoxStatusH = new System.Windows.Forms.TextBox();
-			this.textBoxStatusA = new System.Windows.Forms.TextBox();
-			this.textBoxStatusB = new System.Windows.Forms.TextBox();
-			this.textBoxStatusC = new System.Windows.Forms.TextBox();
-			this.textBoxStatusD = new System.Windows.Forms.TextBox();
-			this.textBoxStatusS = new System.Windows.Forms.TextBox();
-			this.buttonUpdateStatus = new System.Windows.Forms.Button();
-			this.panelStatus = new System.Windows.Forms.Panel();
-			this.panelEffort = new System.Windows.Forms.Panel();
-			this.panelIndi = new System.Windows.Forms.Panel();
 			this.panelResult = new System.Windows.Forms.Panel();
 			this.panelBattle = new System.Windows.Forms.Panel();
-			this.label18 = new System.Windows.Forms.Label();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
 			this.groupBoxAttackPoke.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).BeginInit();
+			this.panelIndi.SuspendLayout();
 			this.panelStatus.SuspendLayout();
 			this.panelEffort.SuspendLayout();
-			this.panelIndi.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).BeginInit();
 			this.panelResult.SuspendLayout();
 			this.panelBattle.SuspendLayout();
 			this.SuspendLayout();
@@ -334,32 +334,19 @@
 			this.groupBoxAttackPoke.TabStop = false;
 			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
 			// 
-			// textBoxIndiHP
+			// panelIndi
 			// 
-			this.textBoxIndiHP.Location = new System.Drawing.Point(18, 39);
-			this.textBoxIndiHP.Name = "textBoxIndiHP";
-			this.textBoxIndiHP.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiHP.TabIndex = 20;
-			this.textBoxIndiHP.Tag = "H";
-			this.textBoxIndiHP.Text = "0";
-			// 
-			// textBoxEffortHP
-			// 
-			this.textBoxEffortHP.Location = new System.Drawing.Point(20, 39);
-			this.textBoxEffortHP.Name = "textBoxEffortHP";
-			this.textBoxEffortHP.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortHP.TabIndex = 19;
-			this.textBoxEffortHP.Tag = "H";
-			this.textBoxEffortHP.Text = "0";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(6, 65);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(20, 12);
-			this.label17.TabIndex = 18;
-			this.label17.Text = "HP";
+			this.panelIndi.Controls.Add(this.label16);
+			this.panelIndi.Controls.Add(this.textBoxIndiHP);
+			this.panelIndi.Controls.Add(this.textBoxIndiA);
+			this.panelIndi.Controls.Add(this.textBoxIndiB);
+			this.panelIndi.Controls.Add(this.textBoxIndiC);
+			this.panelIndi.Controls.Add(this.textBoxIndiD);
+			this.panelIndi.Controls.Add(this.textBoxIndiS);
+			this.panelIndi.Location = new System.Drawing.Point(179, 23);
+			this.panelIndi.Name = "panelIndi";
+			this.panelIndi.Size = new System.Drawing.Size(143, 273);
+			this.panelIndi.TabIndex = 19;
 			// 
 			// label16
 			// 
@@ -370,6 +357,205 @@
 			this.label16.TabIndex = 17;
 			this.label16.Text = "個体値";
 			// 
+			// textBoxIndiHP
+			// 
+			this.textBoxIndiHP.Location = new System.Drawing.Point(18, 39);
+			this.textBoxIndiHP.Name = "textBoxIndiHP";
+			this.textBoxIndiHP.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiHP.TabIndex = 20;
+			this.textBoxIndiHP.Tag = "H";
+			this.textBoxIndiHP.Text = "0";
+			// 
+			// textBoxIndiA
+			// 
+			this.textBoxIndiA.Location = new System.Drawing.Point(18, 79);
+			this.textBoxIndiA.Name = "textBoxIndiA";
+			this.textBoxIndiA.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiA.TabIndex = 6;
+			this.textBoxIndiA.Tag = "A";
+			this.textBoxIndiA.Text = "0";
+			// 
+			// textBoxIndiB
+			// 
+			this.textBoxIndiB.Location = new System.Drawing.Point(18, 116);
+			this.textBoxIndiB.Name = "textBoxIndiB";
+			this.textBoxIndiB.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiB.TabIndex = 7;
+			this.textBoxIndiB.Tag = "B";
+			this.textBoxIndiB.Text = "0";
+			// 
+			// textBoxIndiC
+			// 
+			this.textBoxIndiC.Location = new System.Drawing.Point(18, 150);
+			this.textBoxIndiC.Name = "textBoxIndiC";
+			this.textBoxIndiC.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiC.TabIndex = 8;
+			this.textBoxIndiC.Tag = "C";
+			this.textBoxIndiC.Text = "0";
+			// 
+			// textBoxIndiD
+			// 
+			this.textBoxIndiD.Location = new System.Drawing.Point(18, 197);
+			this.textBoxIndiD.Name = "textBoxIndiD";
+			this.textBoxIndiD.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiD.TabIndex = 9;
+			this.textBoxIndiD.Tag = "D";
+			this.textBoxIndiD.Text = "0";
+			// 
+			// textBoxIndiS
+			// 
+			this.textBoxIndiS.Location = new System.Drawing.Point(18, 236);
+			this.textBoxIndiS.Name = "textBoxIndiS";
+			this.textBoxIndiS.Size = new System.Drawing.Size(100, 19);
+			this.textBoxIndiS.TabIndex = 10;
+			this.textBoxIndiS.Tag = "S";
+			this.textBoxIndiS.Text = "0";
+			// 
+			// panelStatus
+			// 
+			this.panelStatus.Controls.Add(this.label18);
+			this.panelStatus.Controls.Add(this.textBoxStatusS);
+			this.panelStatus.Controls.Add(this.textBoxStatusH);
+			this.panelStatus.Controls.Add(this.textBoxStatusD);
+			this.panelStatus.Controls.Add(this.textBoxStatusA);
+			this.panelStatus.Controls.Add(this.textBoxStatusC);
+			this.panelStatus.Controls.Add(this.textBoxStatusB);
+			this.panelStatus.Location = new System.Drawing.Point(328, 23);
+			this.panelStatus.Name = "panelStatus";
+			this.panelStatus.Size = new System.Drawing.Size(142, 273);
+			this.panelStatus.TabIndex = 30;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(38, 21);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(50, 12);
+			this.label18.TabIndex = 28;
+			this.label18.Text = "ステータス";
+			// 
+			// textBoxStatusS
+			// 
+			this.textBoxStatusS.Location = new System.Drawing.Point(19, 237);
+			this.textBoxStatusS.Name = "textBoxStatusS";
+			this.textBoxStatusS.ReadOnly = true;
+			this.textBoxStatusS.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusS.TabIndex = 27;
+			this.textBoxStatusS.Tag = "S";
+			// 
+			// textBoxStatusH
+			// 
+			this.textBoxStatusH.Location = new System.Drawing.Point(19, 39);
+			this.textBoxStatusH.Name = "textBoxStatusH";
+			this.textBoxStatusH.ReadOnly = true;
+			this.textBoxStatusH.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusH.TabIndex = 22;
+			this.textBoxStatusH.Tag = "H";
+			// 
+			// textBoxStatusD
+			// 
+			this.textBoxStatusD.Location = new System.Drawing.Point(19, 198);
+			this.textBoxStatusD.Name = "textBoxStatusD";
+			this.textBoxStatusD.ReadOnly = true;
+			this.textBoxStatusD.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusD.TabIndex = 26;
+			this.textBoxStatusD.Tag = "D";
+			// 
+			// textBoxStatusA
+			// 
+			this.textBoxStatusA.Location = new System.Drawing.Point(19, 77);
+			this.textBoxStatusA.Name = "textBoxStatusA";
+			this.textBoxStatusA.ReadOnly = true;
+			this.textBoxStatusA.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusA.TabIndex = 23;
+			this.textBoxStatusA.Tag = "A";
+			// 
+			// textBoxStatusC
+			// 
+			this.textBoxStatusC.Location = new System.Drawing.Point(19, 154);
+			this.textBoxStatusC.Name = "textBoxStatusC";
+			this.textBoxStatusC.ReadOnly = true;
+			this.textBoxStatusC.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusC.TabIndex = 25;
+			this.textBoxStatusC.Tag = "C";
+			// 
+			// textBoxStatusB
+			// 
+			this.textBoxStatusB.Location = new System.Drawing.Point(19, 115);
+			this.textBoxStatusB.Name = "textBoxStatusB";
+			this.textBoxStatusB.ReadOnly = true;
+			this.textBoxStatusB.Size = new System.Drawing.Size(100, 19);
+			this.textBoxStatusB.TabIndex = 24;
+			this.textBoxStatusB.Tag = "B";
+			// 
+			// panelEffort
+			// 
+			this.panelEffort.Controls.Add(this.textBoxEffortHP);
+			this.panelEffort.Controls.Add(this.textBoxEffortA);
+			this.panelEffort.Controls.Add(this.textBoxEffortB);
+			this.panelEffort.Controls.Add(this.textBoxEffortC);
+			this.panelEffort.Controls.Add(this.textBoxEffortD);
+			this.panelEffort.Controls.Add(this.textBoxEffortS);
+			this.panelEffort.Controls.Add(this.label15);
+			this.panelEffort.Location = new System.Drawing.Point(48, 23);
+			this.panelEffort.Name = "panelEffort";
+			this.panelEffort.Size = new System.Drawing.Size(133, 273);
+			this.panelEffort.TabIndex = 18;
+			// 
+			// textBoxEffortHP
+			// 
+			this.textBoxEffortHP.Location = new System.Drawing.Point(20, 39);
+			this.textBoxEffortHP.Name = "textBoxEffortHP";
+			this.textBoxEffortHP.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortHP.TabIndex = 19;
+			this.textBoxEffortHP.Tag = "H";
+			this.textBoxEffortHP.Text = "0";
+			// 
+			// textBoxEffortA
+			// 
+			this.textBoxEffortA.Location = new System.Drawing.Point(20, 74);
+			this.textBoxEffortA.Name = "textBoxEffortA";
+			this.textBoxEffortA.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortA.TabIndex = 1;
+			this.textBoxEffortA.Tag = "A";
+			this.textBoxEffortA.Text = "0";
+			// 
+			// textBoxEffortB
+			// 
+			this.textBoxEffortB.Location = new System.Drawing.Point(20, 113);
+			this.textBoxEffortB.Name = "textBoxEffortB";
+			this.textBoxEffortB.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortB.TabIndex = 2;
+			this.textBoxEffortB.Tag = "B";
+			this.textBoxEffortB.Text = "0";
+			// 
+			// textBoxEffortC
+			// 
+			this.textBoxEffortC.Location = new System.Drawing.Point(20, 155);
+			this.textBoxEffortC.Name = "textBoxEffortC";
+			this.textBoxEffortC.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortC.TabIndex = 3;
+			this.textBoxEffortC.Tag = "C";
+			this.textBoxEffortC.Text = "0";
+			// 
+			// textBoxEffortD
+			// 
+			this.textBoxEffortD.Location = new System.Drawing.Point(20, 197);
+			this.textBoxEffortD.Name = "textBoxEffortD";
+			this.textBoxEffortD.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortD.TabIndex = 4;
+			this.textBoxEffortD.Tag = "D";
+			this.textBoxEffortD.Text = "0";
+			// 
+			// textBoxEffortS
+			// 
+			this.textBoxEffortS.Location = new System.Drawing.Point(20, 236);
+			this.textBoxEffortS.Name = "textBoxEffortS";
+			this.textBoxEffortS.Size = new System.Drawing.Size(100, 19);
+			this.textBoxEffortS.TabIndex = 5;
+			this.textBoxEffortS.Tag = "S";
+			this.textBoxEffortS.Text = "0";
+			// 
 			// label15
 			// 
 			this.label15.AutoSize = true;
@@ -378,6 +564,25 @@
 			this.label15.Size = new System.Drawing.Size(41, 12);
 			this.label15.TabIndex = 16;
 			this.label15.Text = "努力値";
+			// 
+			// buttonUpdateStatus
+			// 
+			this.buttonUpdateStatus.Location = new System.Drawing.Point(160, 306);
+			this.buttonUpdateStatus.Name = "buttonUpdateStatus";
+			this.buttonUpdateStatus.Size = new System.Drawing.Size(137, 23);
+			this.buttonUpdateStatus.TabIndex = 28;
+			this.buttonUpdateStatus.Text = "ステータスを更新";
+			this.buttonUpdateStatus.UseVisualStyleBackColor = true;
+			this.buttonUpdateStatus.Click += new System.EventHandler(this.UpdateStatus);
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(6, 65);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(20, 12);
+			this.label17.TabIndex = 18;
+			this.label17.Text = "HP";
 			// 
 			// label14
 			// 
@@ -424,103 +629,40 @@
 			this.label10.TabIndex = 11;
 			this.label10.Text = "こうげき";
 			// 
-			// textBoxIndiS
-			// 
-			this.textBoxIndiS.Location = new System.Drawing.Point(18, 236);
-			this.textBoxIndiS.Name = "textBoxIndiS";
-			this.textBoxIndiS.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiS.TabIndex = 10;
-			this.textBoxIndiS.Tag = "S";
-			this.textBoxIndiS.Text = "0";
-			// 
-			// textBoxIndiD
-			// 
-			this.textBoxIndiD.Location = new System.Drawing.Point(18, 197);
-			this.textBoxIndiD.Name = "textBoxIndiD";
-			this.textBoxIndiD.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiD.TabIndex = 9;
-			this.textBoxIndiD.Tag = "D";
-			this.textBoxIndiD.Text = "0";
-			// 
-			// textBoxIndiC
-			// 
-			this.textBoxIndiC.Location = new System.Drawing.Point(18, 150);
-			this.textBoxIndiC.Name = "textBoxIndiC";
-			this.textBoxIndiC.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiC.TabIndex = 8;
-			this.textBoxIndiC.Tag = "C";
-			this.textBoxIndiC.Text = "0";
-			// 
-			// textBoxIndiB
-			// 
-			this.textBoxIndiB.Location = new System.Drawing.Point(18, 116);
-			this.textBoxIndiB.Name = "textBoxIndiB";
-			this.textBoxIndiB.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiB.TabIndex = 7;
-			this.textBoxIndiB.Tag = "B";
-			this.textBoxIndiB.Text = "0";
-			// 
-			// textBoxIndiA
-			// 
-			this.textBoxIndiA.Location = new System.Drawing.Point(18, 79);
-			this.textBoxIndiA.Name = "textBoxIndiA";
-			this.textBoxIndiA.Size = new System.Drawing.Size(100, 19);
-			this.textBoxIndiA.TabIndex = 6;
-			this.textBoxIndiA.Tag = "A";
-			this.textBoxIndiA.Text = "0";
-			// 
-			// textBoxEffortS
-			// 
-			this.textBoxEffortS.Location = new System.Drawing.Point(20, 236);
-			this.textBoxEffortS.Name = "textBoxEffortS";
-			this.textBoxEffortS.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortS.TabIndex = 5;
-			this.textBoxEffortS.Tag = "S";
-			this.textBoxEffortS.Text = "0";
-			// 
-			// textBoxEffortD
-			// 
-			this.textBoxEffortD.Location = new System.Drawing.Point(20, 197);
-			this.textBoxEffortD.Name = "textBoxEffortD";
-			this.textBoxEffortD.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortD.TabIndex = 4;
-			this.textBoxEffortD.Tag = "D";
-			this.textBoxEffortD.Text = "0";
-			// 
-			// textBoxEffortC
-			// 
-			this.textBoxEffortC.Location = new System.Drawing.Point(20, 155);
-			this.textBoxEffortC.Name = "textBoxEffortC";
-			this.textBoxEffortC.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortC.TabIndex = 3;
-			this.textBoxEffortC.Tag = "C";
-			this.textBoxEffortC.Text = "0";
-			// 
-			// textBoxEffortB
-			// 
-			this.textBoxEffortB.Location = new System.Drawing.Point(20, 113);
-			this.textBoxEffortB.Name = "textBoxEffortB";
-			this.textBoxEffortB.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortB.TabIndex = 2;
-			this.textBoxEffortB.Tag = "B";
-			this.textBoxEffortB.Text = "0";
-			// 
-			// textBoxEffortA
-			// 
-			this.textBoxEffortA.Location = new System.Drawing.Point(20, 74);
-			this.textBoxEffortA.Name = "textBoxEffortA";
-			this.textBoxEffortA.Size = new System.Drawing.Size(100, 19);
-			this.textBoxEffortA.TabIndex = 1;
-			this.textBoxEffortA.Tag = "A";
-			this.textBoxEffortA.Text = "0";
-			// 
 			// comboBoxPersonality
 			// 
 			this.comboBoxPersonality.FormattingEnabled = true;
+			this.comboBoxPersonality.Items.AddRange(new object[] {
+            "さみしがり",
+            "いじっぱり",
+            "やんちゃ",
+            "ゆうかん",
+            "ずぶとい",
+            "わんぱく",
+            "のうてんき",
+            "のんき",
+            "ひかえめ",
+            "おっとり",
+            "うっかりや",
+            "れいせい",
+            "おだやか",
+            "おとなしい",
+            "しんちょう",
+            "なまいき",
+            "おくびょう",
+            "せっかち",
+            "ようき",
+            "むじゃき",
+            "てれや",
+            "すなお",
+            "まじめ",
+            "きまぐれ",
+            "がんばりや"});
 			this.comboBoxPersonality.Location = new System.Drawing.Point(9, 308);
 			this.comboBoxPersonality.Name = "comboBoxPersonality";
-			this.comboBoxPersonality.Size = new System.Drawing.Size(121, 20);
+			this.comboBoxPersonality.Size = new System.Drawing.Size(142, 20);
 			this.comboBoxPersonality.TabIndex = 0;
+			this.comboBoxPersonality.Text = "性格を選択してください";
 			// 
 			// label6
 			// 
@@ -576,106 +718,6 @@
             0,
             0});
 			// 
-			// textBoxStatusH
-			// 
-			this.textBoxStatusH.Location = new System.Drawing.Point(19, 39);
-			this.textBoxStatusH.Name = "textBoxStatusH";
-			this.textBoxStatusH.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusH.TabIndex = 22;
-			this.textBoxStatusH.Tag = "H";
-			// 
-			// textBoxStatusA
-			// 
-			this.textBoxStatusA.Location = new System.Drawing.Point(19, 77);
-			this.textBoxStatusA.Name = "textBoxStatusA";
-			this.textBoxStatusA.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusA.TabIndex = 23;
-			this.textBoxStatusA.Tag = "A";
-			// 
-			// textBoxStatusB
-			// 
-			this.textBoxStatusB.Location = new System.Drawing.Point(19, 115);
-			this.textBoxStatusB.Name = "textBoxStatusB";
-			this.textBoxStatusB.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusB.TabIndex = 24;
-			this.textBoxStatusB.Tag = "B";
-			// 
-			// textBoxStatusC
-			// 
-			this.textBoxStatusC.Location = new System.Drawing.Point(19, 154);
-			this.textBoxStatusC.Name = "textBoxStatusC";
-			this.textBoxStatusC.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusC.TabIndex = 25;
-			this.textBoxStatusC.Tag = "C";
-			// 
-			// textBoxStatusD
-			// 
-			this.textBoxStatusD.Location = new System.Drawing.Point(19, 198);
-			this.textBoxStatusD.Name = "textBoxStatusD";
-			this.textBoxStatusD.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusD.TabIndex = 26;
-			this.textBoxStatusD.Tag = "D";
-			// 
-			// textBoxStatusS
-			// 
-			this.textBoxStatusS.Location = new System.Drawing.Point(19, 237);
-			this.textBoxStatusS.Name = "textBoxStatusS";
-			this.textBoxStatusS.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusS.TabIndex = 27;
-			this.textBoxStatusS.Tag = "S";
-			// 
-			// buttonUpdateStatus
-			// 
-			this.buttonUpdateStatus.Location = new System.Drawing.Point(142, 308);
-			this.buttonUpdateStatus.Name = "buttonUpdateStatus";
-			this.buttonUpdateStatus.Size = new System.Drawing.Size(137, 23);
-			this.buttonUpdateStatus.TabIndex = 28;
-			this.buttonUpdateStatus.Text = "ステータスを更新";
-			this.buttonUpdateStatus.UseVisualStyleBackColor = true;
-			this.buttonUpdateStatus.Click += new System.EventHandler(this.buttonUpdateStatus_Click);
-			// 
-			// panelStatus
-			// 
-			this.panelStatus.Controls.Add(this.label18);
-			this.panelStatus.Controls.Add(this.textBoxStatusS);
-			this.panelStatus.Controls.Add(this.textBoxStatusH);
-			this.panelStatus.Controls.Add(this.textBoxStatusD);
-			this.panelStatus.Controls.Add(this.textBoxStatusA);
-			this.panelStatus.Controls.Add(this.textBoxStatusC);
-			this.panelStatus.Controls.Add(this.textBoxStatusB);
-			this.panelStatus.Location = new System.Drawing.Point(328, 23);
-			this.panelStatus.Name = "panelStatus";
-			this.panelStatus.Size = new System.Drawing.Size(142, 273);
-			this.panelStatus.TabIndex = 30;
-			// 
-			// panelEffort
-			// 
-			this.panelEffort.Controls.Add(this.textBoxEffortHP);
-			this.panelEffort.Controls.Add(this.textBoxEffortA);
-			this.panelEffort.Controls.Add(this.textBoxEffortB);
-			this.panelEffort.Controls.Add(this.textBoxEffortC);
-			this.panelEffort.Controls.Add(this.textBoxEffortD);
-			this.panelEffort.Controls.Add(this.textBoxEffortS);
-			this.panelEffort.Controls.Add(this.label15);
-			this.panelEffort.Location = new System.Drawing.Point(48, 23);
-			this.panelEffort.Name = "panelEffort";
-			this.panelEffort.Size = new System.Drawing.Size(133, 273);
-			this.panelEffort.TabIndex = 18;
-			// 
-			// panelIndi
-			// 
-			this.panelIndi.Controls.Add(this.label16);
-			this.panelIndi.Controls.Add(this.textBoxIndiHP);
-			this.panelIndi.Controls.Add(this.textBoxIndiA);
-			this.panelIndi.Controls.Add(this.textBoxIndiB);
-			this.panelIndi.Controls.Add(this.textBoxIndiC);
-			this.panelIndi.Controls.Add(this.textBoxIndiD);
-			this.panelIndi.Controls.Add(this.textBoxIndiS);
-			this.panelIndi.Location = new System.Drawing.Point(179, 23);
-			this.panelIndi.Name = "panelIndi";
-			this.panelIndi.Size = new System.Drawing.Size(143, 273);
-			this.panelIndi.TabIndex = 19;
-			// 
 			// panelResult
 			// 
 			this.panelResult.Controls.Add(this.label1);
@@ -694,15 +736,6 @@
 			this.panelBattle.Name = "panelBattle";
 			this.panelBattle.Size = new System.Drawing.Size(286, 131);
 			this.panelBattle.TabIndex = 19;
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(38, 21);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(50, 12);
-			this.label18.TabIndex = 28;
-			this.label18.Text = "ステータス";
 			// 
 			// MainForm
 			// 
@@ -730,13 +763,13 @@
 			this.tabPageEnvironment.PerformLayout();
 			this.groupBoxAttackPoke.ResumeLayout(false);
 			this.groupBoxAttackPoke.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).EndInit();
+			this.panelIndi.ResumeLayout(false);
+			this.panelIndi.PerformLayout();
 			this.panelStatus.ResumeLayout(false);
 			this.panelStatus.PerformLayout();
 			this.panelEffort.ResumeLayout(false);
 			this.panelEffort.PerformLayout();
-			this.panelIndi.ResumeLayout(false);
-			this.panelIndi.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).EndInit();
 			this.panelResult.ResumeLayout(false);
 			this.panelResult.PerformLayout();
 			this.panelBattle.ResumeLayout(false);

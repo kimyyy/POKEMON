@@ -46,7 +46,6 @@ namespace Pokemon
 					}
 				}
 			}
-
 			Level = (int)NumLevel.Value;
 		}
 
@@ -123,10 +122,10 @@ namespace Pokemon
 			}
 		}
 
-		private void buttonUpdateStatus_Click(object sender, EventArgs e)
+		private void UpdateStatus(object sender, EventArgs e)
 		{
 			AttackPoke = new Poke(textBoxAttackPoke.Text);
-			double personality = 1.0;
+			var personality = Util.DecidePersonality(comboBoxPersonality.Text);
 			int[] arrayEffort = new int[6];
 			int[] arrayIndi = new int[6];
 			int[] arrayStatus = new int[6];
@@ -134,14 +133,14 @@ namespace Pokemon
 			ParseTextBox(panelIndi, arrayIndi);
 			for(int i = 0;i < 6; i++)
 			{
-				double status = AttackPoke.Status[i] * 2.0 + arrayIndi[i] + arrayEffort[i] / 4.0 * Level / 100.0;
+				double status = AttackPoke.Syuzoku[i] * 2.0 + arrayIndi[i] + arrayEffort[i] / 4.0 * Level / 100.0;
 				if(i == 0)
 				{
 					arrayStatus[i] = (int)status + Level + 10;
 				}
 				else
 				{
-					arrayStatus[i] = (int)((status + 5) * personality);
+					arrayStatus[i] = (int)((status + 5) * personality[i]);
 				}
 			}
 			textBoxStatusH.Text = arrayStatus[0].ToString();
