@@ -13,35 +13,16 @@ namespace Pokemon
 
 		#region 各ステータス
 
-		/// <summary>
-		/// 名前です。
-		/// </summary>
-		public string Name;
+		private string[] ParamsString = {"name", "type1", "type2", "chara1", "chara2", "dchara" };
 
-		/// <summary>
-		/// タイプ(1つ目)です。
-		/// </summary>
-		public string Type1;
+		private string[] ConstStringParams = new string[6];
 
-		/// <summary>
-		/// タイプ(2つ目)です。
-		/// </summary>
-		public string Type2;
-
-		/// <summary>
-		/// 特性(1つ目)です。
-		/// </summary>
-		public string Chara1;
-
-		/// <summary>
-		/// 特性(2つ目)です。
-		/// </summary>
-		public string Chara2;
-
-		/// <summary>
-		/// 夢特性です。
-		/// </summary>
-		public string DChara;
+		public string Name   { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
+		public string Type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
+		public string Type2  { get { return ConstStringParams[2]; } set { ConstStringParams[2] = value; } }
+		public string Chara1 { get { return ConstStringParams[3]; } set { ConstStringParams[3] = value; } }
+		public string Chara2 { get { return ConstStringParams[4]; } set { ConstStringParams[4] = value; } }
+		public string DChara { get { return ConstStringParams[5]; } set { ConstStringParams[5] = value; } }
 
 		public int SyuzokuH { get { return Syuzoku[0]; } set { Syuzoku[0] = value; } }
 		public int SyuzokuA { get { return Syuzoku[1]; } set { Syuzoku[1] = value; } }
@@ -72,12 +53,17 @@ namespace Pokemon
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 
-					Name = reader["name"].ToString();
-					Type1 = reader["type1"].ToString();
-					Type2 = reader["type2"].ToString();
-					Chara1 = reader["chara1"].ToString();
-					Chara2 = reader["chara2"].ToString();
-					DChara = reader["dchara"].ToString();
+					for (int i = 0; i < 6; i++)
+					{
+						try
+						{
+							ConstStringParams[i] = reader[ParamsString[i]].ToString();
+						}
+						catch (InvalidOperationException)
+						{
+							throw new Exception("データベースから情報を読み取れませんでした");
+						}
+					}
 					SyuzokuH = int.Parse(reader["hp"].ToString());
 					SyuzokuA = int.Parse(reader["a"].ToString());
 					SyuzokuB = int.Parse(reader["b"].ToString());

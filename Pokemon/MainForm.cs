@@ -13,8 +13,6 @@ namespace Pokemon
 {
 	public partial class MainForm : Form
 	{
-		private SQLiteConnectionStringBuilder cBuilder;
-
 		private int Level;
 
 		private Poke AttackPoke;
@@ -31,7 +29,7 @@ namespace Pokemon
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			// わざのデータを取得。
-			cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
+			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
 
 			using (var cn = new SQLiteConnection(cBuilder.ToString()))
 			{
@@ -61,25 +59,30 @@ namespace Pokemon
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 			if (!CanParse()) return;
+			Poke attackPoke;
+			Poke defencePoke;
+			Waza Skill;
 
 			// ポケモン、わざの準備
-			var attackPoke = new Poke(textBoxAttackPoke.Text);
-
-			var defencePoke = new Poke(textBoxDefencePoke.Text);
-			
-			var Skill = new Waza(comboBoxSkill.Text);
+			try
+			{
+				attackPoke = new Poke(textBoxAttackPoke.Text);
+				defencePoke = new Poke(textBoxDefencePoke.Text);
+				Skill = new Waza(comboBoxSkill.Text);
+			}
+			catch (Exception ex)
+			{
+				WriteResult(ex.Message + "\r\n");
+				return;
+			}
 
 			// ダメージ計算
 			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, Skill, Level);
 
+			// 結果を表示
 			WriteResult("======================\r\n攻撃を開始します\r\n" +
 				"ダメージは{0}～{1}です\r\n" +
 				"攻撃をおわります\r\n======================\n", damage[0], damage[1]);
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		private void textBoxPoke_DragEnter(object sender, DragEventArgs e)
@@ -131,10 +134,10 @@ namespace Pokemon
 			int[] arrayStatus = new int[6];
 			ParseTextBox(panelEffort, arrayEffort);
 			ParseTextBox(panelIndi, arrayIndi);
-			for(int i = 0;i < 6; i++)
+			for (int i = 0; i < 6; i++)
 			{
 				double status = AttackPoke.Syuzoku[i] * 2.0 + arrayIndi[i] + arrayEffort[i] / 4.0 * Level / 100.0;
-				if(i == 0)
+				if (i == 0)
 				{
 					arrayStatus[i] = (int)status + Level + 10;
 				}
@@ -143,12 +146,12 @@ namespace Pokemon
 					arrayStatus[i] = (int)((status + 5) * personality[i]);
 				}
 			}
-			textBoxStatusH.Text = arrayStatus[0].ToString();
-			textBoxStatusA.Text = arrayStatus[1].ToString();
-			textBoxStatusB.Text = arrayStatus[2].ToString();
-			textBoxStatusC.Text = arrayStatus[3].ToString();
-			textBoxStatusD.Text = arrayStatus[4].ToString();
-			textBoxStatusS.Text = arrayStatus[5].ToString();
+			labelStatusH.Text = arrayStatus[0].ToString();
+			labelStatusA.Text = arrayStatus[1].ToString();
+			labelStatusB.Text = arrayStatus[2].ToString();
+			labelStatusC.Text = arrayStatus[3].ToString();
+			labelStatusD.Text = arrayStatus[4].ToString();
+			labelStatusS.Text = arrayStatus[5].ToString();
 		}
 
 		#endregion
@@ -199,7 +202,7 @@ namespace Pokemon
 						case "S":
 							array[5] = num;
 							break;
-						
+
 					}
 				}
 			}
@@ -208,20 +211,24 @@ namespace Pokemon
 
 		private void ParseTextBox(Control hParent)
 		{
-			foreach(Control cControl in hParent.Controls)
+			foreach (Control cControl in hParent.Controls)
 			{
 				if (cControl.HasChildren)
 				{
 					ParseTextBox(cControl);
 				}
 
-				if(cControl is TextBoxBase)
+				if (cControl is TextBoxBase)
 				{
 					WriteResult(cControl.Tag.ToString());
 				}
 			}
 		}
 
+		/// <summary>
+		/// 数値が正しく入力されているかチェックします。未実装
+		/// </summary>
+		/// <returns></returns>
 		private bool CanParse()
 		{
 			return true;

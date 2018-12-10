@@ -10,14 +10,13 @@ namespace Pokemon
 	class Waza
 	{
 		public string Name;
-
-		public string Type;
-
-		private string category;
-
-		public bool IsPhysical;
-
+		public string Type	{ get { return ConstParams[0]; } set { ConstParams[0] = value; } }
+		private string category { get { return ConstParams[1]; } set { ConstParams[1] = value; } }
 		public int Damage;
+		public bool IsPhysical;
+		
+		private string[] ParamsString = { "type", "category", "damage" };
+		private string[] ConstParams = new string[2];
 
 		public Waza(string name)
 		{
@@ -31,9 +30,25 @@ namespace Pokemon
 					cmd.CommandText = string.Format("select * from waza where name = '{0}'", name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
-					Type = reader["type"].ToString();
-					category = reader["category"].ToString();
-					Damage = int.Parse(reader["damage"].ToString());
+					for(int i = 0;i < 2; i++)
+					{
+						try
+						{
+							ConstParams[i] = reader[ParamsString[i]].ToString();
+						}
+						catch (InvalidOperationException)
+						{
+							throw new Exception("データベースからデータを読み込めませんでした。");
+						}
+					}
+					try
+					{
+						Damage = int.Parse(reader[ParamsString[2]].ToString());
+					}
+					catch (InvalidOperationException)
+					{
+						throw new Exception("データベースからデータを読み込めませんでした。");
+					}
 				}
 			}
 
@@ -48,7 +63,7 @@ namespace Pokemon
 			}
 			else
 			{
-				throw new Exception("存在しない技カテゴリです。");
+				throw new Exception("存在しない技カテゴリがありました。");
 			}
 		}
 	}

@@ -57,13 +57,13 @@
 			this.textBoxIndiD = new System.Windows.Forms.TextBox();
 			this.textBoxIndiS = new System.Windows.Forms.TextBox();
 			this.panelStatus = new System.Windows.Forms.Panel();
+			this.labelStatusS = new System.Windows.Forms.Label();
+			this.labelStatusD = new System.Windows.Forms.Label();
+			this.labelStatusC = new System.Windows.Forms.Label();
+			this.labelStatusB = new System.Windows.Forms.Label();
+			this.labelStatusA = new System.Windows.Forms.Label();
+			this.labelStatusH = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
-			this.textBoxStatusS = new System.Windows.Forms.TextBox();
-			this.textBoxStatusH = new System.Windows.Forms.TextBox();
-			this.textBoxStatusD = new System.Windows.Forms.TextBox();
-			this.textBoxStatusA = new System.Windows.Forms.TextBox();
-			this.textBoxStatusC = new System.Windows.Forms.TextBox();
-			this.textBoxStatusB = new System.Windows.Forms.TextBox();
 			this.panelEffort = new System.Windows.Forms.Panel();
 			this.textBoxEffortHP = new System.Windows.Forms.TextBox();
 			this.textBoxEffortA = new System.Windows.Forms.TextBox();
@@ -87,6 +87,9 @@
 			this.NumLevel = new System.Windows.Forms.NumericUpDown();
 			this.panelResult = new System.Windows.Forms.Panel();
 			this.panelBattle = new System.Windows.Forms.Panel();
+			this.panelMyParty = new System.Windows.Forms.Panel();
+			this.panelEnemyParty = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -97,14 +100,20 @@
 			((System.ComponentModel.ISupportInitialize)(this.NumLevel)).BeginInit();
 			this.panelResult.SuspendLayout();
 			this.panelBattle.SuspendLayout();
+			this.panelMyParty.SuspendLayout();
+			this.panelEnemyParty.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// textBoxResult
 			// 
+			this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
-			this.textBoxResult.Size = new System.Drawing.Size(346, 167);
+			this.textBoxResult.Size = new System.Drawing.Size(377, 202);
 			this.textBoxResult.TabIndex = 3;
 			// 
 			// tabControl
@@ -112,10 +121,10 @@
 			this.tabControl.Controls.Add(this.tabPageAttack);
 			this.tabControl.Controls.Add(this.tabPageDefence);
 			this.tabControl.Controls.Add(this.tabPageEnvironment);
-			this.tabControl.Location = new System.Drawing.Point(646, 12);
+			this.tabControl.Location = new System.Drawing.Point(632, 12);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(350, 217);
+			this.tabControl.Size = new System.Drawing.Size(364, 221);
 			this.tabControl.TabIndex = 4;
 			// 
 			// tabPageAttack
@@ -130,7 +139,7 @@
 			this.tabPageAttack.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAttack.Name = "tabPageAttack";
 			this.tabPageAttack.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageAttack.Size = new System.Drawing.Size(342, 191);
+			this.tabPageAttack.Size = new System.Drawing.Size(356, 195);
 			this.tabPageAttack.TabIndex = 0;
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
@@ -196,7 +205,8 @@
 			// 
 			// buttonAttack
 			// 
-			this.buttonAttack.Location = new System.Drawing.Point(250, 158);
+			this.buttonAttack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonAttack.Location = new System.Drawing.Point(275, 166);
 			this.buttonAttack.Name = "buttonAttack";
 			this.buttonAttack.Size = new System.Drawing.Size(75, 23);
 			this.buttonAttack.TabIndex = 0;
@@ -260,7 +270,7 @@
             "ミミロップ",
             "ムウマ",
             "ピカチュウ"});
-			this.listBoxMyParty.Location = new System.Drawing.Point(18, 86);
+			this.listBoxMyParty.Location = new System.Drawing.Point(12, 27);
 			this.listBoxMyParty.Name = "listBoxMyParty";
 			this.listBoxMyParty.Size = new System.Drawing.Size(89, 88);
 			this.listBoxMyParty.TabIndex = 5;
@@ -277,7 +287,7 @@
             "ハピナス",
             "イシツブテ",
             "カイオーガ"});
-			this.listBoxEnemyParty.Location = new System.Drawing.Point(12, 364);
+			this.listBoxEnemyParty.Location = new System.Drawing.Point(14, 32);
 			this.listBoxEnemyParty.Name = "listBoxEnemyParty";
 			this.listBoxEnemyParty.Size = new System.Drawing.Size(89, 88);
 			this.listBoxEnemyParty.TabIndex = 6;
@@ -327,7 +337,7 @@
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
-			this.groupBoxAttackPoke.Location = new System.Drawing.Point(151, 195);
+			this.groupBoxAttackPoke.Location = new System.Drawing.Point(30, 240);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
 			this.groupBoxAttackPoke.Size = new System.Drawing.Size(489, 348);
 			this.groupBoxAttackPoke.TabIndex = 11;
@@ -351,7 +361,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(16, 20);
+			this.label16.Location = new System.Drawing.Point(25, 20);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(41, 12);
 			this.label16.TabIndex = 17;
@@ -368,7 +378,7 @@
 			// 
 			// textBoxIndiA
 			// 
-			this.textBoxIndiA.Location = new System.Drawing.Point(18, 79);
+			this.textBoxIndiA.Location = new System.Drawing.Point(18, 76);
 			this.textBoxIndiA.Name = "textBoxIndiA";
 			this.textBoxIndiA.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiA.TabIndex = 6;
@@ -386,7 +396,7 @@
 			// 
 			// textBoxIndiC
 			// 
-			this.textBoxIndiC.Location = new System.Drawing.Point(18, 150);
+			this.textBoxIndiC.Location = new System.Drawing.Point(18, 154);
 			this.textBoxIndiC.Name = "textBoxIndiC";
 			this.textBoxIndiC.Size = new System.Drawing.Size(100, 19);
 			this.textBoxIndiC.TabIndex = 8;
@@ -413,17 +423,77 @@
 			// 
 			// panelStatus
 			// 
+			this.panelStatus.Controls.Add(this.labelStatusS);
+			this.panelStatus.Controls.Add(this.labelStatusD);
+			this.panelStatus.Controls.Add(this.labelStatusC);
+			this.panelStatus.Controls.Add(this.labelStatusB);
+			this.panelStatus.Controls.Add(this.labelStatusA);
+			this.panelStatus.Controls.Add(this.labelStatusH);
 			this.panelStatus.Controls.Add(this.label18);
-			this.panelStatus.Controls.Add(this.textBoxStatusS);
-			this.panelStatus.Controls.Add(this.textBoxStatusH);
-			this.panelStatus.Controls.Add(this.textBoxStatusD);
-			this.panelStatus.Controls.Add(this.textBoxStatusA);
-			this.panelStatus.Controls.Add(this.textBoxStatusC);
-			this.panelStatus.Controls.Add(this.textBoxStatusB);
 			this.panelStatus.Location = new System.Drawing.Point(328, 23);
 			this.panelStatus.Name = "panelStatus";
 			this.panelStatus.Size = new System.Drawing.Size(142, 273);
 			this.panelStatus.TabIndex = 30;
+			// 
+			// labelStatusS
+			// 
+			this.labelStatusS.AutoSize = true;
+			this.labelStatusS.Location = new System.Drawing.Point(38, 236);
+			this.labelStatusS.Name = "labelStatusS";
+			this.labelStatusS.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusS.TabIndex = 34;
+			this.labelStatusS.Tag = "S";
+			this.labelStatusS.Text = "未設定";
+			// 
+			// labelStatusD
+			// 
+			this.labelStatusD.AutoSize = true;
+			this.labelStatusD.Location = new System.Drawing.Point(40, 200);
+			this.labelStatusD.Name = "labelStatusD";
+			this.labelStatusD.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusD.TabIndex = 33;
+			this.labelStatusD.Tag = "D";
+			this.labelStatusD.Text = "未設定";
+			// 
+			// labelStatusC
+			// 
+			this.labelStatusC.AutoSize = true;
+			this.labelStatusC.Location = new System.Drawing.Point(40, 158);
+			this.labelStatusC.Name = "labelStatusC";
+			this.labelStatusC.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusC.TabIndex = 32;
+			this.labelStatusC.Tag = "C";
+			this.labelStatusC.Text = "未設定";
+			// 
+			// labelStatusB
+			// 
+			this.labelStatusB.AutoSize = true;
+			this.labelStatusB.Location = new System.Drawing.Point(40, 119);
+			this.labelStatusB.Name = "labelStatusB";
+			this.labelStatusB.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusB.TabIndex = 31;
+			this.labelStatusB.Tag = "B";
+			this.labelStatusB.Text = "未設定";
+			// 
+			// labelStatusA
+			// 
+			this.labelStatusA.AutoSize = true;
+			this.labelStatusA.Location = new System.Drawing.Point(40, 79);
+			this.labelStatusA.Name = "labelStatusA";
+			this.labelStatusA.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusA.TabIndex = 30;
+			this.labelStatusA.Tag = "A";
+			this.labelStatusA.Text = "未設定";
+			// 
+			// labelStatusH
+			// 
+			this.labelStatusH.AutoSize = true;
+			this.labelStatusH.Location = new System.Drawing.Point(40, 42);
+			this.labelStatusH.Name = "labelStatusH";
+			this.labelStatusH.Size = new System.Drawing.Size(41, 12);
+			this.labelStatusH.TabIndex = 29;
+			this.labelStatusH.Tag = "H";
+			this.labelStatusH.Text = "未設定";
 			// 
 			// label18
 			// 
@@ -433,60 +503,6 @@
 			this.label18.Size = new System.Drawing.Size(50, 12);
 			this.label18.TabIndex = 28;
 			this.label18.Text = "ステータス";
-			// 
-			// textBoxStatusS
-			// 
-			this.textBoxStatusS.Location = new System.Drawing.Point(19, 237);
-			this.textBoxStatusS.Name = "textBoxStatusS";
-			this.textBoxStatusS.ReadOnly = true;
-			this.textBoxStatusS.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusS.TabIndex = 27;
-			this.textBoxStatusS.Tag = "S";
-			// 
-			// textBoxStatusH
-			// 
-			this.textBoxStatusH.Location = new System.Drawing.Point(19, 39);
-			this.textBoxStatusH.Name = "textBoxStatusH";
-			this.textBoxStatusH.ReadOnly = true;
-			this.textBoxStatusH.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusH.TabIndex = 22;
-			this.textBoxStatusH.Tag = "H";
-			// 
-			// textBoxStatusD
-			// 
-			this.textBoxStatusD.Location = new System.Drawing.Point(19, 198);
-			this.textBoxStatusD.Name = "textBoxStatusD";
-			this.textBoxStatusD.ReadOnly = true;
-			this.textBoxStatusD.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusD.TabIndex = 26;
-			this.textBoxStatusD.Tag = "D";
-			// 
-			// textBoxStatusA
-			// 
-			this.textBoxStatusA.Location = new System.Drawing.Point(19, 77);
-			this.textBoxStatusA.Name = "textBoxStatusA";
-			this.textBoxStatusA.ReadOnly = true;
-			this.textBoxStatusA.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusA.TabIndex = 23;
-			this.textBoxStatusA.Tag = "A";
-			// 
-			// textBoxStatusC
-			// 
-			this.textBoxStatusC.Location = new System.Drawing.Point(19, 154);
-			this.textBoxStatusC.Name = "textBoxStatusC";
-			this.textBoxStatusC.ReadOnly = true;
-			this.textBoxStatusC.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusC.TabIndex = 25;
-			this.textBoxStatusC.Tag = "C";
-			// 
-			// textBoxStatusB
-			// 
-			this.textBoxStatusB.Location = new System.Drawing.Point(19, 115);
-			this.textBoxStatusB.Name = "textBoxStatusB";
-			this.textBoxStatusB.ReadOnly = true;
-			this.textBoxStatusB.Size = new System.Drawing.Size(100, 19);
-			this.textBoxStatusB.TabIndex = 24;
-			this.textBoxStatusB.Tag = "B";
 			// 
 			// panelEffort
 			// 
@@ -522,7 +538,7 @@
 			// 
 			// textBoxEffortB
 			// 
-			this.textBoxEffortB.Location = new System.Drawing.Point(20, 113);
+			this.textBoxEffortB.Location = new System.Drawing.Point(20, 116);
 			this.textBoxEffortB.Name = "textBoxEffortB";
 			this.textBoxEffortB.Size = new System.Drawing.Size(100, 19);
 			this.textBoxEffortB.TabIndex = 2;
@@ -559,7 +575,7 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(36, 9);
+			this.label15.Location = new System.Drawing.Point(38, 20);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(41, 12);
 			this.label15.TabIndex = 16;
@@ -623,7 +639,7 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(6, 97);
+			this.label10.Location = new System.Drawing.Point(6, 102);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(39, 12);
 			this.label10.TabIndex = 11;
@@ -676,7 +692,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(28, 28);
+			this.label7.Location = new System.Drawing.Point(13, 8);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(17, 12);
 			this.label7.TabIndex = 14;
@@ -685,7 +701,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(28, 61);
+			this.label8.Location = new System.Drawing.Point(12, 12);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(53, 12);
 			this.label8.TabIndex = 15;
@@ -694,7 +710,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(16, 340);
+			this.label9.Location = new System.Drawing.Point(12, 12);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(65, 12);
 			this.label9.TabIndex = 16;
@@ -702,7 +718,7 @@
 			// 
 			// NumLevel
 			// 
-			this.NumLevel.Location = new System.Drawing.Point(51, 26);
+			this.NumLevel.Location = new System.Drawing.Point(39, 6);
 			this.NumLevel.Minimum = new decimal(new int[] {
             1,
             0,
@@ -722,9 +738,9 @@
 			// 
 			this.panelResult.Controls.Add(this.label1);
 			this.panelResult.Controls.Add(this.textBoxResult);
-			this.panelResult.Location = new System.Drawing.Point(670, 275);
+			this.panelResult.Location = new System.Drawing.Point(632, 263);
 			this.panelResult.Name = "panelResult";
-			this.panelResult.Size = new System.Drawing.Size(369, 221);
+			this.panelResult.Size = new System.Drawing.Size(387, 248);
 			this.panelResult.TabIndex = 18;
 			// 
 			// panelBattle
@@ -732,25 +748,49 @@
 			this.panelBattle.Controls.Add(this.textBoxAttackPoke);
 			this.panelBattle.Controls.Add(this.textBoxDefencePoke);
 			this.panelBattle.Controls.Add(this.label6);
-			this.panelBattle.Location = new System.Drawing.Point(156, 26);
+			this.panelBattle.Location = new System.Drawing.Point(168, 62);
 			this.panelBattle.Name = "panelBattle";
 			this.panelBattle.Size = new System.Drawing.Size(286, 131);
 			this.panelBattle.TabIndex = 19;
+			// 
+			// panelMyParty
+			// 
+			this.panelMyParty.Controls.Add(this.label8);
+			this.panelMyParty.Controls.Add(this.listBoxMyParty);
+			this.panelMyParty.Location = new System.Drawing.Point(18, 62);
+			this.panelMyParty.Name = "panelMyParty";
+			this.panelMyParty.Size = new System.Drawing.Size(125, 131);
+			this.panelMyParty.TabIndex = 20;
+			// 
+			// panelEnemyParty
+			// 
+			this.panelEnemyParty.Controls.Add(this.label9);
+			this.panelEnemyParty.Controls.Add(this.listBoxEnemyParty);
+			this.panelEnemyParty.Location = new System.Drawing.Point(469, 66);
+			this.panelEnemyParty.Name = "panelEnemyParty";
+			this.panelEnemyParty.Size = new System.Drawing.Size(125, 127);
+			this.panelEnemyParty.TabIndex = 21;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.label7);
+			this.panel1.Controls.Add(this.NumLevel);
+			this.panel1.Location = new System.Drawing.Point(19, 26);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(124, 30);
+			this.panel1.TabIndex = 22;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1054, 726);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.panelEnemyParty);
+			this.Controls.Add(this.panelMyParty);
 			this.Controls.Add(this.panelBattle);
 			this.Controls.Add(this.panelResult);
-			this.Controls.Add(this.NumLevel);
-			this.Controls.Add(this.label9);
-			this.Controls.Add(this.label8);
-			this.Controls.Add(this.label7);
 			this.Controls.Add(this.groupBoxAttackPoke);
-			this.Controls.Add(this.listBoxEnemyParty);
-			this.Controls.Add(this.listBoxMyParty);
 			this.Controls.Add(this.tabControl);
 			this.Name = "MainForm";
 			this.ShowIcon = false;
@@ -774,8 +814,13 @@
 			this.panelResult.PerformLayout();
 			this.panelBattle.ResumeLayout(false);
 			this.panelBattle.PerformLayout();
+			this.panelMyParty.ResumeLayout(false);
+			this.panelMyParty.PerformLayout();
+			this.panelEnemyParty.ResumeLayout(false);
+			this.panelEnemyParty.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -827,18 +872,21 @@
 		private System.Windows.Forms.ComboBox comboBoxPersonality;
 		private System.Windows.Forms.NumericUpDown NumLevel;
 		private System.Windows.Forms.Button buttonUpdateStatus;
-		private System.Windows.Forms.TextBox textBoxStatusS;
-		private System.Windows.Forms.TextBox textBoxStatusD;
-		private System.Windows.Forms.TextBox textBoxStatusC;
-		private System.Windows.Forms.TextBox textBoxStatusB;
-		private System.Windows.Forms.TextBox textBoxStatusA;
-		private System.Windows.Forms.TextBox textBoxStatusH;
 		private System.Windows.Forms.Panel panelStatus;
 		private System.Windows.Forms.Panel panelEffort;
 		private System.Windows.Forms.Panel panelIndi;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.Panel panelResult;
 		private System.Windows.Forms.Panel panelBattle;
+		private System.Windows.Forms.Panel panelMyParty;
+		private System.Windows.Forms.Panel panelEnemyParty;
+		private System.Windows.Forms.Label labelStatusS;
+		private System.Windows.Forms.Label labelStatusD;
+		private System.Windows.Forms.Label labelStatusC;
+		private System.Windows.Forms.Label labelStatusB;
+		private System.Windows.Forms.Label labelStatusA;
+		private System.Windows.Forms.Label labelStatusH;
+		private System.Windows.Forms.Panel panel1;
 	}
 }
 
