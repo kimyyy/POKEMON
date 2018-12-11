@@ -66,5 +66,10 @@ namespace Pokemon
 				throw new Exception("存在しない技カテゴリがありました。");
 			}
 		}
+
+		public void multipleDamage(double multi)
+		{
+			Damage = (int)(Damage * multi);
+		}
 	}
 }

@@ -11,9 +11,15 @@ namespace Pokemon
 	/// </summary>
 	static class Util
 	{
-		private static string[] arrayType = new string[]
+
+		
+		private static string[] TypeString = new string[]
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
 			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
+
+		enum Type
+		{ノーマル, ほのお, みず, でんき, くさ,こおり, かくとう, どく, じめん,
+			ひこう, エスパー, むし, いわ, ゴースト, ドラゴン, あく, はがね, フェアリー};
 
 		private static Dictionary<string, int> DictType = new Dictionary<string, int>()
 		{
@@ -191,6 +197,53 @@ namespace Pokemon
 			}
 			int type2 = DictType[defensePokemon.Type2];
 			return tableTypeMatch[skilltype, type1] * tableTypeMatch[skilltype, type2] * sametype;
+		}
+
+		public static void ApplyItem(string Item, Waza Skill, Poke poke, double typeMatch)
+		{
+			switch (Item)
+			{
+				case "いのちのたま":
+					Skill.multipleDamage(1.3);
+					break;
+
+				case "こだわりハチマキ":
+					if (Skill.IsPhysical)
+					{
+						Skill.multipleDamage(1.5);
+					}
+					break;
+
+				case "こだわりメガネ":
+					if (!Skill.IsPhysical)
+					{
+						Skill.multipleDamage(1.5);
+					}
+					break;
+
+				case "こだわりスカーフ":
+					poke.StatusS = (int)(poke.StatusS);
+					break;
+
+				case "ちからのハチマキ":
+					if (Skill.IsPhysical)
+					{
+						Skill.multipleDamage(1.1);
+					}
+					break;
+
+				case "たつじんのおび":
+					if(typeMatch == 2.0)
+					{
+						Skill.multipleDamage(1.2);
+					}
+					break;
+
+				case "とつげきチョッキ":
+					poke.StatusD = (int)(poke.StatusD * 1.5);
+					break;
+
+			}
 		}
 	}
 }

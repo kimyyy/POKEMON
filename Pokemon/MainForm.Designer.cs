@@ -31,7 +31,7 @@
 			this.textBoxResult = new System.Windows.Forms.TextBox();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageAttack = new System.Windows.Forms.TabPage();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.comboBoxItem = new System.Windows.Forms.ComboBox();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@
 			// 
 			// tabPageAttack
 			// 
-			this.tabPageAttack.Controls.Add(this.comboBox3);
+			this.tabPageAttack.Controls.Add(this.comboBoxItem);
 			this.tabPageAttack.Controls.Add(this.comboBox2);
 			this.tabPageAttack.Controls.Add(this.label5);
 			this.tabPageAttack.Controls.Add(this.label4);
@@ -144,13 +144,21 @@
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
 			// 
-			// comboBox3
+			// comboBoxItem
 			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(73, 69);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(121, 20);
-			this.comboBox3.TabIndex = 5;
+			this.comboBoxItem.FormattingEnabled = true;
+			this.comboBoxItem.Items.AddRange(new object[] {
+            "いのちのたま",
+            "こだわりハチマキ",
+            "こだわりメガネ",
+            "こだわりスカーフ",
+            "たつじんのおび",
+            "ちからのハチマキ"});
+			this.comboBoxItem.Location = new System.Drawing.Point(73, 69);
+			this.comboBoxItem.Name = "comboBoxItem";
+			this.comboBoxItem.Size = new System.Drawing.Size(121, 20);
+			this.comboBoxItem.TabIndex = 5;
+			this.comboBoxItem.Text = "選択してください";
 			// 
 			// comboBox2
 			// 
@@ -219,7 +227,7 @@
 			this.tabPageDefence.Location = new System.Drawing.Point(4, 22);
 			this.tabPageDefence.Name = "tabPageDefence";
 			this.tabPageDefence.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageDefence.Size = new System.Drawing.Size(342, 191);
+			this.tabPageDefence.Size = new System.Drawing.Size(356, 195);
 			this.tabPageDefence.TabIndex = 1;
 			this.tabPageDefence.Text = "防御側";
 			this.tabPageDefence.UseVisualStyleBackColor = true;
@@ -230,7 +238,7 @@
 			this.tabPageEnvironment.Controls.Add(this.comboBox1);
 			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
 			this.tabPageEnvironment.Name = "tabPageEnvironment";
-			this.tabPageEnvironment.Size = new System.Drawing.Size(342, 191);
+			this.tabPageEnvironment.Size = new System.Drawing.Size(356, 195);
 			this.tabPageEnvironment.TabIndex = 2;
 			this.tabPageEnvironment.Text = "環境";
 			this.tabPageEnvironment.UseVisualStyleBackColor = true;
@@ -263,13 +271,6 @@
 			// 
 			this.listBoxMyParty.FormattingEnabled = true;
 			this.listBoxMyParty.ItemHeight = 12;
-			this.listBoxMyParty.Items.AddRange(new object[] {
-            "リザードン",
-            "ジュカイン",
-            "ムクホーク",
-            "ミミロップ",
-            "ムウマ",
-            "ピカチュウ"});
 			this.listBoxMyParty.Location = new System.Drawing.Point(12, 27);
 			this.listBoxMyParty.Name = "listBoxMyParty";
 			this.listBoxMyParty.Size = new System.Drawing.Size(89, 88);
@@ -280,13 +281,6 @@
 			// 
 			this.listBoxEnemyParty.FormattingEnabled = true;
 			this.listBoxEnemyParty.ItemHeight = 12;
-			this.listBoxEnemyParty.Items.AddRange(new object[] {
-            "ルカリオ",
-            "ギルガルド",
-            "ガブリアス",
-            "ハピナス",
-            "イシツブテ",
-            "カイオーガ"});
 			this.listBoxEnemyParty.Location = new System.Drawing.Point(14, 32);
 			this.listBoxEnemyParty.Name = "listBoxEnemyParty";
 			this.listBoxEnemyParty.Size = new System.Drawing.Size(89, 88);
@@ -589,7 +583,7 @@
 			this.buttonUpdateStatus.TabIndex = 28;
 			this.buttonUpdateStatus.Text = "ステータスを更新";
 			this.buttonUpdateStatus.UseVisualStyleBackColor = true;
-			this.buttonUpdateStatus.Click += new System.EventHandler(this.UpdateStatus);
+			this.buttonUpdateStatus.Click += new System.EventHandler(this.buttonStatus_click);
 			// 
 			// label17
 			// 
@@ -837,7 +831,7 @@
 		private System.Windows.Forms.ComboBox comboBoxSkill;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.ComboBox comboBoxItem;
 		private System.Windows.Forms.ComboBox comboBox2;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;

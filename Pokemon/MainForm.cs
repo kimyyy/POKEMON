@@ -19,6 +19,11 @@ namespace Pokemon
 
 		private Poke DefencePoke;
 
+		private Poke[] MyParty = new Poke[6] {new Poke("リザードン"), new Poke("カメックス"), new Poke("フシギバナ"),
+			new Poke("ピカチュウ"), new Poke("ピチュー"), new Poke("タマタマ")};
+		private Poke[] EnemyParty = new Poke[6]{new Poke("リザードン"), new Poke("カメックス"), new Poke("フシギバナ"),
+			new Poke("ピカチュウ"), new Poke("ピチュー"), new Poke("タマタマ")};
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -30,7 +35,6 @@ namespace Pokemon
 		{
 			// わざのデータを取得。
 			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
-
 			using (var cn = new SQLiteConnection(cBuilder.ToString()))
 			{
 				cn.Open();
@@ -44,7 +48,8 @@ namespace Pokemon
 					}
 				}
 			}
-			Level = (int)NumLevel.Value;
+
+			InitSettings();
 		}
 
 		#endregion
@@ -75,6 +80,11 @@ namespace Pokemon
 				WriteResult(ex.Message + "\r\n");
 				return;
 			}
+			UpdateStatus(attackPoke);
+			UpdateStatus(defencePoke);
+
+			var typeMatch = Util.CalculateTypeMatching(attackPoke, defencePoke, Skill);
+			Util.ApplyItem(comboBoxItem.ToString(), Skill, AttackPoke, typeMatch);
 
 			// ダメージ計算
 			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, Skill, Level);
@@ -125,38 +135,54 @@ namespace Pokemon
 			}
 		}
 
-		private void UpdateStatus(object sender, EventArgs e)
+		private void buttonStatus_click(object sender, EventArgs e)
 		{
 			AttackPoke = new Poke(textBoxAttackPoke.Text);
-			var personality = Util.DecidePersonality(comboBoxPersonality.Text);
-			int[] arrayEffort = new int[6];
-			int[] arrayIndi = new int[6];
-			int[] arrayStatus = new int[6];
-			ParseTextBox(panelEffort, arrayEffort);
-			ParseTextBox(panelIndi, arrayIndi);
-			for (int i = 0; i < 6; i++)
-			{
-				double status = AttackPoke.Syuzoku[i] * 2.0 + arrayIndi[i] + arrayEffort[i] / 4.0 * Level / 100.0;
-				if (i == 0)
-				{
-					arrayStatus[i] = (int)status + Level + 10;
-				}
-				else
-				{
-					arrayStatus[i] = (int)((status + 5) * personality[i]);
-				}
-			}
-			labelStatusH.Text = arrayStatus[0].ToString();
-			labelStatusA.Text = arrayStatus[1].ToString();
-			labelStatusB.Text = arrayStatus[2].ToString();
-			labelStatusC.Text = arrayStatus[3].ToString();
-			labelStatusD.Text = arrayStatus[4].ToString();
-			labelStatusS.Text = arrayStatus[5].ToString();
+			UpdateStatus(AttackPoke);
 		}
 
 		#endregion
 
 		#region フォーム用メソッド
+
+		private void InitSettings()
+		{
+			Level = (int)NumLevel.Value;
+
+			// パーティをリストボックスに格納する。
+			foreach (Poke poke in MyParty)
+			{
+				listBoxMyParty.Items.Add(poke.Name);
+			}
+			foreach (Poke poke in MyParty)
+			{
+				listBoxEnemyParty.Items.Add(poke.Name);
+			}
+		}
+
+		private void UpdateStatus(Poke poke)
+		{
+			// ポケモン、性格を決める。
+			var personality = Util.DecidePersonality(comboBoxPersonality.Text);
+			int[] arrayEffort = new int[6];
+			int[] arrayIndi = new int[6];
+			ParseTextBox(panelEffort, arrayEffort);
+			ParseTextBox(panelIndi, arrayIndi);
+			poke.Effort = arrayEffort;
+			poke.Indi = arrayIndi;
+
+			// ステータス計算
+			poke.CalculateStatus(personality, Level);
+
+			// ラベルを更新
+			labelStatusH.Text = poke.StatusH.ToString();
+			labelStatusA.Text = poke.StatusA.ToString();
+			labelStatusB.Text = poke.StatusB.ToString();
+			labelStatusC.Text = poke.StatusC.ToString();
+			labelStatusD.Text = poke.StatusD.ToString();
+			labelStatusS.Text = poke.StatusS.ToString();
+		}
+
 
 		/// --------------------------------------------------------------------------------
 		/// <summary>
@@ -180,6 +206,7 @@ namespace Pokemon
 				{
 					if (!(int.TryParse(cControl.Text, out int num)))
 					{
+						array = new int[6];
 						return false;
 					}
 					switch (cControl.Tag.ToString())
