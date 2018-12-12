@@ -97,7 +97,7 @@ namespace Pokemon
 
 		private void textBoxPoke_DragEnter(object sender, DragEventArgs e)
 		{
-			if (e.Data.GetDataPresent(typeof(string)))
+			if (e.Data.GetDataPresent(typeof(int)))
 			{
 				e.Effect = DragDropEffects.Copy;
 			}
@@ -107,14 +107,27 @@ namespace Pokemon
 			}
 		}
 
-		private void textBoxPoke_DragDrop(object sender, DragEventArgs e)
+		private void textBoxAttackPoke_DragDrop(object sender, DragEventArgs e)
 		{
-			if (e.Data.GetDataPresent(typeof(string)))
+			if (e.Data.GetDataPresent(typeof(int)))
 			{
 				TextBox target = (TextBox)sender;
-				string itemText = (string)e.Data.GetData(typeof(string));
+				var itemText = (int)e.Data.GetData(typeof(int));
 
-				target.Text = itemText;
+				AttackPoke = MyParty[itemText];
+				target.Text = AttackPoke.Name;
+			}
+		}
+
+		private void textBoxDefencePoke_DragDrop(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(typeof(int)))
+			{
+				TextBox target = (TextBox)sender;
+				var itemText = (int)e.Data.GetData(typeof(int));
+
+				DefencePoke = EnemyParty[itemText];
+				target.Text = DefencePoke.Name;
 			}
 		}
 
@@ -127,11 +140,8 @@ namespace Pokemon
 				int itemIndex = lb.IndexFromPoint(e.X, e.Y);
 				if (itemIndex < 0) return;
 
-				// アイテムの内容を取得
-				string itemText = (string)lb.Items[itemIndex];
-
 				// start drag and drop
-				DragDropEffects dde = lb.DoDragDrop(itemText, DragDropEffects.Copy);
+				DragDropEffects dde = lb.DoDragDrop(itemIndex, DragDropEffects.Copy);
 			}
 		}
 
@@ -139,6 +149,11 @@ namespace Pokemon
 		{
 			AttackPoke = new Poke(textBoxAttackPoke.Text);
 			UpdateStatus(AttackPoke);
+		}
+
+		private void comboBoxSkill_TextChanged(object sender, EventArgs e)
+		{
+
 		}
 
 		#endregion

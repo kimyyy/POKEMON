@@ -210,6 +210,7 @@
 			this.comboBoxSkill.Size = new System.Drawing.Size(121, 20);
 			this.comboBoxSkill.TabIndex = 0;
 			this.comboBoxSkill.Text = "わざを選択";
+			this.comboBoxSkill.TextChanged += new System.EventHandler(this.comboBoxSkill_TextChanged);
 			// 
 			// buttonAttack
 			// 
@@ -304,7 +305,7 @@
 			this.textBoxAttackPoke.ReadOnly = true;
 			this.textBoxAttackPoke.Size = new System.Drawing.Size(100, 19);
 			this.textBoxAttackPoke.TabIndex = 9;
-			this.textBoxAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragDrop);
+			this.textBoxAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxAttackPoke_DragDrop);
 			this.textBoxAttackPoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragEnter);
 			// 
 			// textBoxDefencePoke
@@ -315,7 +316,7 @@
 			this.textBoxDefencePoke.ReadOnly = true;
 			this.textBoxDefencePoke.Size = new System.Drawing.Size(100, 19);
 			this.textBoxDefencePoke.TabIndex = 10;
-			this.textBoxDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragDrop);
+			this.textBoxDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxDefencePoke_DragDrop);
 			this.textBoxDefencePoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragEnter);
 			// 
 			// groupBoxAttackPoke
