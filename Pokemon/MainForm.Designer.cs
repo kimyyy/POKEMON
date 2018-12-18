@@ -90,6 +90,7 @@
 			this.panelMyParty = new System.Windows.Forms.Panel();
 			this.panelEnemyParty = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.comboBoxChara = new System.Windows.Forms.ComboBox();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -113,7 +114,7 @@
 			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
-			this.textBoxResult.Size = new System.Drawing.Size(377, 202);
+			this.textBoxResult.Size = new System.Drawing.Size(450, 322);
 			this.textBoxResult.TabIndex = 3;
 			// 
 			// tabControl
@@ -121,10 +122,10 @@
 			this.tabControl.Controls.Add(this.tabPageAttack);
 			this.tabControl.Controls.Add(this.tabPageDefence);
 			this.tabControl.Controls.Add(this.tabPageEnvironment);
-			this.tabControl.Location = new System.Drawing.Point(632, 12);
+			this.tabControl.Location = new System.Drawing.Point(614, 12);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(364, 221);
+			this.tabControl.Size = new System.Drawing.Size(382, 233);
 			this.tabControl.TabIndex = 4;
 			// 
 			// tabPageAttack
@@ -139,13 +140,14 @@
 			this.tabPageAttack.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAttack.Name = "tabPageAttack";
 			this.tabPageAttack.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageAttack.Size = new System.Drawing.Size(356, 195);
+			this.tabPageAttack.Size = new System.Drawing.Size(374, 207);
 			this.tabPageAttack.TabIndex = 0;
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
 			// 
 			// comboBoxItem
 			// 
+			this.comboBoxItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxItem.FormattingEnabled = true;
 			this.comboBoxItem.Items.AddRange(new object[] {
             "いのちのたま",
@@ -154,14 +156,14 @@
             "こだわりスカーフ",
             "たつじんのおび",
             "ちからのハチマキ"});
-			this.comboBoxItem.Location = new System.Drawing.Point(73, 69);
+			this.comboBoxItem.Location = new System.Drawing.Point(73, 61);
 			this.comboBoxItem.Name = "comboBoxItem";
 			this.comboBoxItem.Size = new System.Drawing.Size(121, 20);
 			this.comboBoxItem.TabIndex = 5;
-			this.comboBoxItem.Text = "選択してください";
 			// 
 			// comboBox2
 			// 
+			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox2.FormattingEnabled = true;
 			this.comboBox2.Items.AddRange(new object[] {
             "0",
@@ -173,7 +175,6 @@
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(121, 20);
 			this.comboBox2.TabIndex = 4;
-			this.comboBox2.Text = "0";
 			// 
 			// label5
 			// 
@@ -187,7 +188,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(18, 77);
+			this.label4.Location = new System.Drawing.Point(18, 69);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(42, 12);
 			this.label4.TabIndex = 2;
@@ -204,18 +205,18 @@
 			// 
 			// comboBoxSkill
 			// 
+			this.comboBoxSkill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxSkill.FormattingEnabled = true;
 			this.comboBoxSkill.Location = new System.Drawing.Point(73, 29);
 			this.comboBoxSkill.Name = "comboBoxSkill";
 			this.comboBoxSkill.Size = new System.Drawing.Size(121, 20);
 			this.comboBoxSkill.TabIndex = 0;
-			this.comboBoxSkill.Text = "わざを選択";
 			this.comboBoxSkill.TextChanged += new System.EventHandler(this.comboBoxSkill_TextChanged);
 			// 
 			// buttonAttack
 			// 
 			this.buttonAttack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonAttack.Location = new System.Drawing.Point(275, 166);
+			this.buttonAttack.Location = new System.Drawing.Point(293, 178);
 			this.buttonAttack.Name = "buttonAttack";
 			this.buttonAttack.Size = new System.Drawing.Size(75, 23);
 			this.buttonAttack.TabIndex = 0;
@@ -228,7 +229,7 @@
 			this.tabPageDefence.Location = new System.Drawing.Point(4, 22);
 			this.tabPageDefence.Name = "tabPageDefence";
 			this.tabPageDefence.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageDefence.Size = new System.Drawing.Size(356, 195);
+			this.tabPageDefence.Size = new System.Drawing.Size(374, 207);
 			this.tabPageDefence.TabIndex = 1;
 			this.tabPageDefence.Text = "防御側";
 			this.tabPageDefence.UseVisualStyleBackColor = true;
@@ -239,7 +240,7 @@
 			this.tabPageEnvironment.Controls.Add(this.comboBox1);
 			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
 			this.tabPageEnvironment.Name = "tabPageEnvironment";
-			this.tabPageEnvironment.Size = new System.Drawing.Size(356, 195);
+			this.tabPageEnvironment.Size = new System.Drawing.Size(374, 207);
 			this.tabPageEnvironment.TabIndex = 2;
 			this.tabPageEnvironment.Text = "環境";
 			this.tabPageEnvironment.UseVisualStyleBackColor = true;
@@ -255,9 +256,9 @@
 			// 
 			// comboBox1
 			// 
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Items.AddRange(new object[] {
-            "",
             "はれ",
             "あめ",
             "ひでり",
@@ -270,6 +271,9 @@
 			// 
 			// listBoxMyParty
 			// 
+			this.listBoxMyParty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listBoxMyParty.FormattingEnabled = true;
 			this.listBoxMyParty.ItemHeight = 12;
 			this.listBoxMyParty.Location = new System.Drawing.Point(12, 27);
@@ -280,9 +284,12 @@
 			// 
 			// listBoxEnemyParty
 			// 
+			this.listBoxEnemyParty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listBoxEnemyParty.FormattingEnabled = true;
 			this.listBoxEnemyParty.ItemHeight = 12;
-			this.listBoxEnemyParty.Location = new System.Drawing.Point(14, 32);
+			this.listBoxEnemyParty.Location = new System.Drawing.Point(14, 36);
 			this.listBoxEnemyParty.Name = "listBoxEnemyParty";
 			this.listBoxEnemyParty.Size = new System.Drawing.Size(89, 88);
 			this.listBoxEnemyParty.TabIndex = 6;
@@ -300,27 +307,33 @@
 			// textBoxAttackPoke
 			// 
 			this.textBoxAttackPoke.AllowDrop = true;
-			this.textBoxAttackPoke.Location = new System.Drawing.Point(7, 35);
+			this.textBoxAttackPoke.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxAttackPoke.Location = new System.Drawing.Point(10, 24);
 			this.textBoxAttackPoke.Name = "textBoxAttackPoke";
 			this.textBoxAttackPoke.ReadOnly = true;
-			this.textBoxAttackPoke.Size = new System.Drawing.Size(100, 19);
+			this.textBoxAttackPoke.Size = new System.Drawing.Size(96, 19);
 			this.textBoxAttackPoke.TabIndex = 9;
+			this.textBoxAttackPoke.TextChanged += new System.EventHandler(this.textBoxAttackPoke_TextChanged);
 			this.textBoxAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxAttackPoke_DragDrop);
 			this.textBoxAttackPoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragEnter);
 			// 
 			// textBoxDefencePoke
 			// 
 			this.textBoxDefencePoke.AllowDrop = true;
-			this.textBoxDefencePoke.Location = new System.Drawing.Point(172, 36);
+			this.textBoxDefencePoke.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxDefencePoke.Location = new System.Drawing.Point(156, 24);
 			this.textBoxDefencePoke.Name = "textBoxDefencePoke";
 			this.textBoxDefencePoke.ReadOnly = true;
-			this.textBoxDefencePoke.Size = new System.Drawing.Size(100, 19);
+			this.textBoxDefencePoke.Size = new System.Drawing.Size(96, 19);
 			this.textBoxDefencePoke.TabIndex = 10;
 			this.textBoxDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxDefencePoke_DragDrop);
 			this.textBoxDefencePoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragEnter);
 			// 
 			// groupBoxAttackPoke
 			// 
+			this.groupBoxAttackPoke.Controls.Add(this.comboBoxChara);
 			this.groupBoxAttackPoke.Controls.Add(this.panelIndi);
 			this.groupBoxAttackPoke.Controls.Add(this.panelStatus);
 			this.groupBoxAttackPoke.Controls.Add(this.panelEffort);
@@ -332,15 +345,17 @@
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
-			this.groupBoxAttackPoke.Location = new System.Drawing.Point(30, 240);
+			this.groupBoxAttackPoke.Location = new System.Drawing.Point(34, 249);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
-			this.groupBoxAttackPoke.Size = new System.Drawing.Size(489, 348);
+			this.groupBoxAttackPoke.Size = new System.Drawing.Size(502, 382);
 			this.groupBoxAttackPoke.TabIndex = 11;
 			this.groupBoxAttackPoke.TabStop = false;
 			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
 			// 
 			// panelIndi
 			// 
+			this.panelIndi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelIndi.Controls.Add(this.label16);
 			this.panelIndi.Controls.Add(this.textBoxIndiHP);
 			this.panelIndi.Controls.Add(this.textBoxIndiA);
@@ -350,7 +365,7 @@
 			this.panelIndi.Controls.Add(this.textBoxIndiS);
 			this.panelIndi.Location = new System.Drawing.Point(179, 23);
 			this.panelIndi.Name = "panelIndi";
-			this.panelIndi.Size = new System.Drawing.Size(143, 273);
+			this.panelIndi.Size = new System.Drawing.Size(159, 273);
 			this.panelIndi.TabIndex = 19;
 			// 
 			// label16
@@ -418,6 +433,7 @@
 			// 
 			// panelStatus
 			// 
+			this.panelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelStatus.Controls.Add(this.labelStatusS);
 			this.panelStatus.Controls.Add(this.labelStatusD);
 			this.panelStatus.Controls.Add(this.labelStatusC);
@@ -425,7 +441,7 @@
 			this.panelStatus.Controls.Add(this.labelStatusA);
 			this.panelStatus.Controls.Add(this.labelStatusH);
 			this.panelStatus.Controls.Add(this.label18);
-			this.panelStatus.Location = new System.Drawing.Point(328, 23);
+			this.panelStatus.Location = new System.Drawing.Point(344, 23);
 			this.panelStatus.Name = "panelStatus";
 			this.panelStatus.Size = new System.Drawing.Size(142, 273);
 			this.panelStatus.TabIndex = 30;
@@ -578,7 +594,7 @@
 			// 
 			// buttonUpdateStatus
 			// 
-			this.buttonUpdateStatus.Location = new System.Drawing.Point(160, 306);
+			this.buttonUpdateStatus.Location = new System.Drawing.Point(333, 308);
 			this.buttonUpdateStatus.Name = "buttonUpdateStatus";
 			this.buttonUpdateStatus.Size = new System.Drawing.Size(137, 23);
 			this.buttonUpdateStatus.TabIndex = 28;
@@ -642,6 +658,7 @@
 			// 
 			// comboBoxPersonality
 			// 
+			this.comboBoxPersonality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxPersonality.FormattingEnabled = true;
 			this.comboBoxPersonality.Items.AddRange(new object[] {
             "さみしがり",
@@ -669,16 +686,18 @@
             "まじめ",
             "きまぐれ",
             "がんばりや"});
-			this.comboBoxPersonality.Location = new System.Drawing.Point(9, 308);
+			this.comboBoxPersonality.Location = new System.Drawing.Point(103, 311);
 			this.comboBoxPersonality.Name = "comboBoxPersonality";
 			this.comboBoxPersonality.Size = new System.Drawing.Size(142, 20);
 			this.comboBoxPersonality.TabIndex = 0;
-			this.comboBoxPersonality.Text = "性格を選択してください";
 			// 
 			// label6
 			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(126, 39);
+			this.label6.Location = new System.Drawing.Point(120, 24);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(20, 12);
 			this.label6.TabIndex = 12;
@@ -733,9 +752,9 @@
 			// 
 			this.panelResult.Controls.Add(this.label1);
 			this.panelResult.Controls.Add(this.textBoxResult);
-			this.panelResult.Location = new System.Drawing.Point(632, 263);
+			this.panelResult.Location = new System.Drawing.Point(559, 263);
 			this.panelResult.Name = "panelResult";
-			this.panelResult.Size = new System.Drawing.Size(387, 248);
+			this.panelResult.Size = new System.Drawing.Size(460, 368);
 			this.panelResult.TabIndex = 18;
 			// 
 			// panelBattle
@@ -743,9 +762,9 @@
 			this.panelBattle.Controls.Add(this.textBoxAttackPoke);
 			this.panelBattle.Controls.Add(this.textBoxDefencePoke);
 			this.panelBattle.Controls.Add(this.label6);
-			this.panelBattle.Location = new System.Drawing.Point(168, 62);
+			this.panelBattle.Location = new System.Drawing.Point(172, 62);
 			this.panelBattle.Name = "panelBattle";
-			this.panelBattle.Size = new System.Drawing.Size(286, 131);
+			this.panelBattle.Size = new System.Drawing.Size(265, 61);
 			this.panelBattle.TabIndex = 19;
 			// 
 			// panelMyParty
@@ -761,9 +780,9 @@
 			// 
 			this.panelEnemyParty.Controls.Add(this.label9);
 			this.panelEnemyParty.Controls.Add(this.listBoxEnemyParty);
-			this.panelEnemyParty.Location = new System.Drawing.Point(469, 66);
+			this.panelEnemyParty.Location = new System.Drawing.Point(469, 62);
 			this.panelEnemyParty.Name = "panelEnemyParty";
-			this.panelEnemyParty.Size = new System.Drawing.Size(125, 127);
+			this.panelEnemyParty.Size = new System.Drawing.Size(125, 131);
 			this.panelEnemyParty.TabIndex = 21;
 			// 
 			// panel1
@@ -774,6 +793,15 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(124, 30);
 			this.panel1.TabIndex = 22;
+			// 
+			// comboBoxChara
+			// 
+			this.comboBoxChara.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxChara.FormattingEnabled = true;
+			this.comboBoxChara.Location = new System.Drawing.Point(103, 351);
+			this.comboBoxChara.Name = "comboBoxChara";
+			this.comboBoxChara.Size = new System.Drawing.Size(142, 20);
+			this.comboBoxChara.TabIndex = 31;
 			// 
 			// MainForm
 			// 
@@ -882,6 +910,7 @@
 		private System.Windows.Forms.Label labelStatusA;
 		private System.Windows.Forms.Label labelStatusH;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.ComboBox comboBoxChara;
 	}
 }
 

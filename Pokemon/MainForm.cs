@@ -283,5 +283,34 @@ namespace Pokemon
 		}
 
 		#endregion
+
+		private void textBoxAttackPoke_TextChanged(object sender, EventArgs e)
+		{
+			comboBoxSkill.Items.Clear();
+			comboBoxChara.Items.Clear();
+
+			// わざのデータを取得。
+			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
+			using (var cn = new SQLiteConnection(cBuilder.ToString()))
+			{
+				cn.Open();
+				using (var cmd = new SQLiteCommand(cn))
+				{
+					cmd.CommandText = String.Format("select * from pokewaza where name = '{0}' ", textBoxAttackPoke.Text);
+					var reader = cmd.ExecuteReader();
+					while (reader.Read())
+					{
+						comboBoxSkill.Items.Add(reader["waza"].ToString());
+					}
+				}
+			}
+			for (int i = 3; i < 6; i++)
+			{
+				if (AttackPoke.ConstStringParams[i] != "")
+				{
+					comboBoxChara.Items.Add(AttackPoke.ConstStringParams[i].ToString());
+				}
+			}
+		}
 	}
 }

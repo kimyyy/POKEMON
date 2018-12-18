@@ -15,7 +15,7 @@ namespace Pokemon
 
 		private string[] ParamsString = {"name", "type1", "type2", "chara1", "chara2", "dchara" };
 
-		private string[] ConstStringParams = new string[6];
+		public string[] ConstStringParams = new string[6];
 
 		public string Name   { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
 		public string Type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
