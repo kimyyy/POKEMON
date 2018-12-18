@@ -33,22 +33,6 @@ namespace Pokemon
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			// わざのデータを取得。
-			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
-			using (var cn = new SQLiteConnection(cBuilder.ToString()))
-			{
-				cn.Open();
-				using (var cmd = new SQLiteCommand(cn))
-				{
-					cmd.CommandText = "select * from waza";
-					var reader = cmd.ExecuteReader();
-					while (reader.Read())
-					{
-						comboBoxSkill.Items.Add(reader["name"].ToString());
-					}
-				}
-			}
-
 			InitSettings();
 		}
 

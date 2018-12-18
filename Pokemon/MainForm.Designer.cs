@@ -91,6 +91,8 @@
 			this.panelEnemyParty = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.comboBoxChara = new System.Windows.Forms.ComboBox();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -333,6 +335,8 @@
 			// 
 			// groupBoxAttackPoke
 			// 
+			this.groupBoxAttackPoke.Controls.Add(this.radioButton2);
+			this.groupBoxAttackPoke.Controls.Add(this.radioButton1);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxChara);
 			this.groupBoxAttackPoke.Controls.Add(this.panelIndi);
 			this.groupBoxAttackPoke.Controls.Add(this.panelStatus);
@@ -345,17 +349,16 @@
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
-			this.groupBoxAttackPoke.Location = new System.Drawing.Point(34, 249);
+			this.groupBoxAttackPoke.Location = new System.Drawing.Point(34, 212);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
-			this.groupBoxAttackPoke.Size = new System.Drawing.Size(502, 382);
+			this.groupBoxAttackPoke.Size = new System.Drawing.Size(502, 432);
 			this.groupBoxAttackPoke.TabIndex = 11;
 			this.groupBoxAttackPoke.TabStop = false;
 			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
 			// 
 			// panelIndi
 			// 
-			this.panelIndi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelIndi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelIndi.Controls.Add(this.label16);
 			this.panelIndi.Controls.Add(this.textBoxIndiHP);
 			this.panelIndi.Controls.Add(this.textBoxIndiA);
@@ -363,7 +366,7 @@
 			this.panelIndi.Controls.Add(this.textBoxIndiC);
 			this.panelIndi.Controls.Add(this.textBoxIndiD);
 			this.panelIndi.Controls.Add(this.textBoxIndiS);
-			this.panelIndi.Location = new System.Drawing.Point(179, 23);
+			this.panelIndi.Location = new System.Drawing.Point(179, 48);
 			this.panelIndi.Name = "panelIndi";
 			this.panelIndi.Size = new System.Drawing.Size(159, 273);
 			this.panelIndi.TabIndex = 19;
@@ -433,7 +436,7 @@
 			// 
 			// panelStatus
 			// 
-			this.panelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.panelStatus.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.panelStatus.Controls.Add(this.labelStatusS);
 			this.panelStatus.Controls.Add(this.labelStatusD);
 			this.panelStatus.Controls.Add(this.labelStatusC);
@@ -441,7 +444,7 @@
 			this.panelStatus.Controls.Add(this.labelStatusA);
 			this.panelStatus.Controls.Add(this.labelStatusH);
 			this.panelStatus.Controls.Add(this.label18);
-			this.panelStatus.Location = new System.Drawing.Point(344, 23);
+			this.panelStatus.Location = new System.Drawing.Point(344, 48);
 			this.panelStatus.Name = "panelStatus";
 			this.panelStatus.Size = new System.Drawing.Size(142, 273);
 			this.panelStatus.TabIndex = 30;
@@ -517,6 +520,7 @@
 			// 
 			// panelEffort
 			// 
+			this.panelEffort.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.panelEffort.Controls.Add(this.textBoxEffortHP);
 			this.panelEffort.Controls.Add(this.textBoxEffortA);
 			this.panelEffort.Controls.Add(this.textBoxEffortB);
@@ -524,7 +528,7 @@
 			this.panelEffort.Controls.Add(this.textBoxEffortD);
 			this.panelEffort.Controls.Add(this.textBoxEffortS);
 			this.panelEffort.Controls.Add(this.label15);
-			this.panelEffort.Location = new System.Drawing.Point(48, 23);
+			this.panelEffort.Location = new System.Drawing.Point(48, 48);
 			this.panelEffort.Name = "panelEffort";
 			this.panelEffort.Size = new System.Drawing.Size(133, 273);
 			this.panelEffort.TabIndex = 18;
@@ -594,7 +598,7 @@
 			// 
 			// buttonUpdateStatus
 			// 
-			this.buttonUpdateStatus.Location = new System.Drawing.Point(333, 308);
+			this.buttonUpdateStatus.Location = new System.Drawing.Point(344, 382);
 			this.buttonUpdateStatus.Name = "buttonUpdateStatus";
 			this.buttonUpdateStatus.Size = new System.Drawing.Size(137, 23);
 			this.buttonUpdateStatus.TabIndex = 28;
@@ -605,7 +609,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(6, 65);
+			this.label17.Location = new System.Drawing.Point(6, 66);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(20, 12);
 			this.label17.TabIndex = 18;
@@ -686,7 +690,7 @@
             "まじめ",
             "きまぐれ",
             "がんばりや"});
-			this.comboBoxPersonality.Location = new System.Drawing.Point(103, 311);
+			this.comboBoxPersonality.Location = new System.Drawing.Point(103, 336);
 			this.comboBoxPersonality.Name = "comboBoxPersonality";
 			this.comboBoxPersonality.Size = new System.Drawing.Size(142, 20);
 			this.comboBoxPersonality.TabIndex = 0;
@@ -764,7 +768,7 @@
 			this.panelBattle.Controls.Add(this.label6);
 			this.panelBattle.Location = new System.Drawing.Point(172, 62);
 			this.panelBattle.Name = "panelBattle";
-			this.panelBattle.Size = new System.Drawing.Size(265, 61);
+			this.panelBattle.Size = new System.Drawing.Size(265, 124);
 			this.panelBattle.TabIndex = 19;
 			// 
 			// panelMyParty
@@ -798,10 +802,32 @@
 			// 
 			this.comboBoxChara.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxChara.FormattingEnabled = true;
-			this.comboBoxChara.Location = new System.Drawing.Point(103, 351);
+			this.comboBoxChara.Location = new System.Drawing.Point(103, 382);
 			this.comboBoxChara.Name = "comboBoxChara";
 			this.comboBoxChara.Size = new System.Drawing.Size(142, 20);
 			this.comboBoxChara.TabIndex = 31;
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Location = new System.Drawing.Point(39, 18);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(88, 16);
+			this.radioButton1.TabIndex = 32;
+			this.radioButton1.TabStop = true;
+			this.radioButton1.Text = "radioButton1";
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(133, 18);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(88, 16);
+			this.radioButton2.TabIndex = 33;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "radioButton2";
+			this.radioButton2.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -911,6 +937,8 @@
 		private System.Windows.Forms.Label labelStatusH;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ComboBox comboBoxChara;
+		private System.Windows.Forms.RadioButton radioButton2;
+		private System.Windows.Forms.RadioButton radioButton1;
 	}
 }
 

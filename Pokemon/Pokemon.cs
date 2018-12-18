@@ -18,8 +18,8 @@ namespace Pokemon
 		public string[] ConstStringParams = new string[6];
 
 		public string Name   { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
-		public string Type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
-		public string Type2  { get { return ConstStringParams[2]; } set { ConstStringParams[2] = value; } }
+		public string type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
+		public string type2  { get { return ConstStringParams[2]; } set { ConstStringParams[2] = value; } }
 		public string Chara1 { get { return ConstStringParams[3]; } set { ConstStringParams[3] = value; } }
 		public string Chara2 { get { return ConstStringParams[4]; } set { ConstStringParams[4] = value; } }
 		public string DChara { get { return ConstStringParams[5]; } set { ConstStringParams[5] = value; } }
@@ -62,6 +62,10 @@ namespace Pokemon
 		public int StatusD { get { return Status[4]; } set { Status[4] = value; } }
 		public int StatusS { get { return Status[5]; } set { Status[5] = value; } }
 
+		public bool IsAttack;
+		public Util.Type Type1;
+		public Util.Type Type2;
+
 		#endregion
 
 		#endregion
@@ -100,6 +104,13 @@ namespace Pokemon
 					SyuzokuS = int.Parse(reader["s"].ToString());
 					Sum = int.Parse(reader["sum"].ToString());
 				}
+			}
+
+			// タイプを変換
+			Type1 = (Util.Type)Util.DictType[type1];
+			if(type2 != "")
+			{
+				Type2 = (Util.Type)Util.DictType[type2];
 			}
 		}
 

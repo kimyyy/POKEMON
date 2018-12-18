@@ -12,16 +12,23 @@ namespace Pokemon
 	static class Util
 	{
 
-		
+
 		private static string[] TypeString = new string[]
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
 			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
 
-		enum Type
-		{ノーマル, ほのお, みず, でんき, くさ,こおり, かくとう, どく, じめん,
-			ひこう, エスパー, むし, いわ, ゴースト, ドラゴン, あく, はがね, フェアリー};
+		public enum Type
+		{
+			ノーマル, ほのお, みず, でんき, くさ, こおり, かくとう, どく, じめん,
+			ひこう, エスパー, むし, いわ, ゴースト, ドラゴン, あく, はがね, フェアリー, none
+		};
 
-		private static Dictionary<string, int> DictType = new Dictionary<string, int>()
+		public enum Weather
+		{
+
+		}
+
+		public static Dictionary<string, int> DictType = new Dictionary<string, int>()
 		{
 			{"ノーマル", 0 },
 			{"ほのお",   1 },
@@ -40,7 +47,8 @@ namespace Pokemon
 			{"ドラゴン", 14 },
 			{"あく",     15 },
 			{"はがね",   16 },
-			{"フェアリー",17 }
+			{"フェアリー",17 },
+			{"",     18 }
 		};
 
 		private static double[,] tableTypeMatch = new double[18, 18]
@@ -187,15 +195,15 @@ namespace Pokemon
 		/// <returns></returns>
 		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Waza skill)
 		{
-			int skilltype = DictType[skill.Type];
-			int type1 = DictType[defensePokemon.Type1];
+			int skilltype = (int)skill.Type;
+			int type1 = (int)defensePokemon.Type1;
 			double sametype = 1;
 			if (attackPokemon.Type1 == skill.Type || attackPokemon.Type2 == skill.Type) sametype = 1.5;
-			if (defensePokemon.Type2 == string.Empty)
+			if (defensePokemon.Type2 == Type.none)
 			{
 				return tableTypeMatch[skilltype, type1] * sametype;
 			}
-			int type2 = DictType[defensePokemon.Type2];
+			int type2 = (int)defensePokemon.Type2;
 			return tableTypeMatch[skilltype, type1] * tableTypeMatch[skilltype, type2] * sametype;
 		}
 
@@ -233,7 +241,7 @@ namespace Pokemon
 					break;
 
 				case "たつじんのおび":
-					if(typeMatch == 2.0)
+					if (typeMatch == 2.0)
 					{
 						Skill.multipleDamage(1.2);
 					}
@@ -241,6 +249,175 @@ namespace Pokemon
 
 				case "とつげきチョッキ":
 					poke.StatusD = (int)(poke.StatusD * 1.5);
+					break;
+
+			}
+		}
+
+		public static void ApplyChara(string Chara, Waza Skill, Poke Poke, double typeMatching)
+		{
+			switch (Chara)
+			{
+				case "アイスボディ":
+					// TODO あられの時にダメージを受けず、毎ターン終了時に最大HPの1/16回復
+					break;
+
+				case "あくしゅう":
+					// TODO ダメージを与えると10%の確立でひるませる
+					break;
+
+				case "あついしぼう":
+					if (!Poke.IsAttack && (Skill.Type == Type.ほのお || Skill.Type == Type.こおり))
+					{
+						Skill.multipleDamage(0.5);
+					}
+					break;
+
+				case "あとだし":
+					// かならず後攻
+					break;
+
+				case "アナライズ":
+					// 技の順番が一番最後なら1.3倍
+					break;
+
+				case "あまのじゃく":
+					// 能力ランクの変化の効果が逆
+					break;
+
+				case "あめうけざら":
+					// TODO
+					break;
+
+				case "あめふらし":
+					//TODO
+					break;
+
+				case "ありじごく":
+					//TODO
+					break;
+
+				case "アロマベール":
+					//TODO
+					break;
+
+				case "いかく":
+					//TODO
+					break;
+
+				case "いかりのつぼ":
+					//TODO
+					break;
+
+				case "いしあたま":
+					//TODO
+					break;
+
+				case "いたずらごころ":
+					//TODO
+					break;
+
+				case "いやしのこころ":
+					//TODO
+					break;
+
+				case "イリュージョン":
+					//TODO
+					break;
+
+				case "いろめがね":
+					if(typeMatching < 1.0)
+					{
+						typeMatching = typeMatching * 2.0;
+					}
+					break;
+
+				case "うるおいボイス":
+					if (Poke.IsAttack)
+					{
+						switch (Skill.Name)
+						{
+							case "いびき":
+							case "いやしのすず":
+							case "いやなおと":
+							case "うたう":
+							case "うたかたのアリア":
+							case "エコーボイス":
+							case "おしゃべり":
+							case "おたけび":
+							case "きんぞくおん":
+							case "くさぶえ":
+							case "さわぐ":
+							case "スケイルノイズ":
+							case "すてゼリフ":
+							case "チャームボイス":
+							case "ちょうおんぱ":
+							case "ないしょばなし":
+							case "なきごえ":
+							case "バークアウト":
+							case "ハイパーボイス":
+							case "ばくおんぱ":
+							case "ほえる":
+							case "ほろびのうた":
+							case "むしのさざめき":
+							case "りんしょう":
+								Skill.Type = Type.みず;
+								break;
+						}
+					}
+					break;
+
+				case "うるおいボディ":
+					// TODO
+					break;
+
+				case "エアロック":
+					//TODO
+					break;
+
+				case "エレスキン":
+					if (Poke.IsAttack)
+					{
+						if(Skill.Type == Type.ノーマル)
+						{
+							Skill.Type = Type.でんき;
+							Skill.multipleDamage(1.3);
+						}
+					}
+					break;
+
+				case "エレキメイカー":
+					// TODO
+					break;
+
+				case "えんかく":
+					if (Poke.IsAttack)
+					{
+						Skill.IsPhysical = false;
+					}
+					break;
+
+				case "オーラブレイク":
+					// TODO
+					break;
+
+				case "おどりこ":
+					// TODO
+					break;
+
+				case "おみとおし":
+					break;
+
+				case "おやこあい":
+					//TODO
+					break;
+
+				case "おわりのだいち":
+					// TODO
+					break;
+
+				case "カーリーヘアー":
+					// TODO
 					break;
 
 			}

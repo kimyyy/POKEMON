@@ -10,13 +10,15 @@ namespace Pokemon
 	class Waza
 	{
 		public string Name;
-		public string Type	{ get { return ConstParams[0]; } set { ConstParams[0] = value; } }
+		private string type	{ get { return ConstParams[0]; } set { ConstParams[0] = value; } }
 		private string category { get { return ConstParams[1]; } set { ConstParams[1] = value; } }
 		public int Damage;
 		public bool IsPhysical;
 		
 		private string[] ParamsString = { "type", "category", "damage" };
 		private string[] ConstParams = new string[2];
+
+		public Util.Type Type;
 
 		public Waza(string name)
 		{
@@ -65,6 +67,10 @@ namespace Pokemon
 			{
 				throw new Exception("存在しない技カテゴリがありました。");
 			}
+
+			// タイプを格納
+			Type = (Util.Type)Util.DictType[type];
+
 		}
 
 		public void multipleDamage(double multi)
