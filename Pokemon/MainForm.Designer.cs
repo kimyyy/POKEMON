@@ -48,6 +48,11 @@
 			this.textBoxAttackPoke = new System.Windows.Forms.TextBox();
 			this.textBoxDefencePoke = new System.Windows.Forms.TextBox();
 			this.groupBoxAttackPoke = new System.Windows.Forms.GroupBox();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
+			this.comboBoxChara = new System.Windows.Forms.ComboBox();
 			this.panelIndi = new System.Windows.Forms.Panel();
 			this.label16 = new System.Windows.Forms.Label();
 			this.textBoxIndiHP = new System.Windows.Forms.TextBox();
@@ -87,12 +92,18 @@
 			this.NumLevel = new System.Windows.Forms.NumericUpDown();
 			this.panelResult = new System.Windows.Forms.Panel();
 			this.panelBattle = new System.Windows.Forms.Panel();
+			this.progressBarDefence = new System.Windows.Forms.ProgressBar();
+			this.progressBarAttack = new System.Windows.Forms.ProgressBar();
 			this.panelMyParty = new System.Windows.Forms.Panel();
 			this.panelEnemyParty = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.comboBoxChara = new System.Windows.Forms.ComboBox();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox6 = new System.Windows.Forms.PictureBox();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -106,6 +117,13 @@
 			this.panelMyParty.SuspendLayout();
 			this.panelEnemyParty.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.tableLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBoxResult
@@ -116,7 +134,7 @@
 			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
-			this.textBoxResult.Size = new System.Drawing.Size(450, 322);
+			this.textBoxResult.Size = new System.Drawing.Size(321, 244);
 			this.textBoxResult.TabIndex = 3;
 			// 
 			// tabControl
@@ -124,7 +142,7 @@
 			this.tabControl.Controls.Add(this.tabPageAttack);
 			this.tabControl.Controls.Add(this.tabPageDefence);
 			this.tabControl.Controls.Add(this.tabPageEnvironment);
-			this.tabControl.Location = new System.Drawing.Point(614, 12);
+			this.tabControl.Location = new System.Drawing.Point(745, 62);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(382, 233);
@@ -314,7 +332,7 @@
 			this.textBoxAttackPoke.Location = new System.Drawing.Point(10, 24);
 			this.textBoxAttackPoke.Name = "textBoxAttackPoke";
 			this.textBoxAttackPoke.ReadOnly = true;
-			this.textBoxAttackPoke.Size = new System.Drawing.Size(96, 19);
+			this.textBoxAttackPoke.Size = new System.Drawing.Size(112, 19);
 			this.textBoxAttackPoke.TabIndex = 9;
 			this.textBoxAttackPoke.TextChanged += new System.EventHandler(this.textBoxAttackPoke_TextChanged);
 			this.textBoxAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxAttackPoke_DragDrop);
@@ -325,16 +343,18 @@
 			this.textBoxDefencePoke.AllowDrop = true;
 			this.textBoxDefencePoke.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxDefencePoke.Location = new System.Drawing.Point(156, 24);
+			this.textBoxDefencePoke.Location = new System.Drawing.Point(244, 24);
 			this.textBoxDefencePoke.Name = "textBoxDefencePoke";
 			this.textBoxDefencePoke.ReadOnly = true;
-			this.textBoxDefencePoke.Size = new System.Drawing.Size(96, 19);
+			this.textBoxDefencePoke.Size = new System.Drawing.Size(109, 19);
 			this.textBoxDefencePoke.TabIndex = 10;
 			this.textBoxDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxDefencePoke_DragDrop);
 			this.textBoxDefencePoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxPoke_DragEnter);
 			// 
 			// groupBoxAttackPoke
 			// 
+			this.groupBoxAttackPoke.Controls.Add(this.label20);
+			this.groupBoxAttackPoke.Controls.Add(this.label19);
 			this.groupBoxAttackPoke.Controls.Add(this.radioButton2);
 			this.groupBoxAttackPoke.Controls.Add(this.radioButton1);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxChara);
@@ -349,12 +369,61 @@
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
 			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
-			this.groupBoxAttackPoke.Location = new System.Drawing.Point(34, 212);
+			this.groupBoxAttackPoke.Location = new System.Drawing.Point(30, 305);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
 			this.groupBoxAttackPoke.Size = new System.Drawing.Size(502, 432);
 			this.groupBoxAttackPoke.TabIndex = 11;
 			this.groupBoxAttackPoke.TabStop = false;
 			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(6, 387);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(39, 12);
+			this.label20.TabIndex = 35;
+			this.label20.Text = "とくせい";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Location = new System.Drawing.Point(6, 341);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(41, 12);
+			this.label19.TabIndex = 34;
+			this.label19.Text = "せいかく";
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(133, 18);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(88, 16);
+			this.radioButton2.TabIndex = 33;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "radioButton2";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			// 
+			// radioButton1
+			// 
+			this.radioButton1.AutoSize = true;
+			this.radioButton1.Location = new System.Drawing.Point(39, 18);
+			this.radioButton1.Name = "radioButton1";
+			this.radioButton1.Size = new System.Drawing.Size(88, 16);
+			this.radioButton1.TabIndex = 32;
+			this.radioButton1.TabStop = true;
+			this.radioButton1.Text = "radioButton1";
+			this.radioButton1.UseVisualStyleBackColor = true;
+			// 
+			// comboBoxChara
+			// 
+			this.comboBoxChara.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxChara.FormattingEnabled = true;
+			this.comboBoxChara.Location = new System.Drawing.Point(68, 384);
+			this.comboBoxChara.Name = "comboBoxChara";
+			this.comboBoxChara.Size = new System.Drawing.Size(142, 20);
+			this.comboBoxChara.TabIndex = 31;
 			// 
 			// panelIndi
 			// 
@@ -690,7 +759,7 @@
             "まじめ",
             "きまぐれ",
             "がんばりや"});
-			this.comboBoxPersonality.Location = new System.Drawing.Point(103, 336);
+			this.comboBoxPersonality.Location = new System.Drawing.Point(68, 338);
 			this.comboBoxPersonality.Name = "comboBoxPersonality";
 			this.comboBoxPersonality.Size = new System.Drawing.Size(142, 20);
 			this.comboBoxPersonality.TabIndex = 0;
@@ -701,7 +770,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(120, 24);
+			this.label6.Location = new System.Drawing.Point(176, 31);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(20, 12);
 			this.label6.TabIndex = 12;
@@ -756,20 +825,37 @@
 			// 
 			this.panelResult.Controls.Add(this.label1);
 			this.panelResult.Controls.Add(this.textBoxResult);
-			this.panelResult.Location = new System.Drawing.Point(559, 263);
+			this.panelResult.Location = new System.Drawing.Point(583, 374);
 			this.panelResult.Name = "panelResult";
-			this.panelResult.Size = new System.Drawing.Size(460, 368);
+			this.panelResult.Size = new System.Drawing.Size(331, 290);
 			this.panelResult.TabIndex = 18;
 			// 
 			// panelBattle
 			// 
+			this.panelBattle.Controls.Add(this.progressBarDefence);
 			this.panelBattle.Controls.Add(this.textBoxAttackPoke);
+			this.panelBattle.Controls.Add(this.progressBarAttack);
 			this.panelBattle.Controls.Add(this.textBoxDefencePoke);
 			this.panelBattle.Controls.Add(this.label6);
 			this.panelBattle.Location = new System.Drawing.Point(172, 62);
 			this.panelBattle.Name = "panelBattle";
-			this.panelBattle.Size = new System.Drawing.Size(265, 124);
+			this.panelBattle.Size = new System.Drawing.Size(366, 187);
 			this.panelBattle.TabIndex = 19;
+			// 
+			// progressBarDefence
+			// 
+			this.progressBarDefence.Location = new System.Drawing.Point(244, 101);
+			this.progressBarDefence.Name = "progressBarDefence";
+			this.progressBarDefence.Size = new System.Drawing.Size(116, 23);
+			this.progressBarDefence.TabIndex = 24;
+			// 
+			// progressBarAttack
+			// 
+			this.progressBarAttack.ForeColor = System.Drawing.Color.Lime;
+			this.progressBarAttack.Location = new System.Drawing.Point(10, 101);
+			this.progressBarAttack.Name = "progressBarAttack";
+			this.progressBarAttack.Size = new System.Drawing.Size(112, 23);
+			this.progressBarAttack.TabIndex = 23;
 			// 
 			// panelMyParty
 			// 
@@ -784,7 +870,7 @@
 			// 
 			this.panelEnemyParty.Controls.Add(this.label9);
 			this.panelEnemyParty.Controls.Add(this.listBoxEnemyParty);
-			this.panelEnemyParty.Location = new System.Drawing.Point(469, 62);
+			this.panelEnemyParty.Location = new System.Drawing.Point(544, 62);
 			this.panelEnemyParty.Name = "panelEnemyParty";
 			this.panelEnemyParty.Size = new System.Drawing.Size(125, 131);
 			this.panelEnemyParty.TabIndex = 21;
@@ -798,42 +884,86 @@
 			this.panel1.Size = new System.Drawing.Size(124, 30);
 			this.panel1.TabIndex = 22;
 			// 
-			// comboBoxChara
+			// tableLayoutPanel1
 			// 
-			this.comboBoxChara.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBoxChara.FormattingEnabled = true;
-			this.comboBoxChara.Location = new System.Drawing.Point(103, 382);
-			this.comboBoxChara.Name = "comboBoxChara";
-			this.comboBoxChara.Size = new System.Drawing.Size(142, 20);
-			this.comboBoxChara.TabIndex = 31;
+			this.tableLayoutPanel1.ColumnCount = 2;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 1, 1);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox5, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox6, 1, 2);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(951, 385);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 3;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(209, 223);
+			this.tableLayoutPanel1.TabIndex = 23;
 			// 
-			// radioButton1
+			// pictureBox1
 			// 
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(39, 18);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(88, 16);
-			this.radioButton1.TabIndex = 32;
-			this.radioButton1.TabStop = true;
-			this.radioButton1.Text = "radioButton1";
-			this.radioButton1.UseVisualStyleBackColor = true;
+			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(98, 68);
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
 			// 
-			// radioButton2
+			// pictureBox2
 			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(133, 18);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(88, 16);
-			this.radioButton2.TabIndex = 33;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "radioButton2";
-			this.radioButton2.UseVisualStyleBackColor = true;
+			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox2.Location = new System.Drawing.Point(107, 3);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(99, 68);
+			this.pictureBox2.TabIndex = 1;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox3.Location = new System.Drawing.Point(3, 77);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(98, 68);
+			this.pictureBox3.TabIndex = 2;
+			this.pictureBox3.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox4.Location = new System.Drawing.Point(107, 77);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(99, 68);
+			this.pictureBox4.TabIndex = 3;
+			this.pictureBox4.TabStop = false;
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox5.Location = new System.Drawing.Point(3, 151);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(98, 69);
+			this.pictureBox5.TabIndex = 4;
+			this.pictureBox5.TabStop = false;
+			// 
+			// pictureBox6
+			// 
+			this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox6.Location = new System.Drawing.Point(107, 151);
+			this.pictureBox6.Name = "pictureBox6";
+			this.pictureBox6.Size = new System.Drawing.Size(99, 69);
+			this.pictureBox6.TabIndex = 5;
+			this.pictureBox6.TabStop = false;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1054, 726);
+			this.ClientSize = new System.Drawing.Size(1184, 749);
+			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panelEnemyParty);
 			this.Controls.Add(this.panelMyParty);
@@ -869,6 +999,13 @@
 			this.panelEnemyParty.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.tableLayoutPanel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -939,6 +1076,17 @@
 		private System.Windows.Forms.ComboBox comboBoxChara;
 		private System.Windows.Forms.RadioButton radioButton2;
 		private System.Windows.Forms.RadioButton radioButton1;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.ProgressBar progressBarDefence;
+		private System.Windows.Forms.ProgressBar progressBarAttack;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.PictureBox pictureBox4;
+		private System.Windows.Forms.PictureBox pictureBox5;
+		private System.Windows.Forms.PictureBox pictureBox6;
 	}
 }
 

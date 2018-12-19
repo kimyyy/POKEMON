@@ -48,15 +48,11 @@ namespace Pokemon
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 			if (!CanParse()) return;
-			Poke attackPoke;
-			Poke defencePoke;
 			Waza Skill;
 
 			// ポケモン、わざの準備
 			try
 			{
-				attackPoke = new Poke(textBoxAttackPoke.Text);
-				defencePoke = new Poke(textBoxDefencePoke.Text);
 				Skill = new Waza(comboBoxSkill.Text);
 			}
 			catch (Exception ex)
@@ -64,14 +60,14 @@ namespace Pokemon
 				WriteResult(ex.Message + "\r\n");
 				return;
 			}
-			UpdateStatus(attackPoke);
-			UpdateStatus(defencePoke);
+			UpdateStatus(AttackPoke);
+			UpdateStatus(DefencePoke);
 
-			var typeMatch = Util.CalculateTypeMatching(attackPoke, defencePoke, Skill);
+			var typeMatch = Util.CalculateTypeMatching(AttackPoke, DefencePoke, Skill);
 			Util.ApplyItem(comboBoxItem.ToString(), Skill, AttackPoke, typeMatch);
 
 			// ダメージ計算
-			int[] damage = Util.CalculateDamage(attackPoke, defencePoke, Skill, Level);
+			int[] damage = Util.CalculateDamage(AttackPoke, DefencePoke, Skill, Level);
 
 			// 結果を表示
 			WriteResult("======================\r\n攻撃を開始します\r\n" +
@@ -100,6 +96,7 @@ namespace Pokemon
 
 				AttackPoke = MyParty[itemText];
 				target.Text = AttackPoke.Name;
+				AttackPoke.IsAttack = true;
 			}
 		}
 
@@ -112,6 +109,7 @@ namespace Pokemon
 
 				DefencePoke = EnemyParty[itemText];
 				target.Text = DefencePoke.Name;
+				DefencePoke.IsAttack = false;
 			}
 		}
 
@@ -180,6 +178,10 @@ namespace Pokemon
 			labelStatusC.Text = poke.StatusC.ToString();
 			labelStatusD.Text = poke.StatusD.ToString();
 			labelStatusS.Text = poke.StatusS.ToString();
+
+			// プログレスバーを更新
+			progressBarAttack.Maximum = poke.StatusH;
+			progressBarAttack.Value = poke.HPRemain;
 		}
 
 
@@ -295,6 +297,7 @@ namespace Pokemon
 					comboBoxChara.Items.Add(AttackPoke.ConstStringParams[i].ToString());
 				}
 			}
+			UpdateStatus(AttackPoke);
 		}
 	}
 }

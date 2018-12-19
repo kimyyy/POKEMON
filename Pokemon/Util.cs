@@ -11,8 +11,6 @@ namespace Pokemon
 	/// </summary>
 	static class Util
 	{
-
-
 		private static string[] TypeString = new string[]
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",
 			"ひこう", "エスパー", "むし", "いわ", "ゴースト", "ドラゴン", "あく", "はがね", "フェアリー"};
@@ -25,7 +23,12 @@ namespace Pokemon
 
 		public enum Weather
 		{
+			ひざしがつよい,あめ,あられ,すなあらし,きり
+		}
 
+		public enum Affection
+		{
+			なし,まひ,やけど,こおり,こんらん,ねむり,どく,どくどく
 		}
 
 		public static Dictionary<string, int> DictType = new Dictionary<string, int>()
@@ -326,7 +329,7 @@ namespace Pokemon
 					break;
 
 				case "いろめがね":
-					if(typeMatching < 1.0)
+					if (typeMatching < 1.0)
 					{
 						typeMatching = typeMatching * 2.0;
 					}
@@ -378,7 +381,7 @@ namespace Pokemon
 				case "エレスキン":
 					if (Poke.IsAttack)
 					{
-						if(Skill.Type == Type.ノーマル)
+						if (Skill.Type == Type.ノーマル)
 						{
 							Skill.Type = Type.でんき;
 							Skill.multipleDamage(1.3);
@@ -420,6 +423,104 @@ namespace Pokemon
 					// TODO
 					break;
 
+				case "かいりきバサミ":
+					// TODO
+					break;
+
+				case "かがくのちから":
+					// TODO
+					break;
+
+				case "かげふみ":
+					// TODO
+					break;
+
+				case "かそく":
+					// TODO
+					break;
+
+				case "かたいツメ":
+					// TODO
+					break;
+
+				case "かたやぶり":
+					// TODO
+					break;
+
+				case "かちき":
+					// TODO
+					break;
+
+				case "カブトアーマー":
+					// TODO
+					break;
+
+				case "かるわざ":
+					// TODO
+					break;
+
+				case "かわりもの":
+					// TODO
+					break;
+
+				case "かんそうはだ":
+					// TODO
+					break;
+
+				case "がんじょう":
+					// TODO
+					break;
+
+				case "がんじょうあご":
+					if (!Poke.IsAttack)
+					{
+						break;
+					}
+					switch (Skill.Name)
+					{
+						case "かみつく":
+						case "かみくだく":
+						case "ひっさつまえば":
+						case "ほのおのキバ":
+						case "かみなりのキバ":
+						case "こおりのキバ":
+						case "どくどくのキバ":
+						case "サイコファング":
+							Skill.multipleDamage(1.5);
+							break;
+					}
+					break;
+
+				case "ききかいひ":
+					// TODO
+					break;
+
+				case "きけんよち":
+					break;
+
+				case "きずなへんげ":
+					// TODO
+					break;
+
+				case "きもったま":
+					// TODO
+					break;
+
+				case "きゅうばん":
+					// TODO
+					break;
+
+				case "きょううん":
+					// TODO
+					break;
+
+				case "きょうせい":
+					// TODO
+					break;
+
+				case "きんちょうかん":
+					// TODO
+					break;
 			}
 		}
 	}

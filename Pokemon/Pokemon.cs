@@ -65,6 +65,8 @@ namespace Pokemon
 		public bool IsAttack;
 		public Util.Type Type1;
 		public Util.Type Type2;
+		public int HPRemain = 30;
+		public Util.Affection Affection;
 
 		#endregion
 
