@@ -1,3 +1,4 @@
 /Pokemon/bin/Debug/*
+/Pokemon/bin/Release/*
 /Pokemon/obj/*
 /.vs/*
