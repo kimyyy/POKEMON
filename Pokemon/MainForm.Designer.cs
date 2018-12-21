@@ -97,7 +97,7 @@
 			this.panelMyParty = new System.Windows.Forms.Panel();
 			this.panelEnemyParty = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.tableLayoutPanelMyParty = new System.Windows.Forms.TableLayoutPanel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -117,7 +117,7 @@
 			this.panelMyParty.SuspendLayout();
 			this.panelEnemyParty.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.tableLayoutPanel1.SuspendLayout();
+			this.tableLayoutPanelMyParty.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -884,25 +884,25 @@
 			this.panel1.Size = new System.Drawing.Size(124, 30);
 			this.panel1.TabIndex = 22;
 			// 
-			// tableLayoutPanel1
+			// tableLayoutPanelMyParty
 			// 
-			this.tableLayoutPanel1.ColumnCount = 2;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 1, 0);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 1, 1);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox5, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox6, 1, 2);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(951, 385);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 3;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(209, 223);
-			this.tableLayoutPanel1.TabIndex = 23;
+			this.tableLayoutPanelMyParty.ColumnCount = 2;
+			this.tableLayoutPanelMyParty.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanelMyParty.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox1, 0, 0);
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox2, 1, 0);
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox3, 0, 1);
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox4, 1, 1);
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox5, 0, 2);
+			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox6, 1, 2);
+			this.tableLayoutPanelMyParty.Location = new System.Drawing.Point(949, 371);
+			this.tableLayoutPanelMyParty.Name = "tableLayoutPanelMyParty";
+			this.tableLayoutPanelMyParty.RowCount = 3;
+			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+			this.tableLayoutPanelMyParty.Size = new System.Drawing.Size(209, 223);
+			this.tableLayoutPanelMyParty.TabIndex = 23;
 			// 
 			// pictureBox1
 			// 
@@ -963,7 +963,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 749);
-			this.Controls.Add(this.tableLayoutPanel1);
+			this.Controls.Add(this.tableLayoutPanelMyParty);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panelEnemyParty);
 			this.Controls.Add(this.panelMyParty);
@@ -999,7 +999,7 @@
 			this.panelEnemyParty.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tableLayoutPanelMyParty.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -1080,7 +1080,7 @@
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.ProgressBar progressBarDefence;
 		private System.Windows.Forms.ProgressBar progressBarAttack;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMyParty;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.PictureBox pictureBox3;

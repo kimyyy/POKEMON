@@ -32,7 +32,7 @@ namespace Pokemon
 					cmd.CommandText = string.Format("select * from waza where name = '{0}'", name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
-					for(int i = 0;i < 2; i++)
+					for(int i = 0;i < ParamsString.Length; i++)
 					{
 						try
 						{

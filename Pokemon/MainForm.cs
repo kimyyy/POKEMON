@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Resources;
 
 namespace Pokemon
 {
-	public partial class MainForm : Form
+	partial class MainForm : Form
 	{
 		private int Level;
 
@@ -19,7 +20,7 @@ namespace Pokemon
 
 		private Poke DefencePoke;
 
-		private Poke[] MyParty = new Poke[6] {new Poke("リザードン"), new Poke("カメックス"), new Poke("フシギバナ"),
+		private Poke[] MyParty = new Poke[6] {new Poke("ギルガルド盾"), new Poke("カメックス"), new Poke("フシギバナ"),
 			new Poke("ピカチュウ"), new Poke("ピチュー"), new Poke("タマタマ")};
 		private Poke[] EnemyParty = new Poke[6]{new Poke("リザードン"), new Poke("カメックス"), new Poke("フシギバナ"),
 			new Poke("ピカチュウ"), new Poke("ピチュー"), new Poke("タマタマ")};
@@ -151,7 +152,7 @@ namespace Pokemon
 			{
 				listBoxMyParty.Items.Add(poke.Name);
 			}
-			foreach (Poke poke in MyParty)
+			foreach (Poke poke in EnemyParty)
 			{
 				listBoxEnemyParty.Items.Add(poke.Name);
 			}

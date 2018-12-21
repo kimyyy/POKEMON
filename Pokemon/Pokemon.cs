@@ -4,6 +4,8 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Resources;
 
 namespace Pokemon
 {
@@ -13,9 +15,9 @@ namespace Pokemon
 
 		#region 各ステータス
 
-		private string[] ParamsString = {"name", "type1", "type2", "chara1", "chara2", "dchara" };
+		private string[] ParamsString = {"name", "type1", "type2", "chara1", "chara2", "dchara" , "id"};
 
-		public string[] ConstStringParams = new string[6];
+		public string[] ConstStringParams = new string[7];
 
 		public string Name   { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
 		public string type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
@@ -23,6 +25,7 @@ namespace Pokemon
 		public string Chara1 { get { return ConstStringParams[3]; } set { ConstStringParams[3] = value; } }
 		public string Chara2 { get { return ConstStringParams[4]; } set { ConstStringParams[4] = value; } }
 		public string DChara { get { return ConstStringParams[5]; } set { ConstStringParams[5] = value; } }
+		public string ID     { get { return ConstStringParams[6]; } set { ConstStringParams[6] = value; } }
 
 		public int[] Syuzoku = new int[6];
 
@@ -67,6 +70,7 @@ namespace Pokemon
 		public Util.Type Type2;
 		public int HPRemain = 30;
 		public Util.Affection Affection;
+		public Bitmap bmp;
 
 		#endregion
 
@@ -83,11 +87,11 @@ namespace Pokemon
 				cn.Open();
 				using (var cmd = new SQLiteCommand(cn))
 				{
-					cmd.CommandText = string.Format("select * from pokeinfo where name = '{0}'",name);
+					cmd.CommandText = String.Format("select * from charPokeInfo where name = '{0}'",name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 
-					for (int i = 0; i < 6; i++)
+					for (int i = 0; i < ConstStringParams.Length; i++)
 					{
 						try
 						{
@@ -114,6 +118,9 @@ namespace Pokemon
 			{
 				Type2 = (Util.Type)Util.DictType[type2];
 			}
+
+			ResourceManager RM = Properties.Resources.ResourceManager;
+			bmp = (Bitmap)RM.GetObject("_" + ID);
 		}
 
 		#endregion
