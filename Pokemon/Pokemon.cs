@@ -9,7 +9,7 @@ using System.Resources;
 
 namespace Pokemon
 {
-	class Poke
+	public class Poke
 	{
 		#region フィールド
 

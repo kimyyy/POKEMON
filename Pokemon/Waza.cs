@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pokemon
 {
-	class Waza
+	public class Waza
 	{
 		public string Name;
 		private string type	{ get { return ConstParams[0]; } set { ConstParams[0] = value; } }

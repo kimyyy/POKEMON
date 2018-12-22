@@ -97,13 +97,8 @@
 			this.panelMyParty = new System.Windows.Forms.Panel();
 			this.panelEnemyParty = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.tableLayoutPanelMyParty = new System.Windows.Forms.TableLayoutPanel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
-			this.pictureBox6 = new System.Windows.Forms.PictureBox();
+			this.partyPanel1 = new Pokemon.PartyPanel();
+			this.partyPanel2 = new Pokemon.PartyPanel();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -117,13 +112,6 @@
 			this.panelMyParty.SuspendLayout();
 			this.panelEnemyParty.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.tableLayoutPanelMyParty.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBoxResult
@@ -142,10 +130,10 @@
 			this.tabControl.Controls.Add(this.tabPageAttack);
 			this.tabControl.Controls.Add(this.tabPageDefence);
 			this.tabControl.Controls.Add(this.tabPageEnvironment);
-			this.tabControl.Location = new System.Drawing.Point(745, 62);
+			this.tabControl.Location = new System.Drawing.Point(781, 32);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(382, 233);
+			this.tabControl.Size = new System.Drawing.Size(391, 233);
 			this.tabControl.TabIndex = 4;
 			// 
 			// tabPageAttack
@@ -160,7 +148,7 @@
 			this.tabPageAttack.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAttack.Name = "tabPageAttack";
 			this.tabPageAttack.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageAttack.Size = new System.Drawing.Size(374, 207);
+			this.tabPageAttack.Size = new System.Drawing.Size(383, 207);
 			this.tabPageAttack.TabIndex = 0;
 			this.tabPageAttack.Text = "攻撃側";
 			this.tabPageAttack.UseVisualStyleBackColor = true;
@@ -236,7 +224,7 @@
 			// buttonAttack
 			// 
 			this.buttonAttack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonAttack.Location = new System.Drawing.Point(293, 178);
+			this.buttonAttack.Location = new System.Drawing.Point(302, 178);
 			this.buttonAttack.Name = "buttonAttack";
 			this.buttonAttack.Size = new System.Drawing.Size(75, 23);
 			this.buttonAttack.TabIndex = 0;
@@ -249,7 +237,7 @@
 			this.tabPageDefence.Location = new System.Drawing.Point(4, 22);
 			this.tabPageDefence.Name = "tabPageDefence";
 			this.tabPageDefence.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageDefence.Size = new System.Drawing.Size(374, 207);
+			this.tabPageDefence.Size = new System.Drawing.Size(383, 207);
 			this.tabPageDefence.TabIndex = 1;
 			this.tabPageDefence.Text = "防御側";
 			this.tabPageDefence.UseVisualStyleBackColor = true;
@@ -260,7 +248,7 @@
 			this.tabPageEnvironment.Controls.Add(this.comboBox1);
 			this.tabPageEnvironment.Location = new System.Drawing.Point(4, 22);
 			this.tabPageEnvironment.Name = "tabPageEnvironment";
-			this.tabPageEnvironment.Size = new System.Drawing.Size(374, 207);
+			this.tabPageEnvironment.Size = new System.Drawing.Size(383, 207);
 			this.tabPageEnvironment.TabIndex = 2;
 			this.tabPageEnvironment.Text = "環境";
 			this.tabPageEnvironment.UseVisualStyleBackColor = true;
@@ -837,7 +825,7 @@
 			this.panelBattle.Controls.Add(this.progressBarAttack);
 			this.panelBattle.Controls.Add(this.textBoxDefencePoke);
 			this.panelBattle.Controls.Add(this.label6);
-			this.panelBattle.Location = new System.Drawing.Point(172, 62);
+			this.panelBattle.Location = new System.Drawing.Point(227, 60);
 			this.panelBattle.Name = "panelBattle";
 			this.panelBattle.Size = new System.Drawing.Size(366, 187);
 			this.panelBattle.TabIndex = 19;
@@ -861,7 +849,7 @@
 			// 
 			this.panelMyParty.Controls.Add(this.label8);
 			this.panelMyParty.Controls.Add(this.listBoxMyParty);
-			this.panelMyParty.Location = new System.Drawing.Point(18, 62);
+			this.panelMyParty.Location = new System.Drawing.Point(18, 216);
 			this.panelMyParty.Name = "panelMyParty";
 			this.panelMyParty.Size = new System.Drawing.Size(125, 131);
 			this.panelMyParty.TabIndex = 20;
@@ -870,7 +858,7 @@
 			// 
 			this.panelEnemyParty.Controls.Add(this.label9);
 			this.panelEnemyParty.Controls.Add(this.listBoxEnemyParty);
-			this.panelEnemyParty.Location = new System.Drawing.Point(544, 62);
+			this.panelEnemyParty.Location = new System.Drawing.Point(840, 305);
 			this.panelEnemyParty.Name = "panelEnemyParty";
 			this.panelEnemyParty.Size = new System.Drawing.Size(125, 131);
 			this.panelEnemyParty.TabIndex = 21;
@@ -884,86 +872,41 @@
 			this.panel1.Size = new System.Drawing.Size(124, 30);
 			this.panel1.TabIndex = 22;
 			// 
-			// tableLayoutPanelMyParty
+			// partyPanel1
 			// 
-			this.tableLayoutPanelMyParty.ColumnCount = 2;
-			this.tableLayoutPanelMyParty.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanelMyParty.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox1, 0, 0);
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox2, 1, 0);
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox3, 0, 1);
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox4, 1, 1);
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox5, 0, 2);
-			this.tableLayoutPanelMyParty.Controls.Add(this.pictureBox6, 1, 2);
-			this.tableLayoutPanelMyParty.Location = new System.Drawing.Point(949, 371);
-			this.tableLayoutPanelMyParty.Name = "tableLayoutPanelMyParty";
-			this.tableLayoutPanelMyParty.RowCount = 3;
-			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanelMyParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanelMyParty.Size = new System.Drawing.Size(209, 223);
-			this.tableLayoutPanelMyParty.TabIndex = 23;
+			this.partyPanel1.Location = new System.Drawing.Point(58, 62);
+			this.partyPanel1.Name = "partyPanel1";
+			this.partyPanel1.Party = new Pokemon.Poke[] {
+        null,
+        null,
+        null,
+        null,
+        null,
+        null};
+			this.partyPanel1.Size = new System.Drawing.Size(160, 240);
+			this.partyPanel1.TabIndex = 23;
 			// 
-			// pictureBox1
+			// partyPanel2
 			// 
-			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(98, 68);
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox2.Location = new System.Drawing.Point(107, 3);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(99, 68);
-			this.pictureBox2.TabIndex = 1;
-			this.pictureBox2.TabStop = false;
-			// 
-			// pictureBox3
-			// 
-			this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox3.Location = new System.Drawing.Point(3, 77);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(98, 68);
-			this.pictureBox3.TabIndex = 2;
-			this.pictureBox3.TabStop = false;
-			// 
-			// pictureBox4
-			// 
-			this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox4.Location = new System.Drawing.Point(107, 77);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(99, 68);
-			this.pictureBox4.TabIndex = 3;
-			this.pictureBox4.TabStop = false;
-			// 
-			// pictureBox5
-			// 
-			this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox5.Location = new System.Drawing.Point(3, 151);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(98, 69);
-			this.pictureBox5.TabIndex = 4;
-			this.pictureBox5.TabStop = false;
-			// 
-			// pictureBox6
-			// 
-			this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox6.Location = new System.Drawing.Point(107, 151);
-			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(99, 69);
-			this.pictureBox6.TabIndex = 5;
-			this.pictureBox6.TabStop = false;
+			this.partyPanel2.Location = new System.Drawing.Point(615, 62);
+			this.partyPanel2.Name = "partyPanel2";
+			this.partyPanel2.Party = new Pokemon.Poke[] {
+        null,
+        null,
+        null,
+        null,
+        null,
+        null};
+			this.partyPanel2.Size = new System.Drawing.Size(160, 240);
+			this.partyPanel2.TabIndex = 25;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 749);
-			this.Controls.Add(this.tableLayoutPanelMyParty);
+			this.Controls.Add(this.partyPanel2);
+			this.Controls.Add(this.partyPanel1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panelEnemyParty);
 			this.Controls.Add(this.panelMyParty);
@@ -999,13 +942,6 @@
 			this.panelEnemyParty.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.tableLayoutPanelMyParty.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1080,13 +1016,8 @@
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.ProgressBar progressBarDefence;
 		private System.Windows.Forms.ProgressBar progressBarAttack;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMyParty;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.PictureBox pictureBox3;
-		private System.Windows.Forms.PictureBox pictureBox4;
-		private System.Windows.Forms.PictureBox pictureBox5;
-		private System.Windows.Forms.PictureBox pictureBox6;
+		private PartyPanel partyPanel1;
+		private PartyPanel partyPanel2;
 	}
 }
 

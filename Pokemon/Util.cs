@@ -9,7 +9,7 @@ namespace Pokemon
 	/// <summary>
 	/// ダメージ計算を扱うクラスです。
 	/// </summary>
-	static class Util
+	public static class Util
 	{
 		private static string[] TypeString = new string[]
 		{"ノーマル", "ほのお", "みず" , "でんき", "くさ","こおり", "かくとう", "どく", "じめん",

@@ -156,6 +156,8 @@ namespace Pokemon
 			{
 				listBoxEnemyParty.Items.Add(poke.Name);
 			}
+			partyPanel1.Party = MyParty;
+			partyPanel2.Party = EnemyParty;
 		}
 
 		private void UpdateStatus(Poke poke)
