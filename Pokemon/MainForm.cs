@@ -88,49 +88,69 @@ namespace Pokemon
 			}
 		}
 
-		private void textBoxAttackPoke_DragDrop(object sender, DragEventArgs e)
+		private void PokePicAttackPoke_DragEnter(object sender, DragEventArgs e)
 		{
-			if (e.Data.GetDataPresent(typeof(int)))
+			if (e.Data.GetDataPresent(typeof(Poke)))
 			{
-				TextBox target = (TextBox)sender;
-				var itemText = (int)e.Data.GetData(typeof(int));
-
-				AttackPoke = MyParty[itemText];
-				target.Text = AttackPoke.Name;
-				AttackPoke.IsAttack = true;
+				e.Effect = DragDropEffects.Copy;
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
 			}
 		}
 
-		private void textBoxDefencePoke_DragDrop(object sender, DragEventArgs e)
+		private void panelAttackPoke_DragEnter(object sender, DragEventArgs e)
 		{
-			if (e.Data.GetDataPresent(typeof(int)))
+			if (e.Data.GetDataPresent(typeof(Poke)))
 			{
-				TextBox target = (TextBox)sender;
-				var itemText = (int)e.Data.GetData(typeof(int));
-
-				DefencePoke = EnemyParty[itemText];
-				target.Text = DefencePoke.Name;
-				DefencePoke.IsAttack = false;
+				e.Effect = DragDropEffects.Copy;
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
 			}
 		}
 
-		private void ListboxParty_MouseDown(object sender, MouseEventArgs e)
+		private void panelAttackPoke_DragDrop(object sender, DragEventArgs e)
 		{
-			if (e.Button == MouseButtons.Left)
+			if (e.Data.GetDataPresent(typeof(Poke)))
 			{
-				// ドラッグの準備
-				ListBox lb = (ListBox)sender;
-				int itemIndex = lb.IndexFromPoint(e.X, e.Y);
-				if (itemIndex < 0) return;
+				var destPanel = (Panel)sender;
+				var Poke = (Poke)e.Data.GetData(typeof(Poke));
+				var destPic = (PokePictureBox)destPanel.GetChildAtPoint(new Point(0,0));
+				AttackPoke = destPic.Poke = Poke;
+				AttackPoke.IsAttack = true; // TODO 本当はここにあるべきではない。
+				AttackPoke_Changed();
+			}
+		}
 
-				// start drag and drop
-				DragDropEffects dde = lb.DoDragDrop(itemIndex, DragDropEffects.Copy);
+		private void panelDefencePoke_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(typeof(Poke)))
+			{
+				e.Effect = DragDropEffects.Copy;
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
+			}
+		}
+
+		private void panelDefencePoke_DragDrop(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(typeof(Poke)))
+			{
+				var destPanel = (Panel)sender;
+				var Poke = (Poke)e.Data.GetData(typeof(Poke));
+				var destPic = (PokePictureBox)destPanel.GetChildAtPoint(new Point(0,0));
+				DefencePoke = destPic.Poke = Poke;
+				DefencePoke.IsAttack = false; // TODO 本当はここにあるべきではない。
 			}
 		}
 
 		private void buttonStatus_click(object sender, EventArgs e)
 		{
-			AttackPoke = new Poke(textBoxAttackPoke.Text);
 			UpdateStatus(AttackPoke);
 		}
 
@@ -138,6 +158,8 @@ namespace Pokemon
 		{
 
 		}
+
+
 
 		#endregion
 
@@ -147,17 +169,9 @@ namespace Pokemon
 		{
 			Level = (int)NumLevel.Value;
 
-			// パーティをリストボックスに格納する。
-			foreach (Poke poke in MyParty)
-			{
-				listBoxMyParty.Items.Add(poke.Name);
-			}
-			foreach (Poke poke in EnemyParty)
-			{
-				listBoxEnemyParty.Items.Add(poke.Name);
-			}
-			partyPanel1.Party = MyParty;
-			partyPanel2.Party = EnemyParty;
+			// パーティをパネルに格納する。
+			partyPanelMy.Party = MyParty;
+			partyPanelEnemy.Party = EnemyParty;
 		}
 
 		private void UpdateStatus(Poke poke)
@@ -273,7 +287,7 @@ namespace Pokemon
 
 		#endregion
 
-		private void textBoxAttackPoke_TextChanged(object sender, EventArgs e)
+		private void AttackPoke_Changed()
 		{
 			comboBoxSkill.Items.Clear();
 			comboBoxChara.Items.Clear();
@@ -285,7 +299,7 @@ namespace Pokemon
 				cn.Open();
 				using (var cmd = new SQLiteCommand(cn))
 				{
-					cmd.CommandText = String.Format("select * from pokewaza where name = '{0}' ", textBoxAttackPoke.Text);
+					cmd.CommandText = String.Format("select * from pokewaza where name = '{0}' ", AttackPoke.Name);
 					var reader = cmd.ExecuteReader();
 					while (reader.Read())
 					{
@@ -302,5 +316,7 @@ namespace Pokemon
 			}
 			UpdateStatus(AttackPoke);
 		}
+
+		
 	}
 }

@@ -99,7 +99,7 @@ namespace Pokemon
 						}
 						catch (InvalidOperationException)
 						{
-							throw new Exception("データベースから情報を読み取れませんでした");
+							throw new Exception("データベースから情報を読み取れませんでした :" + Name);
 						}
 					}
 					SyuzokuH = int.Parse(reader["hp"].ToString());

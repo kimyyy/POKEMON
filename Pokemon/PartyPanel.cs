@@ -42,8 +42,19 @@ namespace Pokemon
 				pokePictureBox4,pokePictureBox5, pokePictureBox6};
 			foreach(PokePictureBox pokePic in pokeBoxes)
 			{
-				pokePic.BorderStyle = BorderStyle.Fixed3D;
-				pokePic.BackColor = Color.White;
+				pokePic.MouseDown += new System.Windows.Forms.MouseEventHandler(pokePictureBox_MouseDown);
+			}
+		}
+
+		private void pokePictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			if(e.Button == MouseButtons.Left)
+			{
+				PokePictureBox pokebox = (PokePictureBox)sender;
+				if (pokebox.Poke == null) return;
+				var Poke = pokebox.Poke;
+
+				DragDropEffects dde = pokebox.DoDragDrop(Poke, DragDropEffects.Copy);
 			}
 		}
 	}

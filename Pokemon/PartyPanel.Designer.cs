@@ -75,6 +75,7 @@
 			this.pokePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pokePictureBox1.TabIndex = 0;
 			this.pokePictureBox1.TabStop = false;
+			this.pokePictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pokePictureBox_MouseDown);
 			// 
 			// pokePictureBox2
 			// 
