@@ -29,7 +29,7 @@ namespace Pokemon
 				cn.Open();
 				using (var cmd = new SQLiteCommand(cn))
 				{
-					cmd.CommandText = string.Format("select * from waza where name = '{0}'", name);
+					cmd.CommandText = string.Format("select * from waza where name = '{0}'", Name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 					for(int i = 0;i < ConstParams.Length; i++)

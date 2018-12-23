@@ -71,12 +71,12 @@ namespace Pokemon
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 			if (!CanParse()) return;
-			Move Skill;
+			Move move;
 
 			// ポケモン、わざの準備
 			try
 			{
-				Skill = new Move(comboBoxSkill.Text);
+				move = new Move(comboBoxSkill.Text);
 			}
 			catch (Exception ex)
 			{
@@ -84,23 +84,88 @@ namespace Pokemon
 				return;
 			}
 
-			var typeMatch = Util.CalculateTypeMatching(AttackPoke, DefencePoke, Skill);
-			Util.ApplyItem(comboBoxItem.ToString(), Skill, AttackPoke, typeMatch);
+			WriteResult("=============================================\r\n");
+			WriteResult("\r\n");
+			WriteResult("{0} のこうげき！ {1}\r\n", AttackPoke.Name, move.Name);
+
+			// タイプ相性を計算
+			var typeMatch = Util.CalculateTypeMatching(AttackPoke, DefencePoke, move);
+			if(typeMatch >= 2.0)
+			{
+				WriteResult("こうかは ばつぐんだ！\r\n");
+			}
+			if(typeMatch <= 0.5)
+			{
+				WriteResult("こうかは いまひとつだ...\r\n");
+			}
+
+			// アイテムの考慮
+			if (comboBoxItem.SelectedItem != null)
+			{
+				Util.ApplyItem(comboBoxItem.SelectedItem.ToString(), move, AttackPoke, typeMatch);
+			}
 
 			// ダメージ計算 0が低いほうで1が高いほう
-			int[] damage = Util.CalculateDamage(AttackPoke, DefencePoke, Skill, Level);
+			int[] damage = Util.CalculateDamage(AttackPoke, DefencePoke, move, Level);
 
 			// 分析
-			var percentHigh = ((double)damage[0] / DefencePoke.HPRemain)*100.0;
-			var percentLow = ((double)damage[1] / DefencePoke.HPRemain)*100.0;
+			var percentLow = ((double)damage[0] / DefencePoke.HPRemain) * 100.0;
+			var percentHigh = ((double)damage[1] / DefencePoke.HPRemain) * 100.0;
 
-			percentHigh = Math.Round(percentHigh, MidpointRounding.AwayFromZero);
 			percentLow = Math.Round(percentLow, MidpointRounding.AwayFromZero);
+			percentHigh = Math.Round(percentHigh, MidpointRounding.AwayFromZero);
 
 			// 結果を表示
-			WriteResult("======================\r\n攻撃を開始します\r\n");
-			WriteResult("ダメージは{0}～{1}です( {2}% ～ {3} % )\r\n", damage[0], damage[1], percentLow, percentHigh);
-			WriteResult("攻撃をおわります\r\n======================\n");
+			WriteResult("ダメージは {0}～{1} ( {2} % ～ {3} % )\r\n", damage[0], damage[1], percentLow, percentHigh);
+			if(percentLow >= 34)
+			{
+				var kaku = 3;
+				if (percentLow >= 50) kaku = 2;
+				if (percentLow >= 100) kaku = 1;
+				WriteResult("確 {0} です\r\n", kaku);
+			}
+			WriteResult("\r\n");
+			//WriteResult("攻撃をおわります================================\r\n\r\n");
+
+			// デモ用
+			var remain = DefencePoke.HPRemain - damage[1];
+			if(remain >= 0)
+			{
+				DefencePoke.HPRemain = remain;
+			}
+			else
+			{
+				DefencePoke.HPRemain = 0;
+				WriteResult("{0} はたおれた！\r\n", DefencePoke.Name);
+			}
+			UpdateProgressBars(false);
+
+			WriteResult("\r\n");
+		}
+
+		private void AttackPoke_Changed()
+		{
+			comboBoxSkill.Items.Clear();
+			string name = AttackPoke.Name;
+			if (name == "ギルガルド盾" || name == "ギルガルド剣")
+			{
+				name = "ギルガルド";
+			}
+			// わざのデータを取得。
+			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
+			using (var cn = new SQLiteConnection(cBuilder.ToString()))
+			{
+				cn.Open();
+				using (var cmd = new SQLiteCommand(cn))
+				{
+					cmd.CommandText = String.Format("select * from pokewaza where name = '{0}' ", name);
+					var reader = cmd.ExecuteReader();
+					while (reader.Read())
+					{
+						comboBoxSkill.Items.Add(reader["waza"].ToString());
+					}
+				}
+			}
 		}
 
 		private void PokePicAttackPoke_DragEnter(object sender, DragEventArgs e)
@@ -161,6 +226,13 @@ namespace Pokemon
 		}
 
 
+		private void buttonResetHP_Click(object sender, EventArgs e)
+		{
+			AttackPoke.HPRemain = AttackPoke.StatusH;
+			DefencePoke.HPRemain = DefencePoke.StatusH;
+			UpdateProgressBars(true);
+			UpdateProgressBars(false);
+		}
 
 		#endregion
 
@@ -181,59 +253,6 @@ namespace Pokemon
 				progressBarEnemyPoke.Maximum = DefencePoke.StatusH;
 				progressBarEnemyPoke.Value = DefencePoke.HPRemain;
 			}
-		}
-
-
-		/// --------------------------------------------------------------------------------
-		/// <summary>
-		///     指定したコントロール内に含まれる TextBox の Text をクリアします。</summary>
-		/// <param name="hParent">
-		///     検索対象となる親コントロール。</param>
-		/// --------------------------------------------------------------------------------
-		private bool ParseTextBox(Control hParent, int[] array)
-		{
-			// hParent 内のすべてのコントロールを列挙する
-			foreach (Control cControl in hParent.Controls)
-			{
-				// 列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
-				if (cControl.HasChildren == true)
-				{
-					ParseTextBox(cControl, array);
-				}
-
-				// コントロールの型が TextBoxBase からの派生型の場合は Text をクリアする
-				if (cControl is TextBoxBase)
-				{
-					if (!(int.TryParse(cControl.Text, out int num)))
-					{
-						array = new int[6];
-						return false;
-					}
-					switch (cControl.Tag.ToString())
-					{
-						case "H":
-							array[0] = num;
-							break;
-						case "A":
-							array[1] = num;
-							break;
-						case "B":
-							array[2] = num;
-							break;
-						case "C":
-							array[3] = num;
-							break;
-						case "D":
-							array[4] = num;
-							break;
-						case "S":
-							array[5] = num;
-							break;
-
-					}
-				}
-			}
-			return true;
 		}
 
 		private void ParseTextBox(Control hParent)
@@ -261,31 +280,15 @@ namespace Pokemon
 			return true;
 		}
 
+		/// <summary>
+		/// 結果を表示させます。
+		/// </summary>
+		/// <param name="format"></param>
+		/// <param name="args"></param>
 		private void WriteResult(string format, params Object[] args)
 		{
 			textBoxResult.AppendText(String.Format(format, args));
 			textBoxResult.Refresh();
-		}
-
-		private void AttackPoke_Changed()
-		{
-			comboBoxSkill.Items.Clear();
-
-			// わざのデータを取得。
-			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
-			using (var cn = new SQLiteConnection(cBuilder.ToString()))
-			{
-				cn.Open();
-				using (var cmd = new SQLiteCommand(cn))
-				{
-					cmd.CommandText = String.Format("select * from pokewaza where name = '{0}' ", AttackPoke.Name);
-					var reader = cmd.ExecuteReader();
-					while (reader.Read())
-					{
-						comboBoxSkill.Items.Add(reader["waza"].ToString());
-					}
-				}
-			}
 		}
 
 		#endregion

@@ -57,6 +57,7 @@
 			this.panelLevel = new System.Windows.Forms.Panel();
 			this.PanelEnemyParty = new Pokemon.PartyPanel();
 			this.PanelMyParty = new Pokemon.PartyPanel();
+			this.buttonResetHP = new System.Windows.Forms.Button();
 			this.tabControl.SuspendLayout();
 			this.tabPageAttack.SuspendLayout();
 			this.tabPageEnvironment.SuspendLayout();
@@ -78,6 +79,7 @@
 			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
+			this.textBoxResult.ReadOnly = true;
 			this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBoxResult.Size = new System.Drawing.Size(366, 166);
 			this.textBoxResult.TabIndex = 3;
@@ -95,6 +97,7 @@
 			// 
 			// tabPageAttack
 			// 
+			this.tabPageAttack.Controls.Add(this.buttonResetHP);
 			this.tabPageAttack.Controls.Add(this.comboBoxItem);
 			this.tabPageAttack.Controls.Add(this.comboBox2);
 			this.tabPageAttack.Controls.Add(this.label5);
@@ -181,7 +184,7 @@
 			// buttonAttack
 			// 
 			this.buttonAttack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonAttack.Location = new System.Drawing.Point(302, 178);
+			this.buttonAttack.Location = new System.Drawing.Point(214, 178);
 			this.buttonAttack.Name = "buttonAttack";
 			this.buttonAttack.Size = new System.Drawing.Size(75, 23);
 			this.buttonAttack.TabIndex = 0;
@@ -239,9 +242,9 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(5, 11);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(59, 12);
+			this.label1.Size = new System.Drawing.Size(29, 12);
 			this.label1.TabIndex = 8;
-			this.label1.Text = "結果/考察";
+			this.label1.Text = "結果";
 			// 
 			// label6
 			// 
@@ -406,6 +409,16 @@
 			this.PanelMyParty.Size = new System.Drawing.Size(160, 240);
 			this.PanelMyParty.TabIndex = 23;
 			// 
+			// buttonResetHP
+			// 
+			this.buttonResetHP.Location = new System.Drawing.Point(302, 178);
+			this.buttonResetHP.Name = "buttonResetHP";
+			this.buttonResetHP.Size = new System.Drawing.Size(75, 23);
+			this.buttonResetHP.TabIndex = 6;
+			this.buttonResetHP.Text = "HP をリセット";
+			this.buttonResetHP.UseVisualStyleBackColor = true;
+			this.buttonResetHP.Click += new System.EventHandler(this.buttonResetHP_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -471,6 +484,7 @@
 		private PictureBoxPoke PictureBoxDefencePoke;
 		private System.Windows.Forms.Panel panelAttackPoke;
 		private System.Windows.Forms.Panel panelDefencePoke;
+		private System.Windows.Forms.Button buttonResetHP;
 	}
 }
 
