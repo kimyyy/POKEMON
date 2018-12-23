@@ -52,8 +52,8 @@
 			this.PictureBoxDefencePoke = new Pokemon.PictureBoxPoke();
 			this.panelAttackPoke = new System.Windows.Forms.Panel();
 			this.pictureBoxAttackPoke = new Pokemon.PictureBoxPoke();
-			this.progressBarDefence = new System.Windows.Forms.ProgressBar();
-			this.progressBarAttack = new System.Windows.Forms.ProgressBar();
+			this.progressBarEnemyPoke = new System.Windows.Forms.ProgressBar();
+			this.progressBarMyPoke = new System.Windows.Forms.ProgressBar();
 			this.panelLevel = new System.Windows.Forms.Panel();
 			this.PanelEnemyParty = new Pokemon.PartyPanel();
 			this.PanelMyParty = new Pokemon.PartyPanel();
@@ -78,6 +78,7 @@
 			this.textBoxResult.Location = new System.Drawing.Point(7, 32);
 			this.textBoxResult.Multiline = true;
 			this.textBoxResult.Name = "textBoxResult";
+			this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBoxResult.Size = new System.Drawing.Size(366, 166);
 			this.textBoxResult.TabIndex = 3;
 			// 
@@ -294,8 +295,8 @@
 			// 
 			this.panelBattleZone.Controls.Add(this.panelDefencePoke);
 			this.panelBattleZone.Controls.Add(this.panelAttackPoke);
-			this.panelBattleZone.Controls.Add(this.progressBarDefence);
-			this.panelBattleZone.Controls.Add(this.progressBarAttack);
+			this.panelBattleZone.Controls.Add(this.progressBarEnemyPoke);
+			this.panelBattleZone.Controls.Add(this.progressBarMyPoke);
 			this.panelBattleZone.Controls.Add(this.label6);
 			this.panelBattleZone.Location = new System.Drawing.Point(227, 60);
 			this.panelBattleZone.Name = "panelBattleZone";
@@ -310,14 +311,15 @@
 			this.panelDefencePoke.Name = "panelDefencePoke";
 			this.panelDefencePoke.Size = new System.Drawing.Size(80, 80);
 			this.panelDefencePoke.TabIndex = 26;
-			this.panelDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelDefencePoke_DragDrop);
-			this.panelDefencePoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelDefencePoke_DragEnter);
+			this.panelDefencePoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelPoke_DragDrop);
+			this.panelDefencePoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelPoke_DragEnter);
 			// 
 			// PictureBoxDefencePoke
 			// 
 			this.PictureBoxDefencePoke.BackColor = System.Drawing.Color.White;
 			this.PictureBoxDefencePoke.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.PictureBoxDefencePoke.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PictureBoxDefencePoke.IsMyPoke = false;
 			this.PictureBoxDefencePoke.Location = new System.Drawing.Point(0, 0);
 			this.PictureBoxDefencePoke.Name = "PictureBoxDefencePoke";
 			this.PictureBoxDefencePoke.Poke = null;
@@ -334,14 +336,15 @@
 			this.panelAttackPoke.Name = "panelAttackPoke";
 			this.panelAttackPoke.Size = new System.Drawing.Size(80, 80);
 			this.panelAttackPoke.TabIndex = 26;
-			this.panelAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelAttackPoke_DragDrop);
-			this.panelAttackPoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelAttackPoke_DragEnter);
+			this.panelAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelPoke_DragDrop);
+			this.panelAttackPoke.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelPoke_DragEnter);
 			// 
 			// pictureBoxAttackPoke
 			// 
 			this.pictureBoxAttackPoke.BackColor = System.Drawing.Color.White;
 			this.pictureBoxAttackPoke.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.pictureBoxAttackPoke.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBoxAttackPoke.IsMyPoke = true;
 			this.pictureBoxAttackPoke.Location = new System.Drawing.Point(0, 0);
 			this.pictureBoxAttackPoke.Name = "pictureBoxAttackPoke";
 			this.pictureBoxAttackPoke.Poke = null;
@@ -351,20 +354,20 @@
 			this.pictureBoxAttackPoke.TabStop = false;
 			this.pictureBoxAttackPoke.DragDrop += new System.Windows.Forms.DragEventHandler(this.PokePicAttackPoke_DragEnter);
 			// 
-			// progressBarDefence
+			// progressBarEnemyPoke
 			// 
-			this.progressBarDefence.Location = new System.Drawing.Point(244, 140);
-			this.progressBarDefence.Name = "progressBarDefence";
-			this.progressBarDefence.Size = new System.Drawing.Size(116, 23);
-			this.progressBarDefence.TabIndex = 24;
+			this.progressBarEnemyPoke.Location = new System.Drawing.Point(244, 140);
+			this.progressBarEnemyPoke.Name = "progressBarEnemyPoke";
+			this.progressBarEnemyPoke.Size = new System.Drawing.Size(116, 23);
+			this.progressBarEnemyPoke.TabIndex = 24;
 			// 
-			// progressBarAttack
+			// progressBarMyPoke
 			// 
-			this.progressBarAttack.ForeColor = System.Drawing.Color.Lime;
-			this.progressBarAttack.Location = new System.Drawing.Point(10, 140);
-			this.progressBarAttack.Name = "progressBarAttack";
-			this.progressBarAttack.Size = new System.Drawing.Size(112, 23);
-			this.progressBarAttack.TabIndex = 23;
+			this.progressBarMyPoke.ForeColor = System.Drawing.Color.Lime;
+			this.progressBarMyPoke.Location = new System.Drawing.Point(10, 140);
+			this.progressBarMyPoke.Name = "progressBarMyPoke";
+			this.progressBarMyPoke.Size = new System.Drawing.Size(112, 23);
+			this.progressBarMyPoke.TabIndex = 23;
 			// 
 			// panelLevel
 			// 
@@ -460,8 +463,8 @@
 		private System.Windows.Forms.Panel panelResult;
 		private System.Windows.Forms.Panel panelBattleZone;
 		private System.Windows.Forms.Panel panelLevel;
-		private System.Windows.Forms.ProgressBar progressBarDefence;
-		private System.Windows.Forms.ProgressBar progressBarAttack;
+		private System.Windows.Forms.ProgressBar progressBarEnemyPoke;
+		private System.Windows.Forms.ProgressBar progressBarMyPoke;
 		private PartyPanel PanelMyParty;
 		private PartyPanel PanelEnemyParty;
 		private PictureBoxPoke pictureBoxAttackPoke;

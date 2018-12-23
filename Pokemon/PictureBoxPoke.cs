@@ -23,6 +23,10 @@ namespace Pokemon
 			}
 		}
 
+		private bool isMyPoke;
+
+		public bool IsMyPoke { get {return isMyPoke; } set {isMyPoke = value; } }
+
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>

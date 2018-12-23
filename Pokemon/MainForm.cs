@@ -37,13 +37,21 @@ namespace Pokemon
 			Level = (int)NumLevel.Value;
 
 			// レベルを登録
-			foreach(Poke poke in MyParty)
+			foreach (Poke poke in MyParty)
 			{
 				poke.Level = Level;
+				// とりあえずステータスを計算しておく
+				poke.Status = Util.CalculateStatus(poke.Syuzoku, poke.Indi, poke.Effort, poke.Level, poke.Nature);
+				poke.HPRemain = poke.StatusH;
+				poke.IsMyParty = true;
 			}
 			foreach (Poke poke in EnemyParty)
 			{
 				poke.Level = Level;
+				// とりあえずステータスを計算しておく
+				poke.Status = Util.CalculateStatus(poke.Syuzoku, poke.Indi, poke.Effort, poke.Level, poke.Nature);
+				poke.HPRemain = poke.StatusH;
+				poke.IsMyParty = false;
 			}
 
 			// パーティをパネルに格納する。
@@ -79,26 +87,20 @@ namespace Pokemon
 			var typeMatch = Util.CalculateTypeMatching(AttackPoke, DefencePoke, Skill);
 			Util.ApplyItem(comboBoxItem.ToString(), Skill, AttackPoke, typeMatch);
 
-			// ダメージ計算
+			// ダメージ計算 0が低いほうで1が高いほう
 			int[] damage = Util.CalculateDamage(AttackPoke, DefencePoke, Skill, Level);
 
-			// 結果を表示
-			WriteResult("======================\r\n攻撃を開始します\r\n" +
-				"ダメージは{0}～{1}です\r\n" +
-				"攻撃をおわります\r\n======================\n", damage[0], damage[1]);
-			UpdateProgressBars();
-		}
+			// 分析
+			var percentHigh = ((double)damage[0] / DefencePoke.HPRemain)*100.0;
+			var percentLow = ((double)damage[1] / DefencePoke.HPRemain)*100.0;
 
-		private void textBoxPoke_DragEnter(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(typeof(int)))
-			{
-				e.Effect = DragDropEffects.Copy;
-			}
-			else
-			{
-				e.Effect = DragDropEffects.None;
-			}
+			percentHigh = Math.Round(percentHigh, MidpointRounding.AwayFromZero);
+			percentLow = Math.Round(percentLow, MidpointRounding.AwayFromZero);
+
+			// 結果を表示
+			WriteResult("======================\r\n攻撃を開始します\r\n");
+			WriteResult("ダメージは{0}～{1}です( {2}% ～ {3} % )\r\n", damage[0], damage[1], percentLow, percentHigh);
+			WriteResult("攻撃をおわります\r\n======================\n");
 		}
 
 		private void PokePicAttackPoke_DragEnter(object sender, DragEventArgs e)
@@ -113,7 +115,7 @@ namespace Pokemon
 			}
 		}
 
-		private void panelAttackPoke_DragEnter(object sender, DragEventArgs e)
+		private void panelPoke_DragEnter(object sender, DragEventArgs e)
 		{
 			if (e.Data.GetDataPresent(typeof(Poke)))
 			{
@@ -125,40 +127,31 @@ namespace Pokemon
 			}
 		}
 
-		private void panelAttackPoke_DragDrop(object sender, DragEventArgs e)
+		private void panelPoke_DragDrop(object sender, DragEventArgs e)
 		{
 			if (e.Data.GetDataPresent(typeof(Poke)))
 			{
 				var destPanel = (Panel)sender;
 				var Poke = (Poke)e.Data.GetData(typeof(Poke));
-				var destPic = (PictureBoxPoke)destPanel.GetChildAtPoint(new Point(0,0));
-				AttackPoke = destPic.Poke = Poke;
-				AttackPoke.IsAttack = true; // TODO 本当はここにあるべきではない。
-				AttackPoke_Changed();
-			}
-		}
-
-		private void panelDefencePoke_DragEnter(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(typeof(Poke)))
-			{
-				e.Effect = DragDropEffects.Copy;
-			}
-			else
-			{
-				e.Effect = DragDropEffects.None;
-			}
-		}
-
-		private void panelDefencePoke_DragDrop(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(typeof(Poke)))
-			{
-				var destPanel = (Panel)sender;
-				var Poke = (Poke)e.Data.GetData(typeof(Poke));
-				var destPic = (PictureBoxPoke)destPanel.GetChildAtPoint(new Point(0,0));
-				DefencePoke = destPic.Poke = Poke;
-				DefencePoke.IsAttack = false; // TODO 本当はここにあるべきではない。
+				var destPic = (PictureBoxPoke)destPanel.GetChildAtPoint(new Point(0, 0));
+				if (destPic.IsMyPoke != Poke.IsMyParty)
+				{
+					Util.ShowMessage("異なる側のパーティーです。");
+					return;
+				}
+				if (Poke.IsMyParty)
+				{
+					AttackPoke = destPic.Poke = Poke;
+					AttackPoke.IsAttack = true; // TODO 本当はここにあるべきではない。
+					AttackPoke_Changed();
+					UpdateProgressBars(true);
+				}
+				else
+				{
+					DefencePoke = destPic.Poke = Poke;
+					DefencePoke.IsAttack = false;
+					UpdateProgressBars(false);
+				}
 			}
 		}
 
@@ -176,13 +169,18 @@ namespace Pokemon
 		/// <summary>
 		/// プログレスバーを更新
 		/// </summary>
-		private void UpdateProgressBars()
+		private void UpdateProgressBars(bool IsAttackPoke)
 		{
-			progressBarAttack.Maximum = AttackPoke.StatusH;
-			progressBarAttack.Value = AttackPoke.HPRemain;
-
-			progressBarDefence.Maximum = DefencePoke.StatusH;
-			progressBarDefence.Value = DefencePoke.HPRemain;
+			if (IsAttackPoke)
+			{
+				progressBarMyPoke.Maximum = AttackPoke.StatusH;
+				progressBarMyPoke.Value = AttackPoke.HPRemain;
+			}
+			else
+			{
+				progressBarEnemyPoke.Maximum = DefencePoke.StatusH;
+				progressBarEnemyPoke.Value = DefencePoke.HPRemain;
+			}
 		}
 
 

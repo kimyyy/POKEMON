@@ -190,7 +190,7 @@ namespace Pokemon
 			var personality = DecidePersonality(Nature);
 			for (int i = 0; i < 6; i++)
 			{
-				double status = Syuzoku[i] * 2.0 + Indi[i] + Effort[i] / 4.0 * Level / 100.0;
+				double status = (Syuzoku[i] * 2.0 + Indi[i] + Effort[i] / 4.0) * Level / 100.0;
 				if (i == 0)
 				{
 					Status[i] = (int)status + Level + 10;
