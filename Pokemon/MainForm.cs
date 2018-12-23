@@ -34,7 +34,21 @@ namespace Pokemon
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			InitSettings();
+			Level = (int)NumLevel.Value;
+
+			// レベルを登録
+			foreach(Poke poke in MyParty)
+			{
+				poke.Level = Level;
+			}
+			foreach (Poke poke in EnemyParty)
+			{
+				poke.Level = Level;
+			}
+
+			// パーティをパネルに格納する。
+			PanelMyParty.Party = MyParty;
+			PanelEnemyParty.Party = EnemyParty;
 		}
 
 		#endregion
@@ -49,12 +63,12 @@ namespace Pokemon
 		private void buttonAttack_Click(object sender, EventArgs e)
 		{
 			if (!CanParse()) return;
-			Waza Skill;
+			Move Skill;
 
 			// ポケモン、わざの準備
 			try
 			{
-				Skill = new Waza(comboBoxSkill.Text);
+				Skill = new Move(comboBoxSkill.Text);
 			}
 			catch (Exception ex)
 			{
@@ -118,7 +132,7 @@ namespace Pokemon
 			{
 				var destPanel = (Panel)sender;
 				var Poke = (Poke)e.Data.GetData(typeof(Poke));
-				var destPic = (PokePictureBox)destPanel.GetChildAtPoint(new Point(0,0));
+				var destPic = (PictureBoxPoke)destPanel.GetChildAtPoint(new Point(0,0));
 				AttackPoke = destPic.Poke = Poke;
 				AttackPoke.IsAttack = true; // TODO 本当はここにあるべきではない。
 				AttackPoke_Changed();
@@ -143,7 +157,7 @@ namespace Pokemon
 			{
 				var destPanel = (Panel)sender;
 				var Poke = (Poke)e.Data.GetData(typeof(Poke));
-				var destPic = (PokePictureBox)destPanel.GetChildAtPoint(new Point(0,0));
+				var destPic = (PictureBoxPoke)destPanel.GetChildAtPoint(new Point(0,0));
 				DefencePoke = destPic.Poke = Poke;
 				DefencePoke.IsAttack = false; // TODO 本当はここにあるべきではない。
 			}
@@ -165,36 +179,15 @@ namespace Pokemon
 
 		#region フォーム用メソッド
 
-		private void InitSettings()
-		{
-			Level = (int)NumLevel.Value;
-
-			// パーティをパネルに格納する。
-			partyPanelMy.Party = MyParty;
-			partyPanelEnemy.Party = EnemyParty;
-		}
-
 		private void UpdateStatus(Poke poke)
 		{
 			// ポケモン、性格を決める。
-			var personality = Util.DecidePersonality(comboBoxPersonality.Text);
 			int[] arrayEffort = new int[6];
 			int[] arrayIndi = new int[6];
-			ParseTextBox(panelEffort, arrayEffort);
-			ParseTextBox(panelIndi, arrayIndi);
 			poke.Effort = arrayEffort;
 			poke.Indi = arrayIndi;
 
 			// ステータス計算
-			poke.CalculateStatus(personality, Level);
-
-			// ラベルを更新
-			labelStatusH.Text = poke.StatusH.ToString();
-			labelStatusA.Text = poke.StatusA.ToString();
-			labelStatusB.Text = poke.StatusB.ToString();
-			labelStatusC.Text = poke.StatusC.ToString();
-			labelStatusD.Text = poke.StatusD.ToString();
-			labelStatusS.Text = poke.StatusS.ToString();
 
 			// プログレスバーを更新
 			progressBarAttack.Maximum = poke.StatusH;
@@ -285,12 +278,9 @@ namespace Pokemon
 			textBoxResult.Refresh();
 		}
 
-		#endregion
-
 		private void AttackPoke_Changed()
 		{
 			comboBoxSkill.Items.Clear();
-			comboBoxChara.Items.Clear();
 
 			// わざのデータを取得。
 			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };
@@ -307,16 +297,15 @@ namespace Pokemon
 					}
 				}
 			}
-			for (int i = 3; i < 6; i++)
-			{
-				if (AttackPoke.ConstStringParams[i] != "")
-				{
-					comboBoxChara.Items.Add(AttackPoke.ConstStringParams[i].ToString());
-				}
-			}
 			UpdateStatus(AttackPoke);
 		}
 
-		
+
+		#endregion
+
+		private void MainForm_DoubleClick(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

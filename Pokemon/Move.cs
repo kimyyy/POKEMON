@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pokemon
 {
-	public class Waza
+	public class Move
 	{
 		public string Name;
 		private string type	{ get { return ConstParams[0]; } set { ConstParams[0] = value; } }
@@ -20,7 +20,7 @@ namespace Pokemon
 
 		public Util.Type Type;
 
-		public Waza(string name)
+		public Move(string name)
 		{
 			Name = name;
 			var cBuilder = new SQLiteConnectionStringBuilder { DataSource = "poketool.db" };

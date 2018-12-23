@@ -71,6 +71,8 @@ namespace Pokemon
 		public int HPRemain = 30;
 		public Util.Affection Affection;
 		public Bitmap bmp;
+		public Util.Nature Nature;
+		public int Level;
 
 		#endregion
 
@@ -121,25 +123,9 @@ namespace Pokemon
 
 			ResourceManager RM = Properties.Resources.ResourceManager;
 			bmp = (Bitmap)RM.GetObject("_" + ID);
+			Status = Util.CalculateStatus(Syuzoku, Indi, Effort, Level, Nature);
 		}
 
 		#endregion
-
-		public void CalculateStatus(double[] personality, int Level)
-		{
-			for (int i = 0; i < 6; i++)
-			{
-				double status = Syuzoku[i] * 2.0 + Indi[i] + Effort[i] / 4.0 * Level / 100.0;
-				if (i == 0)
-				{
-					Status[i] = (int)status + Level + 10;
-				}
-				else
-				{
-					Status[i] = (int)((status + 5) * personality[i]);
-				}
-			}
-		}
-
 	}
 }

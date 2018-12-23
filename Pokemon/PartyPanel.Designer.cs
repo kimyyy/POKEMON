@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.pokePictureBox1 = new Pokemon.PokePictureBox();
-			this.pokePictureBox2 = new Pokemon.PokePictureBox();
-			this.pokePictureBox3 = new Pokemon.PokePictureBox();
-			this.pokePictureBox4 = new Pokemon.PokePictureBox();
-			this.pokePictureBox5 = new Pokemon.PokePictureBox();
-			this.pokePictureBox6 = new Pokemon.PokePictureBox();
+			this.pokePictureBox1 = new Pokemon.PictureBoxPoke();
+			this.pokePictureBox2 = new Pokemon.PictureBoxPoke();
+			this.pokePictureBox3 = new Pokemon.PictureBoxPoke();
+			this.pokePictureBox4 = new Pokemon.PictureBoxPoke();
+			this.pokePictureBox5 = new Pokemon.PictureBoxPoke();
+			this.pokePictureBox6 = new Pokemon.PictureBoxPoke();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pokePictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pokePictureBox2)).BeginInit();
@@ -152,12 +152,12 @@
 		}
 
 		#endregion
-		private PokePictureBox pokePictureBox2;
-		private PokePictureBox pokePictureBox3;
-		private PokePictureBox pokePictureBox4;
-		private PokePictureBox pokePictureBox5;
-		private PokePictureBox pokePictureBox6;
-		public PokePictureBox pokePictureBox1;
+		private PictureBoxPoke pokePictureBox2;
+		private PictureBoxPoke pokePictureBox3;
+		private PictureBoxPoke pokePictureBox4;
+		private PictureBoxPoke pokePictureBox5;
+		private PictureBoxPoke pokePictureBox6;
+		public PictureBoxPoke pokePictureBox1;
 		public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 	}
 }

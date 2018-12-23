@@ -28,7 +28,7 @@ namespace Pokemon
 			}
 		}
 
-		public PokePictureBox[] pokeBoxes;
+		public PictureBoxPoke[] pokeBoxes;
 
 		public PartyPanel()
 		{
@@ -37,10 +37,10 @@ namespace Pokemon
 
 		private void PartyPanel_Load(object sender, EventArgs e)
 		{
-			pokeBoxes = new PokePictureBox[6]
+			pokeBoxes = new PictureBoxPoke[6]
 			{ pokePictureBox1, pokePictureBox2,pokePictureBox3,
 				pokePictureBox4,pokePictureBox5, pokePictureBox6};
-			foreach(PokePictureBox pokePic in pokeBoxes)
+			foreach(PictureBoxPoke pokePic in pokeBoxes)
 			{
 				pokePic.MouseDown += new System.Windows.Forms.MouseEventHandler(pokePictureBox_MouseDown);
 			}
@@ -50,7 +50,7 @@ namespace Pokemon
 		{
 			if(e.Button == MouseButtons.Left)
 			{
-				PokePictureBox pokebox = (PokePictureBox)sender;
+				PictureBoxPoke pokebox = (PictureBoxPoke)sender;
 				if (pokebox.Poke == null) return;
 				var Poke = pokebox.Poke;
 

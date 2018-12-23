@@ -31,6 +31,13 @@ namespace Pokemon
 			なし,まひ,やけど,こおり,こんらん,ねむり,どく,どくどく
 		}
 
+		public enum Nature
+		{
+			さみしがり,いじっぱり,やんちゃ,ゆうかん,ずぶとい,わんぱく,のうてんき,のんき,
+			ひかえめ,おっとり,うっかりや,れいせい,おだやか,おとなしい,しんちょう,なまいき,
+			おくびょう,せっかち,ようき,むじゃき,てれや,すなお,まじめ,きまぐれ,がんばりや
+		}
+
 		public static Dictionary<string, int> DictType = new Dictionary<string, int>()
 		{
 			{"ノーマル", 0 },
@@ -76,88 +83,88 @@ namespace Pokemon
 			{1,0.5,1,1,1,1,2,0.5,1,1,1,1,1,1,2,2,0.5,1 }//フェアリー
 		};
 
-		public static double[] DecidePersonality(string personality)
+		public static double[] DecidePersonality(Nature nature)
 		{
 			var arrayPerson = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
-			switch (personality)
+			switch (nature)
 			{
-				case "さみしがり":
+				case Nature.さみしがり:
 					arrayPerson[1] = 1.1;
 					arrayPerson[2] = 0.9;
 					break;
-				case "いじっぱり":
+				case Nature.いじっぱり:
 					arrayPerson[1] = 1.1;
 					arrayPerson[3] = 0.9;
 					break;
-				case "やんちゃ":
+				case Nature.やんちゃ:
 					arrayPerson[1] = 1.1;
 					arrayPerson[4] = 0.9;
 					break;
-				case "ゆうかん":
+				case Nature.ゆうかん:
 					arrayPerson[1] = 1.1;
 					arrayPerson[5] = 0.9;
 					break;
-				case "ずぶとい":
+				case Nature.ずぶとい:
 					arrayPerson[1] = 0.9;
 					arrayPerson[2] = 1.1;
 					break;
-				case "わんぱく":
+				case Nature.わんぱく:
 					arrayPerson[2] = 1.1;
 					arrayPerson[3] = 0.9;
 					break;
-				case "のうてんき":
+				case Nature.のうてんき:
 					arrayPerson[2] = 1.1;
 					arrayPerson[4] = 0.9;
 					break;
-				case "のんき":
+				case Nature.のんき:
 					arrayPerson[2] = 1.1;
 					arrayPerson[5] = 0.9;
 					break;
-				case "ひかえめ":
+				case Nature.ひかえめ:
 					arrayPerson[1] = 0.9;
 					arrayPerson[3] = 1.1;
 					break;
-				case "おっとり":
+				case Nature.おっとり:
 					arrayPerson[2] = 0.9;
 					arrayPerson[3] = 1.1;
 					break;
-				case "うっかりや":
+				case Nature.うっかりや:
 					arrayPerson[3] = 1.1;
 					arrayPerson[4] = 0.9;
 					break;
-				case "れいせい":
+				case Nature.れいせい:
 					arrayPerson[3] = 1.1;
 					arrayPerson[5] = 0.9;
 					break;
-				case "おだやか":
+				case Nature.おだやか:
 					arrayPerson[1] = 0.9;
 					arrayPerson[4] = 1.1;
 					break;
-				case "おとなしい":
+				case Nature.おとなしい:
 					arrayPerson[2] = 0.9;
 					arrayPerson[4] = 1.1;
 					break;
-				case "しんちょう":
+				case Nature.しんちょう:
 					arrayPerson[3] = 0.9;
 					arrayPerson[4] = 1.1;
 					break;
-				case "なまいき":
+				case Nature.なまいき:
 					arrayPerson[4] = 1.1;
 					arrayPerson[5] = 0.9;
 					break;
-				case "おくびょう":
+				case Nature.おくびょう:
 					arrayPerson[1] = 0.9;
 					arrayPerson[5] = 1.1;
 					break;
-				case "せっかち":
+				case Nature.せっかち:
 					arrayPerson[2] = 0.9;
 					arrayPerson[5] = 1.1;
 					break;
-				case "ようき":
+				case Nature.ようき:
 					arrayPerson[3] = 0.9;
 					arrayPerson[5] = 1.1;
 					break;
-				case "むじゃき":
+				case Nature.むじゃき:
 					arrayPerson[4] = 0.9;
 					arrayPerson[5] = 1.1;
 					break;
@@ -166,10 +173,33 @@ namespace Pokemon
 		}
 
 		/// <summary>
+		/// ポケモンのステータスを計算します。
+		/// </summary>
+		/// <param name="Level"></param>
+		public static int[] CalculateStatus(int[] Syuzoku, int[] Indi, int[] Effort, int Level, Nature Nature)
+		{
+			var Status = new int[6];
+			var personality = DecidePersonality(Nature);
+			for (int i = 0; i < 6; i++)
+			{
+				double status = Syuzoku[i] * 2.0 + Indi[i] + Effort[i] / 4.0 * Level / 100.0;
+				if (i == 0)
+				{
+					Status[i] = (int)status + Level + 10;
+				}
+				else
+				{
+					Status[i] = (int)((status + 5) * personality[i]);
+				}
+			}
+			return Status;
+		}
+
+		/// <summary>
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
 		/// <returns></returns>
-		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Waza Skill, int Level)
+		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Move Skill, int Level)
 		{
 			int Damage = Level * 2 / 5 + 2;
 			if (Skill.IsPhysical)
@@ -196,7 +226,7 @@ namespace Pokemon
 		/// <param name="defensePokemon"></param>
 		/// <param name="skill"></param>
 		/// <returns></returns>
-		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Waza skill)
+		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Move skill)
 		{
 			int skilltype = (int)skill.Type;
 			int type1 = (int)defensePokemon.Type1;
@@ -210,7 +240,7 @@ namespace Pokemon
 			return tableTypeMatch[skilltype, type1] * tableTypeMatch[skilltype, type2] * sametype;
 		}
 
-		public static void ApplyItem(string Item, Waza Skill, Poke poke, double typeMatch)
+		public static void ApplyItem(string Item, Move Skill, Poke poke, double typeMatch)
 		{
 			switch (Item)
 			{
@@ -257,7 +287,7 @@ namespace Pokemon
 			}
 		}
 
-		public static void ApplyChara(string Chara, Waza Skill, Poke Poke, double typeMatching)
+		public static void ApplyChara(string Chara, Move Skill, Poke Poke, double typeMatching)
 		{
 			switch (Chara)
 			{
