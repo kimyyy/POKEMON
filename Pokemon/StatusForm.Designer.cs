@@ -64,7 +64,7 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.comboBoxPersonality = new System.Windows.Forms.ComboBox();
+			this.comboBoxNature = new System.Windows.Forms.ComboBox();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.PictureBoxPoke)).BeginInit();
@@ -101,13 +101,12 @@
 			this.groupBoxAttackPoke.Controls.Add(this.label12);
 			this.groupBoxAttackPoke.Controls.Add(this.label11);
 			this.groupBoxAttackPoke.Controls.Add(this.label10);
-			this.groupBoxAttackPoke.Controls.Add(this.comboBoxPersonality);
+			this.groupBoxAttackPoke.Controls.Add(this.comboBoxNature);
 			this.groupBoxAttackPoke.Location = new System.Drawing.Point(129, 12);
 			this.groupBoxAttackPoke.Name = "groupBoxAttackPoke";
 			this.groupBoxAttackPoke.Size = new System.Drawing.Size(502, 432);
 			this.groupBoxAttackPoke.TabIndex = 12;
 			this.groupBoxAttackPoke.TabStop = false;
-			this.groupBoxAttackPoke.Text = "ステータス(攻撃側)";
 			// 
 			// label20
 			// 
@@ -389,7 +388,7 @@
 			// label17
 			// 
 			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(6, 66);
+			this.label17.Location = new System.Drawing.Point(7, 94);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(20, 12);
 			this.label17.TabIndex = 18;
@@ -398,7 +397,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(3, 263);
+			this.label14.Location = new System.Drawing.Point(4, 284);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(43, 12);
 			this.label14.TabIndex = 15;
@@ -407,7 +406,7 @@
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(7, 224);
+			this.label13.Location = new System.Drawing.Point(4, 248);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(36, 12);
 			this.label13.TabIndex = 14;
@@ -416,7 +415,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(6, 184);
+			this.label12.Location = new System.Drawing.Point(7, 210);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(34, 12);
 			this.label12.TabIndex = 13;
@@ -425,7 +424,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(7, 142);
+			this.label11.Location = new System.Drawing.Point(1, 171);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(39, 12);
 			this.label11.TabIndex = 12;
@@ -434,17 +433,17 @@
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(6, 102);
+			this.label10.Location = new System.Drawing.Point(2, 127);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(39, 12);
 			this.label10.TabIndex = 11;
 			this.label10.Text = "こうげき";
 			// 
-			// comboBoxPersonality
+			// comboBoxNature
 			// 
-			this.comboBoxPersonality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBoxPersonality.FormattingEnabled = true;
-			this.comboBoxPersonality.Items.AddRange(new object[] {
+			this.comboBoxNature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxNature.FormattingEnabled = true;
+			this.comboBoxNature.Items.AddRange(new object[] {
             "さみしがり",
             "いじっぱり",
             "やんちゃ",
@@ -470,10 +469,10 @@
             "まじめ",
             "きまぐれ",
             "がんばりや"});
-			this.comboBoxPersonality.Location = new System.Drawing.Point(68, 338);
-			this.comboBoxPersonality.Name = "comboBoxPersonality";
-			this.comboBoxPersonality.Size = new System.Drawing.Size(142, 20);
-			this.comboBoxPersonality.TabIndex = 0;
+			this.comboBoxNature.Location = new System.Drawing.Point(68, 338);
+			this.comboBoxNature.Name = "comboBoxNature";
+			this.comboBoxNature.Size = new System.Drawing.Size(142, 20);
+			this.comboBoxNature.TabIndex = 0;
 			// 
 			// buttonOK
 			// 
@@ -508,7 +507,6 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.Text = "ステータス設定";
-			this.TopMost = true;
 			this.Load += new System.EventHandler(this.StatusForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.PictureBoxPoke)).EndInit();
 			this.groupBoxAttackPoke.ResumeLayout(false);
@@ -540,7 +538,7 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label11;
 		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.ComboBox comboBoxPersonality;
+		private System.Windows.Forms.ComboBox comboBoxNature;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.TextBox textBoxIndiHP;
 		private System.Windows.Forms.TextBox textBoxIndiA;

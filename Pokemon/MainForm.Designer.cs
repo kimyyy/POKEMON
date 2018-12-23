@@ -418,7 +418,6 @@
 			this.ShowIcon = false;
 			this.Text = "ポケモン対戦ツールbyびいの";
 			this.Load += new System.EventHandler(this.MainForm_Load);
-			this.DoubleClick += new System.EventHandler(this.MainForm_DoubleClick);
 			this.tabControl.ResumeLayout(false);
 			this.tabPageAttack.ResumeLayout(false);
 			this.tabPageAttack.PerformLayout();

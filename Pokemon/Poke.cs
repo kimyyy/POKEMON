@@ -71,8 +71,9 @@ namespace Pokemon
 		public int HPRemain = 30;
 		public Util.Affection Affection;
 		public Bitmap bmp;
-		public Util.Nature Nature;
+		public Util.Nature Nature; // デフォルトではさみしがり
 		public int Level;
+		public string SelectedChara;
 
 		#endregion
 
@@ -123,7 +124,12 @@ namespace Pokemon
 
 			ResourceManager RM = Properties.Resources.ResourceManager;
 			bmp = (Bitmap)RM.GetObject("_" + ID);
+
+			// とりあえずステータスを計算しておく
 			Status = Util.CalculateStatus(Syuzoku, Indi, Effort, Level, Nature);
+
+			// とりあえずとくせいは1にする
+			SelectedChara = Chara1;
 		}
 
 		#endregion

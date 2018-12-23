@@ -172,6 +172,14 @@ namespace Pokemon
 			return arrayPerson;
 		}
 
+		public static void ShowMessage(string message)
+		{
+			using (var form = new NoticeForm(message))
+			{
+				form.ShowDialog();
+			}
+		}
+
 		/// <summary>
 		/// ポケモンのステータスを計算します。
 		/// </summary>

@@ -72,11 +72,9 @@ namespace Pokemon
 			}
 			catch (Exception ex)
 			{
-				WriteResult(ex.Message + "\r\n");
+				Util.ShowMessage(ex.Message);
 				return;
 			}
-			UpdateStatus(AttackPoke);
-			UpdateStatus(DefencePoke);
 
 			var typeMatch = Util.CalculateTypeMatching(AttackPoke, DefencePoke, Skill);
 			Util.ApplyItem(comboBoxItem.ToString(), Skill, AttackPoke, typeMatch);
@@ -88,6 +86,7 @@ namespace Pokemon
 			WriteResult("======================\r\n攻撃を開始します\r\n" +
 				"ダメージは{0}～{1}です\r\n" +
 				"攻撃をおわります\r\n======================\n", damage[0], damage[1]);
+			UpdateProgressBars();
 		}
 
 		private void textBoxPoke_DragEnter(object sender, DragEventArgs e)
@@ -163,11 +162,6 @@ namespace Pokemon
 			}
 		}
 
-		private void buttonStatus_click(object sender, EventArgs e)
-		{
-			UpdateStatus(AttackPoke);
-		}
-
 		private void comboBoxSkill_TextChanged(object sender, EventArgs e)
 		{
 
@@ -179,19 +173,16 @@ namespace Pokemon
 
 		#region フォーム用メソッド
 
-		private void UpdateStatus(Poke poke)
+		/// <summary>
+		/// プログレスバーを更新
+		/// </summary>
+		private void UpdateProgressBars()
 		{
-			// ポケモン、性格を決める。
-			int[] arrayEffort = new int[6];
-			int[] arrayIndi = new int[6];
-			poke.Effort = arrayEffort;
-			poke.Indi = arrayIndi;
+			progressBarAttack.Maximum = AttackPoke.StatusH;
+			progressBarAttack.Value = AttackPoke.HPRemain;
 
-			// ステータス計算
-
-			// プログレスバーを更新
-			progressBarAttack.Maximum = poke.StatusH;
-			progressBarAttack.Value = poke.HPRemain;
+			progressBarDefence.Maximum = DefencePoke.StatusH;
+			progressBarDefence.Value = DefencePoke.HPRemain;
 		}
 
 
@@ -297,15 +288,8 @@ namespace Pokemon
 					}
 				}
 			}
-			UpdateStatus(AttackPoke);
 		}
-
 
 		#endregion
-
-		private void MainForm_DoubleClick(object sender, EventArgs e)
-		{
-
-		}
 	}
 }

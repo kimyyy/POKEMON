@@ -43,13 +43,15 @@ namespace Pokemon
 
 		private void StatusForm_Load(object sender, EventArgs e)
 		{
+			// ポケモンをフォームに反映する。
+			PictureBoxPoke.Poke = Poke;
+
+			Text = Poke.Name + " のステータス設定";
+
 			// textbox を配列に格納する。
 			textBoxesIndi = new TextBox[6] { textBoxIndiHP, textBoxIndiA, textBoxIndiB, textBoxIndiC, textBoxIndiD, textBoxIndiS };
 			textBoxesEffort = new TextBox[6] { textBoxEffortHP, textBoxEffortA, textBoxEffortB, textBoxEffortC, textBoxEffortD, textBoxEffortS };
 			labelStatus = new Label[6] { labelStatusH, labelStatusA, labelStatusB, labelStatusC, labelStatusD, labelStatusS };
-
-			// ポケモンをフォームに反映する。
-			PictureBoxPoke.Poke = Poke;
 
 			// ポケモンの情報をフォームに反映
 			// 個体値、努力値、ステータス
@@ -71,7 +73,10 @@ namespace Pokemon
 
 			// せいかく
 			Nature = Poke.Nature;
-			comboBoxChara.Text = Nature.ToString();
+			comboBoxNature.Text = Nature.ToString();
+
+			// とくせい
+			if(Poke.SelectedChara !=null)comboBoxChara.Text = Poke.SelectedChara;
 		}
 
 		private void buttonOK_Click(object sender, EventArgs e)
@@ -83,13 +88,14 @@ namespace Pokemon
 			Poke.Effort = FormEffort;
 			Poke.Status = FormStatus;
 			Poke.Nature = Nature;
+			Poke.SelectedChara = comboBoxChara.Text;
 
 			// フォームを閉じる
 			DialogResult = DialogResult.OK;
 		}
 
 		/// <summary>
-		/// ステータスを計算し、フォーム内に記憶させます。
+		/// ステータスを計算し、フォーム内に保存します
 		/// </summary>
 		private void UpdateStatus()
 		{
@@ -111,7 +117,10 @@ namespace Pokemon
 			}
 		}
 
-		// テキストボックスの情報を変換し、成功すればフォームに保存します。
+		/// <summary>
+		/// テキストボックスの情報を変換し、成功すればフォームに保存。失敗すればダイアログをだす。
+		/// </summary>
+		/// <returns>変換に成功したかどうか</returns>
 		private bool CanParseTextBox()
 		{
 			int[] tempIndi = new int[6];
@@ -119,22 +128,38 @@ namespace Pokemon
 			for (var i = 0; i < 6; i++)
 			{
 				int parsedInt;
-				if (!int.TryParse(textBoxesIndi[i].Text, out parsedInt)) return false;
-				if (parsedInt < 0 || 31 < parsedInt) return false;
+				if (!int.TryParse(textBoxesIndi[i].Text, out parsedInt))
+				{
+					Util.ShowMessage("変換に失敗しました。: 個体値の欄をみてください。");
+					return false;
+				}
+				if (parsedInt < 0 || 31 < parsedInt)
+				{
+					Util.ShowMessage("個体値が範囲を超えています。");
+					return false;
+				}
 				tempIndi[i] = parsedInt;
 			}
 			for (var i = 0; i < 6; i++)
 			{
 				int parsedInt;
-				if (!int.TryParse(textBoxesEffort[i].Text, out parsedInt)) return false;
-				if (parsedInt < 0 || 255 < parsedInt) return false;
+				if (!int.TryParse(textBoxesEffort[i].Text, out parsedInt))
+				{
+					Util.ShowMessage("努力値の変換に失敗しました。");
+					return false;
+				}
+				if (parsedInt < 0 || 255 < parsedInt)
+				{
+					Util.ShowMessage("度蝕知が範囲を超えています。");
+					return false;
+				}
 				tempEffort[i] = parsedInt;
 			}
 
 			// せいかくを取得
-			foreach(Util.Nature nature in Enum.GetValues(typeof(Util.Nature)))
+			foreach (Util.Nature nature in Enum.GetValues(typeof(Util.Nature)))
 			{
-				if(comboBoxChara.Text == nature.ToString())
+				if (comboBoxNature.Text == nature.ToString())
 				{
 					Nature = nature;
 					break;
