@@ -28,9 +28,17 @@ namespace Pokemon
 
 		public enum Affection
 		{
-			なし,まひ,やけど,こおり,こんらん,ねむり,どく,どくどく
+			なし,まひ,やけど,こおり,ねむり,どく,どくどく
 		}
 
+		public enum AffectionMental
+		{
+			こんらん,メロメロ,ちょうはつ,ゆうわく
+		}
+
+		/// <summary>
+		/// ポケモンの性格
+		/// </summary>
 		public enum Nature
 		{
 			さみしがり,いじっぱり,やんちゃ,ゆうかん,ずぶとい,わんぱく,のうてんき,のんき,
@@ -181,10 +189,15 @@ namespace Pokemon
 		}
 
 		/// <summary>
-		/// ポケモンのステータスを計算します。
+		/// ポケモンの基礎ステータスを計算します。
 		/// </summary>
-		/// <param name="Level"></param>
-		public static int[] CalculateStatus(int[] Syuzoku, int[] Indi, int[] Effort, int Level, Nature Nature)
+		/// <param name="Syuzoku">種族値</param>
+		/// <param name="Indi">個体値</param>
+		/// <param name="Effort">努力値</param>
+		/// <param name="Level">レベル</param>
+		/// <param name="Nature">性格</param>
+		/// <returns>基礎ステータスの配列</returns>
+		public static int[] CalcBasicStatus(int[] Syuzoku, int[] Indi, int[] Effort, int Level, Nature Nature)
 		{
 			var Status = new int[6];
 			var personality = DecidePersonality(Nature);
@@ -207,23 +220,23 @@ namespace Pokemon
 		/// 純粋ダメージ量を計算します。
 		/// </summary>
 		/// <returns></returns>
-		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Move Skill, int Level)
+		public static int[] CalculateDamage(Poke AttackPoke, Poke DefencePoke, Move move, int Level)
 		{
 			int Damage = Level * 2 / 5 + 2;
-			if (Skill.IsPhysical)
+			if (move.IsPhysical)
 			{
-				Damage = Damage * Skill.Damage * AttackPoke.SyuzokuA / DefencePoke.SyuzokuB;
+				Damage = Damage * move.Damage * AttackPoke.SyuzokuA / DefencePoke.SyuzokuB;
 			}
 			else
 			{
-				Damage = Damage * Skill.Damage * AttackPoke.SyuzokuC / DefencePoke.SyuzokuC;
+				Damage = Damage * move.Damage * AttackPoke.SyuzokuC / DefencePoke.SyuzokuC;
 			}
 
 			Damage = Damage / 50 + 2;
 			int DamegeLower = (int)(Damage * 0.85);
 			int DamageUpper = Damage;
-			DamegeLower = (int)(DamegeLower * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
-			DamageUpper = (int)(DamageUpper * CalculateTypeMatching(AttackPoke, DefencePoke, Skill));
+			DamegeLower = (int)(DamegeLower * CalculateTypeMatching(AttackPoke, DefencePoke, move));
+			DamageUpper = (int)(DamageUpper * CalculateTypeMatching(AttackPoke, DefencePoke, move));
 			var DamageRange = new int[] { DamegeLower, DamageUpper };
 			return DamageRange;
 		}
@@ -232,14 +245,14 @@ namespace Pokemon
 		/// タイプ相性を計算します。
 		/// </summary>
 		/// <param name="defensePokemon"></param>
-		/// <param name="skill"></param>
+		/// <param name="move"></param>
 		/// <returns></returns>
-		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Move skill)
+		public static double CalculateTypeMatching(Poke attackPokemon, Poke defensePokemon, Move move)
 		{
-			int skilltype = (int)skill.Type;
+			int skilltype = (int)move.Type;
 			int type1 = (int)defensePokemon.Type1;
 			double sametype = 1;
-			if (attackPokemon.Type1 == skill.Type || attackPokemon.Type2 == skill.Type) sametype = 1.5;
+			if (attackPokemon.Type1 == move.Type || attackPokemon.Type2 == move.Type) sametype = 1.5;
 			if (defensePokemon.Type2 == Type.none)
 			{
 				return tableTypeMatch[skilltype, type1] * sametype;
@@ -248,25 +261,25 @@ namespace Pokemon
 			return tableTypeMatch[skilltype, type1] * tableTypeMatch[skilltype, type2] * sametype;
 		}
 
-		public static void ApplyItem(string Item, Move Skill, Poke poke, double typeMatch)
+		public static void ApplyItem(string Item, Move move, Poke poke, double typeMatch)
 		{
 			switch (Item)
 			{
 				case "いのちのたま":
-					Skill.multipleDamage(1.3);
+					move.multipleDamage(1.3);
 					break;
 
 				case "こだわりハチマキ":
-					if (Skill.IsPhysical)
+					if (move.IsPhysical)
 					{
-						Skill.multipleDamage(1.5);
+						move.multipleDamage(1.5);
 					}
 					break;
 
 				case "こだわりメガネ":
-					if (!Skill.IsPhysical)
+					if (!move.IsPhysical)
 					{
-						Skill.multipleDamage(1.5);
+						move.multipleDamage(1.5);
 					}
 					break;
 
@@ -275,16 +288,16 @@ namespace Pokemon
 					break;
 
 				case "ちからのハチマキ":
-					if (Skill.IsPhysical)
+					if (move.IsPhysical)
 					{
-						Skill.multipleDamage(1.1);
+						move.multipleDamage(1.1);
 					}
 					break;
 
 				case "たつじんのおび":
 					if (typeMatch == 2.0)
 					{
-						Skill.multipleDamage(1.2);
+						move.multipleDamage(1.2);
 					}
 					break;
 
@@ -295,7 +308,7 @@ namespace Pokemon
 			}
 		}
 
-		public static void ApplyChara(string Chara, Move Skill, Poke Poke, double typeMatching)
+		public static void ApplyCharaBefore(string Chara, Move move, Poke Poke, double typeMatching)
 		{
 			switch (Chara)
 			{
@@ -308,9 +321,9 @@ namespace Pokemon
 					break;
 
 				case "あついしぼう":
-					if (!Poke.IsAttack && (Skill.Type == Type.ほのお || Skill.Type == Type.こおり))
+					if (!Poke.IsAttack && (move.Type == Type.ほのお || move.Type == Type.こおり))
 					{
-						Skill.multipleDamage(0.5);
+						move.multipleDamage(0.5);
 					}
 					break;
 
@@ -376,7 +389,7 @@ namespace Pokemon
 				case "うるおいボイス":
 					if (Poke.IsAttack)
 					{
-						switch (Skill.Name)
+						switch (move.Name)
 						{
 							case "いびき":
 							case "いやしのすず":
@@ -402,7 +415,7 @@ namespace Pokemon
 							case "ほろびのうた":
 							case "むしのさざめき":
 							case "りんしょう":
-								Skill.Type = Type.みず;
+								move.Type = Type.みず;
 								break;
 						}
 					}
@@ -419,10 +432,10 @@ namespace Pokemon
 				case "エレスキン":
 					if (Poke.IsAttack)
 					{
-						if (Skill.Type == Type.ノーマル)
+						if (move.Type == Type.ノーマル)
 						{
-							Skill.Type = Type.でんき;
-							Skill.multipleDamage(1.3);
+							move.Type = Type.でんき;
+							move.multipleDamage(1.3);
 						}
 					}
 					break;
@@ -434,7 +447,7 @@ namespace Pokemon
 				case "えんかく":
 					if (Poke.IsAttack)
 					{
-						Skill.IsPhysical = false;
+						move.IsPhysical = false;
 					}
 					break;
 
@@ -514,7 +527,7 @@ namespace Pokemon
 					{
 						break;
 					}
-					switch (Skill.Name)
+					switch (move.Name)
 					{
 						case "かみつく":
 						case "かみくだく":
@@ -524,7 +537,7 @@ namespace Pokemon
 						case "こおりのキバ":
 						case "どくどくのキバ":
 						case "サイコファング":
-							Skill.multipleDamage(1.5);
+							move.multipleDamage(1.5);
 							break;
 					}
 					break;
@@ -559,6 +572,19 @@ namespace Pokemon
 				case "きんちょうかん":
 					// TODO
 					break;
+			}
+		}
+
+		public static void ApplyCharaAfter(string Chara, Move move, Poke poke, double typeMatching)
+		{
+
+		}
+
+		public static void ApplyCharaAndEnvironment(string Chara, Move move, Poke poke, double typeMatching)
+		{
+			switch (Chara)
+			{
+
 			}
 		}
 	}

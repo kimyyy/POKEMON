@@ -14,10 +14,10 @@ namespace Pokemon
 		private string category { get { return ConstParams[1]; } set { ConstParams[1] = value; } }
 		public int Damage;
 		public bool IsPhysical;
-		
+		private bool IsChange;
 		private string[] ParamsString = { "type", "category", "damage" };
 		private string[] ConstParams = new string[2];
-
+		
 		public Util.Type Type;
 
 		public Move(string name)
@@ -45,7 +45,17 @@ namespace Pokemon
 					}
 					try
 					{
-						Damage = int.Parse(reader[ParamsString[2]].ToString());
+						// 変化技を処理
+						if(reader[ParamsString[2]].ToString() == "-")
+						{
+							IsChange = true;
+							Damage = 0;
+						}
+						else
+						{
+							IsChange = false;
+							Damage = int.Parse(reader[ParamsString[2]].ToString());
+						}
 					}
 					catch (InvalidOperationException)
 					{

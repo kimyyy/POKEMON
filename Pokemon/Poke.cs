@@ -15,17 +15,17 @@ namespace Pokemon
 
 		#region 各ステータス
 
-		private string[] ParamsString = {"name", "type1", "type2", "chara1", "chara2", "dchara" , "id"};
+		private string[] ParamsString = { "name", "type1", "type2", "chara1", "chara2", "dchara", "id" };
 
 		public string[] ConstStringParams = new string[7];
 
-		public string Name   { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
-		public string type1  { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
-		public string type2  { get { return ConstStringParams[2]; } set { ConstStringParams[2] = value; } }
+		public string Name { get { return ConstStringParams[0]; } set { ConstStringParams[0] = value; } }
+		public string type1 { get { return ConstStringParams[1]; } set { ConstStringParams[1] = value; } }
+		public string type2 { get { return ConstStringParams[2]; } set { ConstStringParams[2] = value; } }
 		public string Chara1 { get { return ConstStringParams[3]; } set { ConstStringParams[3] = value; } }
 		public string Chara2 { get { return ConstStringParams[4]; } set { ConstStringParams[4] = value; } }
 		public string DChara { get { return ConstStringParams[5]; } set { ConstStringParams[5] = value; } }
-		public string ID     { get { return ConstStringParams[6]; } set { ConstStringParams[6] = value; } }
+		public string ID { get { return ConstStringParams[6]; } set { ConstStringParams[6] = value; } }
 
 		public int[] Syuzoku = new int[6];
 
@@ -36,7 +36,6 @@ namespace Pokemon
 		public int SyuzokuD { get { return Syuzoku[4]; } set { Syuzoku[4] = value; } }
 		public int SyuzokuS { get { return Syuzoku[5]; } set { Syuzoku[5] = value; } }
 		public int Sum;
-		
 
 		public int[] Indi = new int[6];
 
@@ -65,10 +64,135 @@ namespace Pokemon
 		public int StatusD { get { return Status[4]; } set { Status[4] = value; } }
 		public int StatusS { get { return Status[5]; } set { Status[5] = value; } }
 
+		public int[] Rank = new int[5];
+
+		public int RankA
+		{
+			get { return Rank[0]; }
+			set
+			{
+				if (value < -6)
+				{
+					Rank[0] = -6;
+				}
+				else if (value > 6)
+				{
+					Rank[0] = 6;
+				}
+				else
+				{
+					Rank[0] = value;
+				}
+			}
+		}
+
+		public int RankB
+		{
+			get { return Rank[1]; }
+			set
+			{
+				if (value < -6)
+				{
+					Rank[1] = -6;
+				}
+				else if (value > 6)
+				{
+					Rank[1] = 6;
+				}
+				else
+				{
+					Rank[1] = value;
+				}
+			}
+		}
+
+		public int RankC
+		{
+			get { return Rank[2]; }
+			set
+			{
+				if (value < -6)
+				{
+					Rank[2] = -6;
+				}
+				else if (value > 6)
+				{
+					Rank[2] = 6;
+				}
+				else
+				{
+					Rank[2] = value;
+				}
+			}
+		}
+
+		public int RankD
+		{
+			get { return Rank[3]; }
+			set
+			{
+				if (value < -6)
+				{
+					Rank[3] = -6;
+				}
+				else if (value > 6)
+				{
+					Rank[3] = 6;
+				}
+				else
+				{
+					Rank[3] = value;
+				}
+			}
+		}
+
+		public int RankS
+		{
+			get { return Rank[4]; }
+			set
+			{
+				if (value < -6)
+				{
+					Rank[4] = -6;
+				}
+				else if (value > 6)
+				{
+					Rank[4] = 6;
+				}
+				else
+				{
+					Rank[4] = value;
+				}
+			}
+		}
+
 		public bool IsAttack;
 		public Util.Type Type1;
 		public Util.Type Type2;
-		public int HPRemain;
+		private int hpRemain;
+		public int HPRemain
+		{
+			get
+			{
+				return hpRemain;
+			}
+
+			set
+			{
+				if(value > StatusH)
+				{
+					hpRemain = StatusH;
+				}
+				else if(value < 0)
+				{
+					hpRemain = 0;
+				}
+				else
+				{
+					hpRemain = value;
+				}
+			}
+		}
 		public Util.Affection Affection;
 		public Bitmap bmp;
 		public Util.Nature Nature; // デフォルトではさみしがり
@@ -91,7 +215,7 @@ namespace Pokemon
 				cn.Open();
 				using (var cmd = new SQLiteCommand(cn))
 				{
-					cmd.CommandText = String.Format("select * from charPokeInfo where name = '{0}'",name);
+					cmd.CommandText = String.Format("select * from charPokeInfo where name = '{0}'", name);
 					var reader = cmd.ExecuteReader();
 					reader.Read();
 
@@ -118,7 +242,7 @@ namespace Pokemon
 
 			// タイプを変換
 			Type1 = (Util.Type)Util.DictType[type1];
-			if(type2 != "")
+			if (type2 != "")
 			{
 				Type2 = (Util.Type)Util.DictType[type2];
 			}
